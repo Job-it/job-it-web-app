@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let db = mongoose.connect('mongodb://localhost/myapp'); 
 const Schema = mongoose.Schema; 
 
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 let usersSchema = new Schema({
 	githubOAuth: String,
@@ -45,6 +46,7 @@ let Contact = mongoose.model('Contact', contactsSchema);
 let Task = mongoose.model('Task', tasksSchema);
 
 let save = function(model, params, cb) {
+  
   return ${model}.create(params, function(err, cb){
 		     if(err) console.error(err);
   }); 
