@@ -4,9 +4,9 @@ var parser = require('body-parser');
 const util = require('./utilities.js');
 const db = require('../db/index.js');
 
-const contactsRouter = require('./routes/contactsRouts');
-const opportunitiesRouter = require('./routes/opportunitiesRouts');
-const tasksRouter = require('./routes/tasksRouts.js');
+// const contactsRouter = require('./routes/contactsRouts');
+// const opportunitiesRouter = require('./routes/opportunitiesRouts');
+// const tasksRouter = require('./routes/tasksRouts.js');
 
 var app = express();
 
@@ -17,9 +17,9 @@ app.use(parser.json());
 app.use(parser.urlencoded())
 
 //Routes
-app.use('/contacts', contactsRouter);
-app.use('/opportunities', opportunitiesRouter);
-app.use('/tasks', tasksRouter);
+// app.use('/contacts', contactsRouter);
+// app.use('/opportunities', opportunitiesRouter);
+// app.use('/tasks', tasksRouter);
 
 var port = process.env.PORT || 9000; 
 

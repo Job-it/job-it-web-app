@@ -1,4 +1,4 @@
-var contactsModels = require('../models/padModels.js');
+var contactsModels = require('../models/contactsModel.js');
 var url = require('url');
 
 module.exports = {

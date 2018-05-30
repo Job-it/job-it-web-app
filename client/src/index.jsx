@@ -1,5 +1,6 @@
-import react from 'react'
-import reactDom from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/app.jsx'
 
 // TODO: Render the `App` component to the DOM
 
