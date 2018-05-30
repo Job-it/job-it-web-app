@@ -12,7 +12,7 @@ class opportunityForm extends React.Component {
       dateClosed: false,
       opportunityName: '',
       organizationName: '',
-      rank: 5, 
+      rank: 4, 
       status: '', // enable dropdown
       type: '', // enable dropdown
     }
