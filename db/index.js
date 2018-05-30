@@ -1,7 +1,8 @@
 //this is where we connect to the server and export it to home.
 const mongoose = require('mongoose'); 
-mongoose.connect('mongodb://localhost/myapp'); 
+let db = mongoose.connect('mongodb://localhost/myapp'); 
 const Schema = mongoose.Schema; 
+
 
 let usersSchema = new Schema({
 	githubOAuth: String,
@@ -43,11 +44,18 @@ let Opportunity = mongoose.model('Opportunity', opportunitiesSchema);
 let Contact = mongoose.model('Contact', contactsSchema);
 let Task = mongoose.model('Task', tasksSchema);
 
-let save = function(params, model) {
-  return ${model}.create(params, function(err, small){
+let save = function(model, params, cb) {
+  return ${model}.create(params, function(err, cb){
 		     if(err) console.error(err);
   }); 
 };
 
-let retrieve
+let retrieve = function(model, conditions) {
+  return ${model}.find()	
+};
+
+let update = function(model, conditions, params) {
+  return ${model}.findOneAndUpdate(conditions, params); 
+
+};
 
