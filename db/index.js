@@ -17,8 +17,7 @@ let opportunitiesSchema = new Schema({
 	orgName: String,
 	rank: String,
 	status: String,
-	type: String,
-	orderInOpportunityList: Number
+	type: String
 }); 
 
 let contactsSchema = new Schema({
