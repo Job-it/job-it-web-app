@@ -4,24 +4,26 @@ mongoose.connect('mongodb://localhost/myapp');
 const Schema = mongoose.Schema; 
 
 let usersSchema = new Schema({
+	githubOAuth: String,
 	firstName: String, 
-	lastName: String,
-	githubOAuth: String
+	lastName: String
 
 }); 
 
 let opportunitiesSchema = new Schema({
-	userFK: String,
+	userFK: String, //referencing User.id
 	dateOpened: { type: Date, default: Date.now },
 	dateClosed: Date,
+	opportunityName: String,
 	orgName: String,
 	rank: String,
+	description: String,
 	status: String,
 	type: String
 }); 
 
 let contactsSchema = new Schema({
-	opportunityFK: String,
+	opportunityFK: String, //referencing Opportunity.id
 	firstName: String,
 	lastName: String,
 	lastContact: Date,
@@ -29,9 +31,23 @@ let contactsSchema = new Schema({
 });
 
 let tasksSchema = new Schema({
-	opportunityFK: String,
+	opportunityFK: String, //referencing Opportunity.id
 	content: Array,
-	completion: Boolean, 
+	completed: Boolean, 
 	dueDate: Date,
 	status: String
-})
+}); 
+
+let User = mongoose.model('User', usersSchema);
+let Opportunity = mongoose.model('Opportunity', opportunitiesSchema);
+let Contact = mongoose.model('Contact', contactsSchema);
+let Task = mongoose.model('Task', tasksSchema);
+
+let save = function(params, model) {
+  return ${model}.create(params, function(err, small){
+		     if(err) console.error(err);
+  }); 
+};
+
+let retrieve
+
