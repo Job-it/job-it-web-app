@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Column from './column.jsx'
-
 class taskView extends React.Component {
 
     constructor(props) {
@@ -27,7 +25,7 @@ class taskView extends React.Component {
     render() {
         return (
             this.state.stages.map((stage) => {
-                return <Column stage = {stage}/>
+                return <div>This is the task view</div>
             })
         )
     }
