@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Column from './column.jsx'
+import OpportunityColumn from './opportunityColumn.jsx'
 
 class opportunityView extends React.Component {
 
@@ -17,9 +17,49 @@ class opportunityView extends React.Component {
                 Opportunity_Name: 'Job Opportunity',
                 Organization_Name: 'Google',
                 Rank: 5, 
-                Status: 'Exploratory',
+                Stage: 'Exploratory',
                 Type: 'Job Opportunity'
-            }]
+            },{
+              id: 1,
+              User_FK: 1000,
+              Date_Opened: 'Jan. 1, 2018',
+              Date_Closed: false,
+              Opportunity_Name: 'Networking Event',
+              Organization_Name: 'Google',
+              Rank: 5, 
+              Stage: 'Qualified',
+              Type: 'Job Opportunity'
+          },{
+            id: 1,
+            User_FK: 1000,
+            Date_Opened: 'Jan. 1, 2018',
+            Date_Closed: false,
+            Opportunity_Name: 'Job Opening',
+            Organization_Name: 'Google',
+            Rank: 5, 
+            Stage: 'Negotiation',
+            Type: 'Job Opportunity'
+          }, {
+            id: 1,
+            User_FK: 1000,
+            Date_Opened: 'Jan. 1, 2018',
+            Date_Closed: false,
+            Opportunity_Name: 'Job Opening',
+            Organization_Name: 'Google',
+            Rank: 5, 
+            Stage: 'Outreach',
+            Type: 'Job Opportunity'
+          }, {
+            id: 1,
+            User_FK: 1000,
+            Date_Opened: 'Jan. 1, 2018',
+            Date_Closed: false,
+            Opportunity_Name: 'Job Opening',
+            Organization_Name: 'Google',
+            Rank: 5, 
+            Stage: 'Communication',
+            Type: 'Job Opportunity'
+          }]
         }
     }
 
@@ -30,7 +70,9 @@ class opportunityView extends React.Component {
     render() {
         return (
             this.state.stages.map((stage) => {
-                return <Column stage = {stage}/>
+                return <OpportunityColumn stage = {stage} itemsToRender = {this.state.opportunities.filter((opportunity) => {
+                    return opportunity.Stage === stage;
+                })}/>
             })
         )
     }

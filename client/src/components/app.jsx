@@ -22,10 +22,15 @@ class App extends React.Component {
     }
     
     render() {
-        return (<div onClick = {() => {this.switchViews()}}>
-            {this.state.taskView ? <TaskView/> : <div></div>}
-            {this.state.opportunityView ? <OpportunityView/> : <div></div>}
-        </div>)
+        return (
+        <div>
+          <button onClick = {() => {this.switchViews()}}>Switch Views</button>
+          <div className = "app">
+              {this.state.taskView ? <TaskView/> : <div></div>}
+              {this.state.opportunityView ? <OpportunityView/> : <div></div>}
+          </div>
+        </div>
+        )
     }
 }
 
