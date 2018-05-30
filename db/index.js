@@ -40,24 +40,10 @@ let tasksSchema = new Schema({
 	status: String
 }); 
 
-let User = mongoose.model('User', usersSchema);
-let Opportunity = mongoose.model('Opportunity', opportunitiesSchema);
-let Contact = mongoose.model('Contact', contactsSchema);
-let Task = mongoose.model('Task', tasksSchema);
+let User = db.model('User', usersSchema);
+let Opportunity = db.model('Opportunity', opportunitiesSchema);
+let Contact = db.model('Contact', contactsSchema);
+let Task = db.model('Task', tasksSchema);
 
-let save = function(model, params, cb) {
-  
-  return ${model}.create(params, function(err, cb){
-		     if(err) console.error(err);
-  }); 
-};
-
-let retrieve = function(model, conditions) {
-  return ${model}.find()	
-};
-
-let update = function(model, conditions, params) {
-  return ${model}.findOneAndUpdate(conditions, params); 
-
-};
+module.exports = db; 
 
