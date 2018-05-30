@@ -6,4 +6,4 @@ contactsRouter.post('/', contactsController.post);
 contactsRouter.patch('/', contactsController.patch);
 contactsRouter.delete('/', contactsController.delete);
 
-module.exports = contactsController;
+module.exports = contactsRouter;
