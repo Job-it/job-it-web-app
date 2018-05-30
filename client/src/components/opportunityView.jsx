@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom'
 
 import OpportunityColumn from './opportunityColumn.jsx'
 
+import OpportunityForm from './forms/opportunityForm.jsx'
+
 class opportunityView extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             stages: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
+            opportunityForm: true, 
             opportunities: [{
                 id: 1,
                 User_FK: 1000,
@@ -63,17 +66,27 @@ class opportunityView extends React.Component {
         }
     }
 
+    addOpportunity() {
+      this.setState({
+        opportunityForm: this.state.opportunityForm ? false : true
+      })
+    }
+
     getOpportunities() {
         //use Axios to get opportunities
     }
 
     render() {
         return (
-            this.state.stages.map((stage) => {
+          <div>
+            <button onClick = {() => this.addOpportunity()}>Add Opportunity</button>
+            {this.state.opportunityForm ? <OpportunityForm/> : <div></div>}
+            {this.state.stages.map((stage) => {
                 return <OpportunityColumn stage = {stage} itemsToRender = {this.state.opportunities.filter((opportunity) => {
                     return opportunity.Stage === stage;
                 })}/>
-            })
+            })}
+          </div>
         )
     }
 
