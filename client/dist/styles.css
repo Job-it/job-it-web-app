@@ -20,8 +20,8 @@
     width: 100%;
     max-width: 15vw;
     text-align: center;
-    max-height: 10vw;
-}
+    height: fit-content;
+  }
 
 .opp-info {
   color: blue;
