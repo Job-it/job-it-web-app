@@ -1,0 +1,9 @@
+.statusColumn {
+    border: solid 3px black;
+    color: red;
+    display: inline-flex;
+    padding: 3px;
+    margin: 3px;
+    min-width: 15vw;
+    height: 60vw;
+}
