@@ -1,27 +1,31 @@
 //this is where we connect to the server and export it to home.
 const mongoose = require('mongoose'); 
-mongoose.connect('mongodb://localhost/myapp'); 
+let db = mongoose.connect('mongodb://localhost/myapp'); 
 const Schema = mongoose.Schema; 
 
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 let usersSchema = new Schema({
+	githubOAuth: String,
 	firstName: String, 
-	lastName: String,
-	githubOAuth: String
+	lastName: String
 
 }); 
 
 let opportunitiesSchema = new Schema({
-	userFK: String,
+	userFK: String, //referencing User.id
 	dateOpened: { type: Date, default: Date.now },
 	dateClosed: Date,
+	opportunityName: String,
 	orgName: String,
 	rank: String,
+	description: String,
 	status: String,
 	type: String
 }); 
 
 let contactsSchema = new Schema({
-	opportunityFK: String,
+	opportunityFK: String, //referencing Opportunity.id
 	firstName: String,
 	lastName: String,
 	lastContact: Date,
@@ -29,9 +33,31 @@ let contactsSchema = new Schema({
 });
 
 let tasksSchema = new Schema({
-	opportunityFK: String,
+	opportunityFK: String, //referencing Opportunity.id
 	content: Array,
-	completion: Boolean, 
+	completed: Boolean, 
 	dueDate: Date,
 	status: String
-})
+}); 
+
+let User = mongoose.model('User', usersSchema);
+let Opportunity = mongoose.model('Opportunity', opportunitiesSchema);
+let Contact = mongoose.model('Contact', contactsSchema);
+let Task = mongoose.model('Task', tasksSchema);
+
+let save = function(model, params, cb) {
+  
+  return ${model}.create(params, function(err, cb){
+		     if(err) console.error(err);
+  }); 
+};
+
+let retrieve = function(model, conditions) {
+  return ${model}.find()	
+};
+
+let update = function(model, conditions, params) {
+  return ${model}.findOneAndUpdate(conditions, params); 
+
+};
+
