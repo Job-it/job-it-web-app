@@ -1,14 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Column from './column.jsx'
+import TaskList from './taskList.jsx';
 
-class taskView extends React.Component {
+class TaskView extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            stages: ['Backlog', 'In Progress', 'Ready for Review', 'Submitted'],
+            stages: ['Backlog', 'In Progress', 'Ready for Review', 'Completed'],
             tasks: [{
                 Id: 1,
                 Opportunity_FK: 1000,
@@ -17,21 +17,22 @@ class taskView extends React.Component {
                 Due_Date: 'Jan.1st, 2020',
                 Status: 'Backlog'
             }]
-        }
+        };
+        this.getTasks = this.getTasks.bind(this);
     }
 
-    getTasks() {
+    getTasks(stage) {
         //use axios to get tasks
     }
 
     render() {
         return (
             this.state.stages.map((stage) => {
-                return <Column stage = {stage}/>
+                return <TaskList stage={stage} getTasks={this.getTasks}/>
             })
         )
     }
 
 }
 
-export default taskView
+export default TaskView;
