@@ -69,11 +69,13 @@ class opportunityView extends React.Component {
 
     render() {
         return (
-            this.state.stages.map((stage) => {
+          <div>
+            {this.state.stages.map((stage) => {
                 return <OpportunityColumn stage = {stage} itemsToRender = {this.state.opportunities.filter((opportunity) => {
                     return opportunity.Stage === stage;
                 })}/>
-            })
+            })}
+          </div>
         )
     }
 
