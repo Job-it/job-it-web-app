@@ -45,16 +45,4 @@ let tasksSchema = new Schema({
 	completion: Boolean, 
 	dueDate: Date,
 	status: String
-<<<<<<< HEAD
 })
-=======
-}); 
-
-let User = db.model('User', usersSchema);
-let Opportunity = db.model('Opportunity', opportunitiesSchema);
-let Contact = db.model('Contact', contactsSchema);
-let Task = db.model('Task', tasksSchema);
-
-module.exports = db; 
-
->>>>>>> 708befb90df803e14b73c2918cd955fde88b0300
