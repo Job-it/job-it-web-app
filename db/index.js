@@ -34,4 +34,4 @@ let tasksSchema = new Schema({
 	completion: Boolean, 
 	dueDate: Date,
 	status: String
-})
+});
