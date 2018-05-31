@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Modal from 'react-modal';
+import axios from 'axios'
 
 import OpportunityColumn from './opportunityColumn.jsx';
 import OpportunityForm from './forms/opportunityForm.jsx';
@@ -28,6 +29,7 @@ class opportunityView extends React.Component {
         this.state = {
           stages: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
           modalIsOpen: false, 
+          userFK: '1234',
           opportunities: [
             {
               id: 1,
@@ -100,8 +102,18 @@ class opportunityView extends React.Component {
     closeModal() {
       this.setState({modalIsOpen: false});
     }
+
     getOpportunities() {
-        //use Axios to get opportunities
+      axios.get('/opportunities', {params: {userFK: this.state.userFK}});
+    }
+
+    updateOpportunities() {
+      axios.patch('/opportunities', {userFK: this.state.userFK, oppName: 'Coffee', updateObj: {orgName: 'Facebook'}});
+    }
+
+    componentDidMount() {
+      this.getOpportunities();
+      this.updateOpportunities();
     }
 
     render() {
