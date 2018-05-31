@@ -36,7 +36,7 @@ class App extends React.Component {
       {/* <button onClick = {() => {this.switchViews()}}>Switch Views</button> */}
       <div className = "app">
           {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} switchViews={this.switchViews}/> : <div></div>}
-          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity}/> : <div></div>}
+          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
       </div>
     </div>
     )

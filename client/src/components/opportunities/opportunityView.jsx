@@ -121,6 +121,7 @@ class OpportunityView extends React.Component {
     render() {
         return (
           <div>
+            <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
             <button onClick={this.openModal}>Add New Opportunity</button>
             <Modal
               isOpen={this.state.modalIsOpen}
