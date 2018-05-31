@@ -3,9 +3,10 @@ import OpportunityCard from './opportunityCard.jsx';
 
 const OpportunityColumn = (props) => {
     return (
-      <div className = "statusColumn">{props.itemsToRender.map((item) => {
-        return (<OpportunityCard selectOpportunity={props.selectOpportunity} opportunity={item}/>)
-      })}
+      <div className = "statusColumn">
+        <div>{props.itemsToRender.map((item) => {
+          return (<OpportunityCard selectOpportunity={props.selectOpportunity} opportunity={item}/>)
+        })}</div>
       </div>
     );
 }
