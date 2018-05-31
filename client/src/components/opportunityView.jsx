@@ -1,7 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
 import Modal from 'react-modal';
-
+import axios from 'axios';
 import OpportunityColumn from './opportunityColumn.jsx';
 import OpportunityForm from './forms/opportunityForm.jsx';
 
@@ -19,77 +18,76 @@ const customStyles = {
   }
 };
 
-Modal.setAppElement('#app')
+Modal.setAppElement('#app');
 
-class opportunityView extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          stages: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
-          modalIsOpen: false, 
-          opportunities: [
-            {
-              id: 1,
-              User_FK: 1000,
-              Date_Opened: 'Jan. 1, 2018',
-              Date_Closed: false,
-              Opportunity_Name: 'Job Opportunity',
-              Organization_Name: 'Google',
-              Rank: 5, 
-              Stage: 'Exploratory',
-              Type: 'Job Opportunity'
-            },
-            {
-              id: 1,
-              User_FK: 1000,
-              Date_Opened: 'Jan. 1, 2018',
-              Date_Closed: false,
-              Opportunity_Name: 'Networking Event',
-              Organization_Name: 'Google',
-              Rank: 5, 
-              Stage: 'Qualified',
-              Type: 'Job Opportunity'
-            },
-            {
-              id: 1,
-              User_FK: 1000,
-              Date_Opened: 'Jan. 1, 2018',
-              Date_Closed: false,
-              Opportunity_Name: 'Job Opening',
-              Organization_Name: 'Google',
-              Rank: 5, 
-              Stage: 'Negotiation',
-              Type: 'Job Opportunity'
-            },
-            {
-              id: 1,
-              User_FK: 1000,
-              Date_Opened: 'Jan. 1, 2018',
-              Date_Closed: false,
-              Opportunity_Name: 'Job Opening',
-              Organization_Name: 'Google',
-              Rank: 5, 
-              Stage: 'Outreach',
-              Type: 'Job Opportunity'
-            },
-            {
-              id: 1,
-              User_FK: 1000,
-              Date_Opened: 'Jan. 1, 2018',
-              Date_Closed: false,
-              Opportunity_Name: 'Job Opening',
-              Organization_Name: 'Google',
-              Rank: 5, 
-              Stage: 'Communication',
-              Type: 'Job Opportunity'
-            }
-          ]
-      }
-      this.openModal = this.openModal.bind(this);
-      this.afterOpenModal = this.afterOpenModal.bind(this);
-      this.closeModal = this.closeModal.bind(this);
+class OpportunityView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stages: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
+      modalIsOpen: false, 
+      opportunities: [
+        {
+          id: 1,
+          User_FK: 1000,
+          Date_Opened: 'Jan. 1, 2018',
+          Date_Closed: false,
+          Opportunity_Name: 'Job Opportunity',
+          Organization_Name: 'Google',
+          Rank: 5, 
+          Stage: 'Exploratory',
+          Type: 'Job Opportunity'
+        },
+        {
+          id: 2,
+          User_FK: 1000,
+          Date_Opened: 'Jan. 1, 2018',
+          Date_Closed: false,
+          Opportunity_Name: 'Networking Event',
+          Organization_Name: 'Google',
+          Rank: 5, 
+          Stage: 'Qualified',
+          Type: 'Job Opportunity'
+        },
+        {
+          id: 3,
+          User_FK: 1000,
+          Date_Opened: 'Jan. 1, 2018',
+          Date_Closed: false,
+          Opportunity_Name: 'Job Opening',
+          Organization_Name: 'Google',
+          Rank: 5, 
+          Stage: 'Negotiation',
+          Type: 'Job Opportunity'
+        },
+        {
+          id: 4,
+          User_FK: 1000,
+          Date_Opened: 'Jan. 1, 2018',
+          Date_Closed: false,
+          Opportunity_Name: 'Job Opening',
+          Organization_Name: 'Google',
+          Rank: 5, 
+          Stage: 'Outreach',
+          Type: 'Job Opportunity'
+        },
+        {
+          id: 5,
+          User_FK: 1000,
+          Date_Opened: 'Jan. 1, 2018',
+          Date_Closed: false,
+          Opportunity_Name: 'Job Opening',
+          Organization_Name: 'Google',
+          Rank: 5, 
+          Stage: 'Communication',
+          Type: 'Job Opportunity'
+        }
+      ]
     }
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
 
     openModal() {
       this.setState({modalIsOpen: true});
@@ -100,8 +98,18 @@ class opportunityView extends React.Component {
     closeModal() {
       this.setState({modalIsOpen: false});
     }
+
     getOpportunities() {
-        //use Axios to get opportunities
+      axios.get('/opportunities', {params: {userFK: this.state.userFK}});
+    }
+
+    updateOpportunities() {
+      axios.patch('/opportunities', {userFK: this.state.userFK, oppName: 'Coffee', updateObj: {orgName: 'Facebook'}});
+    }
+
+    componentDidMount() {
+      this.getOpportunities();
+      this.updateOpportunities();
     }
 
     render() {
@@ -121,7 +129,7 @@ class opportunityView extends React.Component {
             </Modal>
             <div>
             {this.state.stages.map((stage) => {
-                return <OpportunityColumn stage = {stage} itemsToRender = {this.state.opportunities.filter((opportunity) => {
+                return <OpportunityColumn selectOpportunity={this.props.selectOpportunity} stage={stage} itemsToRender={this.state.opportunities.filter((opportunity) => {
                     return opportunity.Stage === stage;
                 })}/>
             })}
@@ -132,4 +140,4 @@ class opportunityView extends React.Component {
 
 }
 
-export default opportunityView
+export default OpportunityView;
