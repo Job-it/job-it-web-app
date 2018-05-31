@@ -7,7 +7,6 @@ class TaskView extends React.Component {
     super(props);
     this.state = {
         stages: ['Backlog', 'In Progress', 'Ready for Review', 'Completed'],
-        opportunityFK: 0,
         taskForm: false,
         tasks: [
           {
@@ -64,10 +63,11 @@ class TaskView extends React.Component {
   render() {
     return (
       <div>
+        <button onClick={() => this.props.switchViews()}>Back to Opportunities List</button><br/>
         <button onClick={() => this.addTask()}>Add Task</button>
         { this.state.taskForm ? <TaskForm/> : <div></div> }
         { this.state.stages.map((stage) => 
-          <TaskColumn stage={stage} tasks={ this.state.tasks.filter((task) => {return task.status === stage}) }/>)
+          <TaskColumn currentOpportunity={this.props.currentOpportunity} stage={stage} tasks={this.state.tasks.filter((task) => {return task.status === stage})}/>)
         }
       </div>
     )
