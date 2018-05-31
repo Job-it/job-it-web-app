@@ -10,8 +10,8 @@ class opportunityForm extends React.Component {
     this.state = {
       dateOpened: '',
       dateClosed: false,
-      opportunityName: '',
-      organizationName: '',
+      oppName: '',
+      orgName: '',
       rank: 4, 
       status: '', // enable dropdown
       type: '', // enable dropdown
@@ -21,7 +21,8 @@ class opportunityForm extends React.Component {
 
   componentDidMount() {
     this.setState({
-      dateOpened: Date.now()
+      dateOpened: Date.now(),
+      dateClosed: Date.now() + 20
     })
   }
 
@@ -42,19 +43,19 @@ class opportunityForm extends React.Component {
           <input
             className='login-input'
             type="text"
-            value={this.state.opportunityName}
+            value={this.state.oppName}
             placeholder="Opportunity Name"
             onChange={(e) => {
-              this.setState({opportunityName: e.target.value})
+              this.setState({oppName: e.target.value})
             }}
           />
           <input
             className='login-input'
             type="text"
-            value={this.state.organizationName}
+            value={this.state.orgName}
             placeholder="Organization Name"
             onChange={(e) => {
-              this.setState({organizationName: e.target.value})
+              this.setState({orgName: e.target.value})
             }}
           />
           <select name="status" onChange={(e) => {
