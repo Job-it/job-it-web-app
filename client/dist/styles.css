@@ -10,6 +10,7 @@
     margin: 3px;
     min-width: 15vw;
     height: 100%;
+    text-align:center;
 }
 
 .opportunity-card {
@@ -28,7 +29,18 @@
   width: 100%;
 }
 
-#opportunity-form-wrapper {
-  
+.task-card {
+  border: solid 3px black;
+  color: red;
+  padding: 3px;
+  margin: 3px;
+  width: 100%;
+  max-width: 15vw;
+  text-align: center;
+  height: fit-content;
 }
 
+.task-info {
+  color: blue;
+  width: 100%;
+}
