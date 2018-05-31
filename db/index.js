@@ -1,3 +1,6 @@
+
+//this is where we connect to the server and export it to home.
+
 var mongoose = require('mongoose');
 var databasePath = process.env.DATABASE_PATH || 'mongodb://localhost/jobit';
 mongoose.connect(databasePath);
