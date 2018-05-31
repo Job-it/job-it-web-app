@@ -3,17 +3,23 @@ var url = require('url');
 
 module.exports = {
   get: (req, res) => {
-    res.send(200, 'Serving get @ opportunities');
-    //link this to the model here
+    opportunitiesModels.getOpps(req.query).then((results) => {
+      res.status(200).send(results);
+    });
   },
 
   post: (req, res) => {
-    res.send(200, 'Serving post @ opportunities');
-    //link this to the model here
+    opportunitiesModels.saveOpp(req.body, (err, obj) => {
+      res.send(200, 'Serving post @ opportunities');
+    })
   },
 
   patch: (req, res) => {
-    res.send(200, 'Serving patch @ opportunities');
+    params = {userFK: req.body.userFK, oppName: req.body.oppName};
+    updateObj = req.body.updateObj;
+    opportunitiesModels.updateOpp(params, updateObj).then((data) => {
+      res.send(200, 'Serving patch @ opportunities');
+    })
     //link this to the model here
   },
 
