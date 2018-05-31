@@ -29,7 +29,7 @@
   width: 100%;
 }
 
-#opportunity-form-wrapper {
+#opportunity-form-wrapper, #task-form-wrapper {
   text-align: center;
 }
 .task-card {
