@@ -1,11 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
 const TaskCard = (props) => {
   return (
     <div className = "task-card">
-      <div className = "task-info">Due Date: {props.taskDetails.dueDate}</div>
-      <div className = "task-info">Task Complete? {props.taskDetails.completion ? 'Yes' : 'No'}</div>
-      <div className = "task-info">Notes: {props.taskDetails.content}</div>
+      <div className = "task-info"><h3>{props.taskDetails.content}</h3></div>
+      <div className = "task-info">Due {moment(props.taskDetails.dueDate).fromNow()}</div>
+      <div className = "task-info">Completed? {props.taskDetails.completion ? 'Yes' : 'No'}</div>
     </div>
   )
 }
