@@ -1,4 +1,6 @@
+
 //this is where we connect to the server and export it to home.
+
 var mongoose = require('mongoose');
 var databasePath = process.env.DATABASE_PATH || 'mongodb://localhost/jobit';
 mongoose.connect(databasePath);
@@ -24,7 +26,8 @@ let opportunitiesSchema = new Schema({
 	userFK: String,
 	dateOpened: { type: Date, default: Date.now },
 	dateClosed: Date,
-	orgName: String,
+  orgName: String,
+  oppName: String,
 	rank: String,
 	status: String,
 	type: String
