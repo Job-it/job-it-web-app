@@ -26,43 +26,7 @@ class TaskView extends React.Component {
     this.state = {
         stages: ['Backlog', 'In Progress', 'Ready for Review', 'Completed'],
         taskForm: false,
-        tasks: [
-          {
-            opportunityFK: 1000,
-            content: 'Send in Resume to recruiter',
-            completion: false,
-            dueDate: 'Jan.1st, 2020',
-            status: 'Backlog'
-          },
-          {
-          opportunityFK: 1100,
-            content: 'Email thank you note to recruiter',
-            completion: false,
-            dueDate: 'Jan.1st, 2019',
-            status: 'Backlog'
-          },
-          {
-            opportunityFK: 110,
-            content: 'Reach back out to Recruiter',
-            completion: false,
-            dueDate: 'Jan.1st, 2020',
-            status: 'Backlog'
-          },
-          {
-            opportunityFK: 130,
-            content: 'Send in Resume to recruiter',
-            completion: false,
-            dueDate: 'Jan.1st, 2020',
-            status: 'In Progress'
-          },
-          {
-            opportunityFK: 500,
-            content: 'Send in Resume to recruiter',
-            completion: true,
-            dueDate: 'Jan.1st, 2020',
-            status: 'Completed'
-          }
-        ]
+        tasks: [],
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -71,7 +35,21 @@ class TaskView extends React.Component {
     this.getTasks = this.getTasks.bind(this);
     this.addTask = this.addTask.bind(this);
   }
-
+  componentDidMount() {
+    axios.get('/tasks', {
+      params: {
+        opportunity: this.props.currentOpportunity,
+      }
+    })
+    .then((resp) => {
+      this.setState({
+        tasks: resp.data,
+      });
+    })
+    .then(()=> {
+      console.log(this.state);
+    })
+  }
   openModal() {
     this.setState({modalIsOpen: true});
   }

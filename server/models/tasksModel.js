@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 let taskSchema = require('../../db/index.js').tasksSchema;
 let Task = mongoose.model('Task', taskSchema);
 
-
 let saveTask = (opportunity, taskContent, due, currentStatus) => {
   //returns a promise
   return Task.create(
