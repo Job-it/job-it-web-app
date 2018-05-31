@@ -2,8 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import OpportunityColumn from './opportunityColumn.jsx';
-import OpportunityForm from './forms/opportunityForm.jsx';
-
+import OpportunityForm from '../forms/opportunityForm.jsx'
 const customStyles = {
   content : {
     top                   : '50%',
@@ -122,6 +121,7 @@ class OpportunityView extends React.Component {
     render() {
         return (
           <div>
+            <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
             <button onClick={this.openModal}>Add New Opportunity</button>
             <Modal
               isOpen={this.state.modalIsOpen}

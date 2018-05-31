@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OpportunityView from './opportunityView.jsx';
-import TaskView from './taskView.jsx';
+import OpportunityView from './opportunities/opportunityView.jsx';
+import TaskView from './tasks/taskView.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class App extends React.Component {
       {/* <button onClick = {() => {this.switchViews()}}>Switch Views</button> */}
       <div className = "app">
           {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} switchViews={this.switchViews}/> : <div></div>}
-          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity}/> : <div></div>}
+          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
       </div>
     </div>
     )
