@@ -8,6 +8,7 @@ module.exports = {
   },
 
   post: (req, res) => {
+    console.log(req.body);
     res.send(200, 'Serving post @ opportunities');
     //link this to the model here
   },
