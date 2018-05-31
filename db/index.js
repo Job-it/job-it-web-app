@@ -1,9 +1,17 @@
 //this is where we connect to the server and export it to home.
-const mongoose = require('mongoose'); 
-let db = mongoose.connect('mongodb://localhost/myapp'); 
-const Schema = mongoose.Schema; 
+var mongoose = require('mongoose');
+var databasePath = process.env.DATABASE_PATH || 'mongodb://localhost/jobit';
+mongoose.connect(databasePath);
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+	console.log('Connected to db.');
+});
+
+
+const Schema = mongoose.Schema; 
 
 let usersSchema = new Schema({
 	githubOAuth: String,
