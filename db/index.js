@@ -1,5 +1,4 @@
 //this is where we connect to the server and export it to home.
-
 var mongoose = require('mongoose');
 var databasePath = process.env.DATABASE_PATH || 'mongodb://localhost/jobit';
 mongoose.connect(databasePath);
@@ -46,3 +45,8 @@ let tasksSchema = new Schema({
 	dueDate: Date,
 	status: String
 })
+
+module.exports.usersSchema = usersSchema;
+module.exports.opportunitiesSchema = opportunitiesSchema;
+module.exports.contactsSchema = contactsSchema;
+module.exports.tasksSchema = tasksSchema;
