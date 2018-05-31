@@ -4,27 +4,28 @@ var url = require('url');
 
 module.exports = {
   get: (req, res) => {
-    var opportunity = req.query.opportunity; //looking for opportunityFK to reference task
 
-    //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+
+    var opportunity = query.opportunity;
+    console.log(opportunity); //looking for opportunityFK to reference task
 
     tasksModels.getTasks(opportunity)
-     .then((data) => {
+      .then((data) => {
         res.status(200).send(data); 
-     })
-     .catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
-     });
- //link this to the model here
+      });
   },
 
   post: (req, res) => {
-    var opportunity = req.body.opportunity;
-    var taskContent = req.body.taskContent;
-    var due = req.body.due;
+    console.log(req.body);
+    var opportunity = req.body.opportunityFK;
+    var taskContent = req.body.content;
+    var due = req.body.dueDate;
     var currentStatus = req.body.status; 
-
-    //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
 
     tasksModels.saveTask(opportunity, taskContent, due, currentStatus)
     .then((data) => {
@@ -33,7 +34,7 @@ module.exports = {
     .catch((err) => {
       console.log(err); 
     })
-    //link this to the model here
+    
   },
 
   patch: (req, res) => {

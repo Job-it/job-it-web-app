@@ -44,7 +44,7 @@ let contactsSchema = new Schema({
 
 let tasksSchema = new Schema({
 	opportunityFK: String,
-	content: Array,
+	content: String,
 	completion: Boolean, 
 	dueDate: Date,
 	status: String

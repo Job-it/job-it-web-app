@@ -22,7 +22,9 @@ class opportunityForm extends React.Component {
   componentDidMount() {
     this.setState({
       dateOpened: Date.now(),
-      dateClosed: Date.now() + 20
+      dateClosed: Date.now() + 20,
+      //Hard code first item in status list
+      status: 'Exploratory',
     })
   }
 
