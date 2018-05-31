@@ -24,8 +24,7 @@
     "mongoose": "5.1.2",
     "react": "16.4.0",
     "react-dom": "16.4.0",
-    "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4"
+    "react-modal": "^3.4.4"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
