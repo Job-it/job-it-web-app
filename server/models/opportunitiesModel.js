@@ -17,7 +17,7 @@ exports.saveOpp = (dataObj) => {
 }
 
 exports.getOpps = (dataObj = {userFK: '1234'}) => {
-  return opportunity.find({userFK : dataObj.userFK})
+  return opportunity.find({userFK : dataObj.userId})
 }
 
 exports.updateOpp = (params, updateObj) => {

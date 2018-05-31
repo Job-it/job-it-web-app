@@ -2,8 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import OpportunityColumn from './opportunityColumn.jsx';
-import OpportunityForm from './forms/opportunityForm.jsx';
-
+import OpportunityForm from '../forms/opportunityForm.jsx'
 const customStyles = {
   content : {
     top                   : '50%',
@@ -24,7 +23,8 @@ class OpportunityView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stages: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
+      userId: '1234',
+      status: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
       modalIsOpen: false, 
       opportunities: [
         {
@@ -92,15 +92,22 @@ class OpportunityView extends React.Component {
     openModal() {
       this.setState({modalIsOpen: true});
     }
+
     afterOpenModal() {
     //
     }
+
     closeModal() {
       this.setState({modalIsOpen: false});
     }
 
     getOpportunities() {
-      axios.get('/opportunities', {params: {userFK: this.state.userFK}});
+      axios.get('/opportunities', {params: {userId: this.state.userId}}).then((response) => {
+        console.log(response.data);
+        this.setState({
+          opportunities: response.data
+        })
+      });
     }
 
     updateOpportunities() {
@@ -109,12 +116,12 @@ class OpportunityView extends React.Component {
 
     componentDidMount() {
       this.getOpportunities();
-      this.updateOpportunities();
     }
 
     render() {
         return (
           <div>
+            <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
             <button onClick={this.openModal}>Add New Opportunity</button>
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -128,9 +135,9 @@ class OpportunityView extends React.Component {
               <OpportunityForm />
             </Modal>
             <div>
-            {this.state.stages.map((stage) => {
-                return <OpportunityColumn selectOpportunity={this.props.selectOpportunity} stage={stage} itemsToRender={this.state.opportunities.filter((opportunity) => {
-                    return opportunity.Stage === stage;
+            {this.state.status.map((status) => {
+                return <OpportunityColumn selectOpportunity={this.props.selectOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
+                    return opportunity.status === status;
                 })}/>
             })}
             </div>
