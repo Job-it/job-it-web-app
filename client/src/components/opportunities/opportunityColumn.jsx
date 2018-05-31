@@ -6,7 +6,7 @@ const OpportunityColumn = (props) => {
       <div className = "statusColumn">
         <div>{props.status}
         {props.itemsToRender.map((item) => {
-          return (<OpportunityCard selectOpportunity={props.selectOpportunity} opportunity={item}/>)
+          return (<OpportunityCard selectOpportunity={props.selectOpportunity} opportunity={item} deleteOpp = {props.deleteOpp}/>)
         })}
         </div>
       </div>

@@ -110,6 +110,10 @@ class OpportunityView extends React.Component {
       });
     }
 
+    deleteOpportunity(oppId) {
+      axios.delete('/opportunities', {params: {_id: oppId}});
+    }
+
     updateOpportunities() {
       axios.patch('/opportunities', {userFK: this.state.userFK, oppName: 'Coffee', updateObj: {orgName: 'Facebook'}});
     }
@@ -136,7 +140,7 @@ class OpportunityView extends React.Component {
             </Modal>
             <div>
             {this.state.status.map((status) => {
-                return <OpportunityColumn selectOpportunity={this.props.selectOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
+                return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} selectOpportunity={this.props.selectOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
                     return opportunity.status === status;
                 })}/>
             })}

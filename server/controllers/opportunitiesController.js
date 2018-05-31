@@ -23,8 +23,8 @@ module.exports = {
   },
 
   delete: (req, res) => {
-    params = {userFK: req.body.userFK, oppName: req.body.oppName};
-    opportunitiesModels.removeOpp(params).then((data) => {
+    params = {"_id": req.query._id};
+    opportunitiesModels.deleteOpp(params).then((data) => {
       res.send(200, 'Serving delete @ opportunities');
     });
   }
