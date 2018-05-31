@@ -32,7 +32,10 @@ class TaskForm extends React.Component {
   }
 
   componentDidMount() {
-
+    this.setState({
+      //Hard code first item in status list
+      status: 'Backlog',
+    })
   }
 
   handleSubmit(e) {
@@ -76,10 +79,10 @@ class TaskForm extends React.Component {
           <select name="status" onChange={(e) => {
               this.setState({status: e.target.value})
             }}>
-            <option value="Not Started">Not Started</option>
+            <option value="Backlog">Backlog</option>
             <option value="In Progress">In Progress</option>
-            <option value="Complete">Complete</option>
-            <option value="Abandoned">Abandoned</option>
+            <option value="Ready for Review">Ready for Review</option>
+            <option value="Completed">Completed</option>
           </select>
           <input type ='submit'></input>
         </form>
