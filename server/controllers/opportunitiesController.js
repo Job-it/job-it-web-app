@@ -15,16 +15,17 @@ module.exports = {
   },
 
   patch: (req, res) => {
-    params = {userFK: req.body.userFK, oppName: req.body.oppName};
+    params = {userFK: req.body.userFK, _id: req.body.oppId};
     updateObj = req.body.updateObj;
     opportunitiesModels.updateOpp(params, updateObj).then((data) => {
       res.send(200, 'Serving patch @ opportunities');
     })
-    //link this to the model here
   },
 
   delete: (req, res) => {
-    res.send(200, 'Serving delete @ opportunities');
-    //link this to the model here
-  },
+    params = {userFK: req.body.userFK, oppName: req.body.oppName};
+    opportunitiesModels.removeOpp(params).then((data) => {
+      res.send(200, 'Serving delete @ opportunities');
+    });
+  }
 }

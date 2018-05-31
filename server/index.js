@@ -14,7 +14,7 @@ var app = express();
 app.use(util.requestLogger);
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(parser.json());
-app.use(parser.urlencoded())
+app.use(parser.urlencoded());
 
 // Routes
 app.use('/contacts', contactsRouter);
