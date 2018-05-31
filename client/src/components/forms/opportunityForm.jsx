@@ -21,7 +21,8 @@ class opportunityForm extends React.Component {
 
   componentDidMount() {
     this.setState({
-      dateOpened: Date.now()
+      dateOpened: Date.now(),
+      dateClosed: Date.now() + 20
     })
   }
 

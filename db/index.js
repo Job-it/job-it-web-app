@@ -1,3 +1,4 @@
+
 //this is where we connect to the server and export it to home.
 
 var mongoose = require('mongoose');
@@ -25,7 +26,8 @@ let opportunitiesSchema = new Schema({
 	userFK: String,
 	dateOpened: { type: Date, default: Date.now },
 	dateClosed: Date,
-	orgName: String,
+  orgName: String,
+  oppName: String,
 	rank: String,
 	status: String,
 	type: String
@@ -46,3 +48,8 @@ let tasksSchema = new Schema({
 	dueDate: Date,
 	status: String
 })
+
+module.exports.usersSchema = usersSchema;
+module.exports.opportunitiesSchema = opportunitiesSchema;
+module.exports.contactsSchema = contactsSchema;
+module.exports.tasksSchema = tasksSchema;
