@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OpportunityView from './opportunityView.jsx';
-import TaskView from './taskView.jsx';
+import OpportunityView from './opportunities/opportunityView.jsx';
+import TaskView from './tasks/taskView.jsx';
 
 class App extends React.Component {
   constructor(props) {

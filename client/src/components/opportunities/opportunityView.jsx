@@ -2,8 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import OpportunityColumn from './opportunityColumn.jsx';
-import OpportunityForm from './forms/opportunityForm.jsx';
-
+import OpportunityForm from '../forms/opportunityForm.jsx'
 const customStyles = {
   content : {
     top                   : '50%',
