@@ -6,6 +6,7 @@ import LoginForm from './forms/LoginForm.jsx';
 import Modal from 'react-modal';
 import interactDnd from '../lib/interactDnd.js';
 
+
 const customStyles = {
   content : {
     top                   : '50%',
