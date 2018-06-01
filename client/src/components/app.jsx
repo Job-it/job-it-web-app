@@ -4,6 +4,7 @@ import OpportunityView from './opportunities/opportunityView.jsx';
 import TaskView from './tasks/taskView.jsx';
 import LoginForm from './forms/LoginForm.jsx';
 import Modal from 'react-modal';
+import interactDnd from '../lib/interactDnd.js';
 
 const customStyles = {
   content : {

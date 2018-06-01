@@ -96,3 +96,20 @@ body{
   color: blue;
   width: 100%;
 }
+
+
+.drop-active {
+  border-color: #aaa;
+}
+
+.drop-target {
+  background-color: #29e;
+  border-color: #fff;
+  border-style: solid;
+}
+
+
+.drag-drop.can-drop {
+  color: #000;
+  background-color: #4e4;
+}
