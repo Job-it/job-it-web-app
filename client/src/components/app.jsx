@@ -65,7 +65,7 @@ class App extends React.Component {
 
   render() {
     return (
-    <div>
+    <div >
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
