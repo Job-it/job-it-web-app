@@ -90,7 +90,7 @@ class TaskView extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id='view-wrapper'>
         <div>
           <button onClick={() => this.props.switchViews()}>Back to Opportunities List</button><br/>
           <button onClick={() => this.openModal()}>Add New Task</button>
@@ -107,6 +107,7 @@ class TaskView extends React.Component {
               {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
               {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
+            <div id='columns-wrapper'>
         { this.state.stages.map((stage) => 
           <TaskColumn 
             currentOpportunity={this.props.currentOpportunity} 
@@ -117,6 +118,7 @@ class TaskView extends React.Component {
             closeModal={this.closeModal}
           />)
         }
+        </div>
       </div>
     )
   }
