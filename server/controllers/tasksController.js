@@ -46,7 +46,7 @@ module.exports = {
 
     //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
 
-    taskModels.updateTask(taskId, taskContent, isComplete, due, currentStatus)
+    tasksModels.updateTask(taskId, taskContent, isComplete, due, currentStatus)
     .then((data) => {
       res.send(200, 'Task patched');
     })
