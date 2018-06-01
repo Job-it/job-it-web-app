@@ -29,12 +29,14 @@ class OpportunityView extends React.Component {
       createModalIsOpen: false, 
       updateModalIsOpen: false,
       opportunities: [],
-      opportunityToUpdate: {}
+      opportunityToUpdate: {},
+      isArchived: false
     }
     this.openCreateOpportunityModal = this.openCreateOpportunityModal.bind(this);
     this.openUpdateOpportunityModal = this.openUpdateOpportunityModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.archiveOpportunity = this.archiveOpportunity.bind(this);
   }
 
     openCreateOpportunityModal() {
@@ -77,6 +79,7 @@ class OpportunityView extends React.Component {
     }
 
     archiveOpportunity(oppId) {
+      // console.log('inside archiveOpp func.', oppId);
       axios.patch('/opportunities', {isArchived: true})
     }
 
@@ -101,27 +104,19 @@ class OpportunityView extends React.Component {
               {this.state.createModalIsOpen ? <CreateOpportunityForm /> : <div></div>}
               {this.state.updateModalIsOpen ? <UpdateOpportunityForm opportunityToUpdate = {this.state.opportunityToUpdate} /> : <div></div>}
             </Modal>
-<<<<<<< HEAD
-            <button onClick={() => this.setState({isArchived: (this.state.isArchived ? false : true)})}>{ this.state.isArchived ? 'Hide Archives' : 'Show Archives' }</button>
-            <div>
-            {this.state.status.map((status) => {
-                return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} selectOpportunity={this.props.selectOpportunity} archiveOpportunity={this.archiveOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
-                    return opportunity.status === status;
-                })}/>
-            })}
-=======
+            <button onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
 
             <div>
               {this.state.status.map((status) => {
                   return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} 
                                             selectOpportunity={this.props.selectOpportunity} 
-                                            status={status} 
+                                            status={status}
+                                            archiveOpportunity={this.archiveOpportunity} 
                                             update = {(opp) => {this.openUpdateOpportunityModal(opp)}}
                       itemsToRender={this.state.opportunities.filter((opportunity) => {
                       return opportunity.status === status;
                   })}/>
               })}
->>>>>>> dev
             </div>
           </div>
         )
