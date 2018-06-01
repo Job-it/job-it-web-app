@@ -5,7 +5,16 @@ const TaskColumn = (props) => {
   return (
     <div className="statusColumn">
       <div>{props.stage}
-        <div>{ props.tasks.map((task) => {return <div><TaskCard taskDetails={task}/><br/></div>}) }</div>
+        <div>{ 
+                props.tasks.map((task) => {
+                  return <div><TaskCard 
+                    taskDetails={task}
+                    openModal={props.openModal}
+                    afterOpenModal={props.afterOpenModal}
+                    closeModal={props.closeModal}
+                  /><br/></div>
+                }) 
+              }</div>
       </div>
     </div>
   )}
