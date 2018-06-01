@@ -2,8 +2,11 @@ import React from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import OpportunityColumn from './opportunityColumn.jsx';
-import CreateOpportunityForm from '../forms/opportunityForm.jsx'
-import UpdateOpportunityForm from '../forms/updateOpportunityForm.jsx'
+import CreateOpportunityForm from '../forms/opportunityForm.jsx';
+import UpdateOpportunityForm from '../forms/updateOpportunityForm.jsx';
+import interact from 'interactjs';
+
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -37,6 +40,21 @@ class OpportunityView extends React.Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.archiveOpportunity = this.archiveOpportunity.bind(this);
+
+  interact('.dropzone').dropzone({
+    
+    ondrop: function (event) {
+      var draggableElement = event.relatedTarget,
+          dropzoneElement = event.target;
+          //update DB here!!!
+          var id = draggableElement.dataset.id;
+          var targetColumn = dropzoneElement.classList[dropzoneElement.classList.length - 3];
+          console.log(id);
+          console.log(targetColumn);
+    }
+  });
+
+
   }
 
     openCreateOpportunityModal() {
@@ -75,7 +93,7 @@ class OpportunityView extends React.Component {
       axios.delete('/opportunities', {params: {_id: oppId}});
     }
 
-    updateOpportunities() {
+    updateOpportunity() {
       axios.patch('/opportunities', {userFK: this.state.userFK, oppName: 'Coffee', updateObj: {orgName: 'Facebook'}});
     }
 
