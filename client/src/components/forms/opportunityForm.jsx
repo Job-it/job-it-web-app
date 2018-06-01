@@ -35,6 +35,7 @@ class createOpportunityForm extends React.Component {
       .then((res) => {
       console.log(res);
     });
+    this.props.close()
   }
 
   render() {

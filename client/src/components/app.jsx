@@ -30,7 +30,7 @@ class App extends React.Component {
         modalIsOpen: true,
         taskView: false,
         opportunityView: true,
-        currentOpportunity: null
+        currentOpportunity: null,
     };
     this.selectOpportunity = this.selectOpportunity.bind(this);
     this.switchViews = this.switchViews.bind(this);
