@@ -9,7 +9,7 @@ const OpportunityColumn = (props) => {
           return (<OpportunityCard  selectOpportunity= {props.selectOpportunity} 
                                     opportunity={item} 
                                     update = {props.update}
-                                    deleteOpp = {props.deleteOpp}/>)
+                                    deleteOpp = {props.deleteOpp}/>)       
         })}
         </div>
       </div>
