@@ -2,9 +2,11 @@ import React from 'react';
 import moment from 'moment';
 
 const OpportunityCard = (props) => {
-  console.log('opportunity card', moment(props.opportunity.dateOpened).fromNow());
   return (
-  <div id='yes-drop' className='opportunity-card draggable drag-drop'>
+  <div 
+    id='yes-drop'
+    className='opportunity-card draggable drag-drop'
+    data-id = {props.opportunity._id}>
     <button onClick={() => props.selectOpportunity(props.opportunity._id)}> Select Opp </button>
     <button onClick = {() => {props.deleteOpp(props.opportunity._id)}}> Delete </button>
     <button onClick = {() => {props.update(props.opportunity._id)}}> Update </button>
