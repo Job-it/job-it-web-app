@@ -34,7 +34,7 @@ class TaskForm extends React.Component {
     console.log(this.state);
     axios.post('/tasks', this.state)
       .then((res) => {
-      console.log(res);
+      this.props.closeModal();
     });
   }
 
