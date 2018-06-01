@@ -83,7 +83,7 @@ class OpportunityView extends React.Component {
 
     render() {
         return (
-          <div>
+          <div id='view-wrapper'>
             <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
             <button onClick={this.openCreateOpportunityModal}>Add New Opportunity</button>
 
@@ -100,7 +100,7 @@ class OpportunityView extends React.Component {
                                                                       close = {() => {this.closeModal()}}/> : <div></div>}
             </Modal>
 
-            <div>
+            <div id='columns-wrapper'>
               {this.state.status.map((status) => {
                   return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} 
                                             selectOpportunity={this.props.selectOpportunity} 
