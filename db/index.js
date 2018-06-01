@@ -30,7 +30,8 @@ let opportunitiesSchema = new Schema({
   oppName: String,
 	rank: String,
 	status: String,
-	type: String
+	type: String,
+	isArchived: Boolean
 }); 
 
 let contactsSchema = new Schema({
@@ -44,11 +45,11 @@ let contactsSchema = new Schema({
 
 let tasksSchema = new Schema({
 	opportunityFK: String,
-	content: String,
-	completion: Boolean, 
+	content: String, 
 	dueDate: Date,
-	status: String
-})
+	status: String,
+	isArchived: Boolean
+});
 
 
 module.exports.usersSchema = usersSchema;

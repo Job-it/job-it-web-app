@@ -15,8 +15,11 @@ module.exports = {
   },
 
   patch: (req, res) => {
+    console.log('INSIDE CONTROLLER PATCH:', req.body);
     params = {userFK: req.body.userFK, _id: req.body.updateObj._id};
     updateObj = req.body.updateObj;
+    console.log('This is params:', params);
+    console.log('This is updateObj', updateObj);
     opportunitiesModels.updateOpp(params, updateObj).then((data) => {
       res.send(200, 'Serving patch @ opportunities');
     })
@@ -29,3 +32,14 @@ module.exports = {
     });
   }
 }
+
+ // { userFK: '5b1088929fc9d8133a85607b',
+ //  updateObj: { isArchived: true } 
+ // }
+
+ //  params = {
+ //    userFK: req.body.userFK, 
+ //    _id: req.body.updateObj._id
+ //  };
+
+ //  updateObj = req.body.updateObj;
