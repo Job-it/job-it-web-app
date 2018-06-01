@@ -25,7 +25,8 @@ class OpportunityView extends React.Component {
     this.state = {
       userId: '1234',
       status: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
-      modalIsOpen: false, 
+      modalIsOpen: false,
+      isArchived: false, 
       opportunities: [
         {
           id: 1,
@@ -84,6 +85,7 @@ class OpportunityView extends React.Component {
         }
       ]
     }
+    this.archiveOpportunity = this.archiveOpportunity.bind(this);
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -102,7 +104,7 @@ class OpportunityView extends React.Component {
     }
 
     getOpportunities() {
-      axios.get('/opportunities', {params: {userId: this.state.userId}}).then((response) => {
+      axios.get('/opportunities', {params: {userId: this.state.userId, isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
         console.log(response.data);
         this.setState({
           opportunities: response.data
@@ -116,6 +118,10 @@ class OpportunityView extends React.Component {
 
     updateOpportunities() {
       axios.patch('/opportunities', {userFK: this.state.userFK, oppName: 'Coffee', updateObj: {orgName: 'Facebook'}});
+    }
+
+    archiveOpportunity(oppId) {
+      axios.patch('/opportunities', {isArchived: true})
     }
 
     componentDidMount() {
@@ -138,9 +144,10 @@ class OpportunityView extends React.Component {
               <button onClick={this.closeModal}>X</button>
               <OpportunityForm />
             </Modal>
+            <button onClick={() => this.setState({isArchived: (this.state.isArchived ? false : true)})}>{ this.state.isArchived ? 'Hide Archives' : 'Show Archives' }</button>
             <div>
             {this.state.status.map((status) => {
-                return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} selectOpportunity={this.props.selectOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
+                return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} selectOpportunity={this.props.selectOpportunity} archiveOpportunity={this.archiveOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
                     return opportunity.status === status;
                 })}/>
             })}

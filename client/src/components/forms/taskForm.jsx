@@ -26,6 +26,7 @@ class TaskForm extends React.Component {
       completion: false,
       dueDate: moment(),
       status: '',
+      isArchived: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
