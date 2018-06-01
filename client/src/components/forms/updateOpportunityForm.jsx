@@ -2,20 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-class createOpportunityForm extends React.Component {
+class updateOpportunityForm extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
-
     this.state = {
-      dateOpened: '',
-      dateClosed: false,
-      oppName: '',
-      orgName: '',
-      rank: 4, 
-      status: '', // enable dropdown
-      type: '', // enable dropdown
-      isArchived: false 
+      dateOpened: this.props.dateOpened,
+      dateClosed: this.props.dateClosed,
+      oppName: this.props.oppName,
+      orgName: this.props.orgName,
+      rank: this.props.rank, 
+      status: this.props.status, // enable dropdown
+      type: this.props.type, // enable dropdown
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -42,12 +40,12 @@ class createOpportunityForm extends React.Component {
     return (
       <div id='opportunity-form-wrapper'>
         <form onSubmit={this.handleSubmit}>
-        <h2 id='opportunity-form-title'>Create a New Opportunity:</h2>
+        <h2 id='opportunity-form-title'>Update Opportunity:</h2>
           <input
             className='login-input'
             type="text"
             value={this.state.oppName}
-            placeholder="Opportunity Name"
+            placeholder={this.state.oppName}
             onChange={(e) => {
               this.setState({oppName: e.target.value})
             }}
@@ -56,7 +54,7 @@ class createOpportunityForm extends React.Component {
             className='login-input'
             type="text"
             value={this.state.orgName}
-            placeholder="Organization Name"
+            placeholder={this.state.orgName}
             onChange={(e) => {
               this.setState({orgName: e.target.value})
             }}
@@ -78,4 +76,4 @@ class createOpportunityForm extends React.Component {
 
 };
 
-export default createOpportunityForm;
+export default updateOpportunityForm;
