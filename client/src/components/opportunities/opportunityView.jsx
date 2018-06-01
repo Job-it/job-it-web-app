@@ -59,6 +59,7 @@ class OpportunityView extends React.Component {
         createModalIsOpen: false,
         updateModalIsOpen: false
       });
+      this.getOpportunities();
     }
 
     getOpportunities() {
@@ -102,7 +103,8 @@ class OpportunityView extends React.Component {
             >
               <button onClick={this.closeModal}>X</button> 
               {this.state.createModalIsOpen ? <CreateOpportunityForm /> : <div></div>}
-              {this.state.updateModalIsOpen ? <UpdateOpportunityForm opportunityToUpdate = {this.state.opportunityToUpdate} /> : <div></div>}
+              {this.state.updateModalIsOpen ? <UpdateOpportunityForm  opportunityToUpdate = {this.state.opportunityToUpdate} 
+                                                                      close = {() => {this.closeModal()}}/> : <div></div>}
             </Modal>
             <button onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
 

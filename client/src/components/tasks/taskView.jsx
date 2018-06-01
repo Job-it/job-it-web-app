@@ -37,18 +37,10 @@ class TaskView extends React.Component {
     this.closeModal = this.closeModal.bind(this);
 
     this.addTask = this.addTask.bind(this);
+    this.getTasksAndSetState = this.getTasksAndSetState.bind(this);
   }
   componentDidMount() {
-    axios.get('/tasks', {
-      params: {
-        opportunity: this.props.currentOpportunity,
-      }
-    })
-    .then((resp) => {
-      this.setState({
-        tasks: resp.data,
-      });
-    })
+    this.getTasksAndSetState();
   }
   openModal(taskObj) {
     if (taskObj === undefined) {
@@ -74,7 +66,20 @@ class TaskView extends React.Component {
       patchTaskForm: false,
       currentTask: '',
     });
-    
+    this.getTasksAndSetState();
+  }
+
+  getTasksAndSetState() {
+    axios.get('/tasks', {
+      params: {
+        opportunity: this.props.currentOpportunity,
+      }
+    })
+    .then((resp) => {
+      this.setState({
+        tasks: resp.data,
+      });
+    })
   }
 
   addTask() {
@@ -99,8 +104,8 @@ class TaskView extends React.Component {
             >
     
               <button onClick={this.closeModal}>X</button>
-              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} /> : <div></div>}
-              {this.state.patchTaskForm ? <UpdateTaskForm currentOpportunity={this.props.currentOpportunity} currentTask={this.state.currentTask} /> : <div></div>}
+              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
+              {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
         { this.state.stages.map((stage) => 
           <TaskColumn 

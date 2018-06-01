@@ -15,7 +15,7 @@ module.exports = {
   },
 
   patch: (req, res) => {
-    params = {userFK: req.body.userFK, _id: req.body.oppId};
+    params = {userFK: req.body.userFK, _id: req.body.updateObj._id};
     updateObj = req.body.updateObj;
     opportunitiesModels.updateOpp(params, updateObj).then((data) => {
       res.send(200, 'Serving patch @ opportunities');

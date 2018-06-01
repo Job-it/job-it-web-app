@@ -8,14 +8,11 @@ import PropTypes from 'prop-types';
 class UpdateTaskForm extends React.Component {
   constructor(props) {
     super(props);
-    //opportunityFK is passed down as props from the taskView
-    //this.props.currentOpportunity
     console.log(props);
-
     this.state = {
-      opportunityFK: this.props.currentOpportunity,
-      content: '',
-      completion: false,
+      taskId: this.props.currentTask._id,
+      taskContent: '',
+      isArchived: false,
       dueDate: moment(),
       status: '',
     }
@@ -24,9 +21,10 @@ class UpdateTaskForm extends React.Component {
   }
 
   componentDidMount() {
+    //populate the task form with the info from the current task
     this.setState({
-      content: this.props.currentTask.content,
-      completion: this.props.currentTask.completion,
+      taskContent: this.props.currentTask.content,
+      isArchived: this.props.currentTask.completion,
       dueDate: moment(this.props.currentTask.dueDate),
       status: this.props.currentTask.status,
     })
@@ -35,7 +33,16 @@ class UpdateTaskForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    //handle axios patch
+    axios.patch('/tasks', {
+      taskId: this.state.taskId,
+      taskContent: this.state.taskContent,
+      isArchived: this.state.isArchived,
+      due: this.state.dueDate,
+      currentStatus: this.state.status,
+    })
+    .then(() => {
+      this.props.closeModal();
+    })
   }
 
 
@@ -54,10 +61,10 @@ class UpdateTaskForm extends React.Component {
           <input
             className='new-task-input'
             type="text"
-            value={this.state.content}
+            value={this.state.taskContent}
             placeholder="Task Name"
             onChange={(e) => {
-              this.setState({content: e.target.value})
+              this.setState({taskContent: e.target.value})
             }}
           />
           <h4>Due Date:</h4>
