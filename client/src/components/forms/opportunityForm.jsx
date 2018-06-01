@@ -15,6 +15,7 @@ class createOpportunityForm extends React.Component {
       rank: 4, 
       status: '', // enable dropdown
       type: '', // enable dropdown
+      isArchived: false 
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }

@@ -6,10 +6,12 @@ const OpportunityColumn = (props) => {
       <div className = {`status-column ${ props.status.replace(/\s+/g, '-').toLowerCase() }`}>
         <div>{props.status}
         {props.itemsToRender.map((item) => {
+          
           return (<OpportunityCard  selectOpportunity= {props.selectOpportunity} 
                                     opportunity={item} 
                                     update = {props.update}
-                                    deleteOpp = {props.deleteOpp}/>)       
+                                    deleteOpp = {props.deleteOpp}
+                                    archiveOpportunity = {props.archiveOpportunity}/>)
         })}
         </div>
       </div>

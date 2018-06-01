@@ -30,6 +30,7 @@ class TaskView extends React.Component {
         patchTaskForm: false,
         tasks: [],
         currentTask: '',
+        isArchived: false
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
