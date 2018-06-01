@@ -64,8 +64,13 @@ interact('.draggable')
       event.relatedTarget.classList.remove('can-drop');
     },
     ondrop: function (event) {
-      // update db
-      //axios patch
+      var draggableElement = event.relatedTarget,
+          dropzoneElement = event.target;
+          //update DB here!!!
+          var id = draggableElement.dataset.id;
+          var targetColumn = dropzoneElement.classList[dropzoneElement.classList.length - 3];
+          console.log(id);
+          console.log(targetColumn);
     },
     ondropdeactivate: function (event) {
       // remove active dropzone feedback
@@ -75,3 +80,7 @@ interact('.draggable')
   });
   // this is used later in the resizing and gesture demos
   window.dragMoveListener = dragMoveListener;
+
+  var dropCardEvent= function() {
+
+  }
