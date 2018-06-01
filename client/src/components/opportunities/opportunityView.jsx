@@ -2,7 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import OpportunityColumn from './opportunityColumn.jsx';
-import OpportunityForm from '../forms/opportunityForm.jsx'
+import CreateOpportunityForm from '../forms/opportunityForm.jsx'
+import UpdateOpportunityForm from '../forms/updateOpportunityForm.jsx'
 const customStyles = {
   content : {
     top                   : '50%',
@@ -25,72 +26,26 @@ class OpportunityView extends React.Component {
     this.state = {
       userId: '1234',
       status: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
-      modalIsOpen: false, 
-      opportunities: [
-        {
-          id: 1,
-          User_FK: 1000,
-          Date_Opened: 'Jan. 1, 2018',
-          Date_Closed: false,
-          Opportunity_Name: 'Job Opportunity',
-          Organization_Name: 'Google',
-          Rank: 5, 
-          Stage: 'Exploratory',
-          Type: 'Job Opportunity'
-        },
-        {
-          id: 2,
-          User_FK: 1000,
-          Date_Opened: 'Jan. 1, 2018',
-          Date_Closed: false,
-          Opportunity_Name: 'Networking Event',
-          Organization_Name: 'Google',
-          Rank: 5, 
-          Stage: 'Qualified',
-          Type: 'Job Opportunity'
-        },
-        {
-          id: 3,
-          User_FK: 1000,
-          Date_Opened: 'Jan. 1, 2018',
-          Date_Closed: false,
-          Opportunity_Name: 'Job Opening',
-          Organization_Name: 'Google',
-          Rank: 5, 
-          Stage: 'Negotiation',
-          Type: 'Job Opportunity'
-        },
-        {
-          id: 4,
-          User_FK: 1000,
-          Date_Opened: 'Jan. 1, 2018',
-          Date_Closed: false,
-          Opportunity_Name: 'Job Opening',
-          Organization_Name: 'Google',
-          Rank: 5, 
-          Stage: 'Outreach',
-          Type: 'Job Opportunity'
-        },
-        {
-          id: 5,
-          User_FK: 1000,
-          Date_Opened: 'Jan. 1, 2018',
-          Date_Closed: false,
-          Opportunity_Name: 'Job Opening',
-          Organization_Name: 'Google',
-          Rank: 5, 
-          Stage: 'Communication',
-          Type: 'Job Opportunity'
-        }
-      ]
+      createModalIsOpen: false, 
+      updateModalIsOpen: false,
+      opportunities: [],
+      opportunityToUpdate: {}
     }
-    this.openModal = this.openModal.bind(this);
+    this.openCreateOpportunityModal = this.openCreateOpportunityModal.bind(this);
+    this.openUpdateOpportunityModal = this.openUpdateOpportunityModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-    openModal() {
-      this.setState({modalIsOpen: true});
+    openCreateOpportunityModal() {
+      this.setState({createModalIsOpen: true});
+    }
+
+    openUpdateOpportunityModal(id) {
+      this.setState({
+        updateModalIsOpen: true,
+        opportunityToUpdate: this.state.opportunities.filter((opp) => opp._id === id)[0]
+      });
     }
 
     afterOpenModal() {
@@ -98,7 +53,10 @@ class OpportunityView extends React.Component {
     }
 
     closeModal() {
-      this.setState({modalIsOpen: false});
+      this.setState({
+        createModalIsOpen: false,
+        updateModalIsOpen: false
+      });
     }
 
     getOpportunities() {
@@ -126,24 +84,30 @@ class OpportunityView extends React.Component {
         return (
           <div>
             <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
-            <button onClick={this.openModal}>Add New Opportunity</button>
+            <button onClick={this.openCreateOpportunityModal}>Add New Opportunity</button>
+
             <Modal
-              isOpen={this.state.modalIsOpen}
+              isOpen={this.state.createModalIsOpen || this.state.updateModalIsOpen}
               onAfterOpen={this.afterOpenModal}
               onRequestClose={this.closeModal}
               style={customStyles}
               contentLabel="New Job.it Opportunity"
             >
-    
-              <button onClick={this.closeModal}>X</button>
-              <OpportunityForm />
+              <button onClick={this.closeModal}>X</button> 
+              {this.state.createModalIsOpen ? <CreateOpportunityForm /> : <div></div>}
+              {this.state.updateModalIsOpen ? <UpdateOpportunityForm opportunityToUpdate = {this.state.opportunityToUpdate} /> : <div></div>}
             </Modal>
+
             <div>
-            {this.state.status.map((status) => {
-                return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} selectOpportunity={this.props.selectOpportunity} status={status} itemsToRender={this.state.opportunities.filter((opportunity) => {
-                    return opportunity.status === status;
-                })}/>
-            })}
+              {this.state.status.map((status) => {
+                  return <OpportunityColumn deleteOpp = {(id) => {this.deleteOpportunity(id)}} 
+                                            selectOpportunity={this.props.selectOpportunity} 
+                                            status={status} 
+                                            update = {(opp) => {this.openUpdateOpportunityModal(opp)}}
+                      itemsToRender={this.state.opportunities.filter((opportunity) => {
+                      return opportunity.status === status;
+                  })}/>
+              })}
             </div>
           </div>
         )
