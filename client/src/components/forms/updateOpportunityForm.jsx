@@ -7,32 +7,38 @@ class updateOpportunityForm extends React.Component {
     super(props);
     console.log(props);
     this.state = {
-      dateOpened: this.props.dateOpened,
-      dateClosed: this.props.dateClosed,
-      oppName: this.props.oppName,
-      orgName: this.props.orgName,
-      rank: this.props.rank, 
-      status: this.props.status, // enable dropdown
-      type: this.props.type, // enable dropdown
+      _id: '',
+      dateOpened: '',
+      dateClosed: false,
+      oppName: '',
+      orgName: '',
+      rank: 4, 
+      status: '', // enable dropdown
+      type: '' // enable dropdown
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      dateOpened: Date.now(),
-      dateClosed: Date.now() + 20,
-      //Hard code first item in status list
-      status: 'Exploratory',
+      _id: this.props.opportunityToUpdate._id,
+      dateOpened: this.props.opportunityToUpdate.dateOpened,
+      dateClosed: this.props.opportunityToUpdate.dateClosed,
+      oppName: this.props.opportunityToUpdate.oppName,
+      orgName: this.props.opportunityToUpdate.orgName,
+      rank: this.props.opportunityToUpdate.rank, 
+      status: this.props.opportunityToUpdate.status,
+      type: this.props.opportunityToUpdate.type
     })
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/opportunities', this.state)
+    axios.patch('/opportunities', {userFK: '1234', updateObj: this.state})
       .then((res) => {
       console.log(res);
     });
+    this.props.close();
   }
 
   render() {
@@ -59,7 +65,10 @@ class updateOpportunityForm extends React.Component {
               this.setState({orgName: e.target.value})
             }}
           />
-          <select name="status" onChange={(e) => {
+          <select 
+            name="status" 
+            value= {this.props.opportunityToUpdate.status}
+            onChange={(e) => {
               this.setState({status: e.target.value})
             }}>
             <option value="Exploratory">Exploratory</option>
