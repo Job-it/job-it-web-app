@@ -3,7 +3,7 @@ import OpportunityCard from './opportunityCard.jsx';
 
 const OpportunityColumn = (props) => {
     return (
-      <div className = {`status-column ${ props.status.replace(/\s+/g, '-').toLowerCase() }`}>
+      <div className = {`status-column dropzone ${ props.status.replace(/\s+/g, '-').toLowerCase() }`}>
         <div>{props.status}
         {props.itemsToRender.map((item) => {
           

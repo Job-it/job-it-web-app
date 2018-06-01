@@ -3,7 +3,7 @@ import TaskCard from './taskCard.jsx';
 
 const TaskColumn = (props) => {
   return (
-    <div className = {`status-column ${ props.stage.replace(/\s+/g, '-').toLowerCase() }`}>
+    <div className = {`status-column dropzone ${ props.stage.replace(/\s+/g, '-').toLowerCase() }`}>
       <div>{props.stage}
         <div>{ 
                 props.tasks.map((task) => {
