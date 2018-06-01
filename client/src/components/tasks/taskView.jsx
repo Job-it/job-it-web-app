@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import TaskColumn from './taskColumn.jsx';
 import TaskForm from '../forms/taskForm.jsx';
+import UpdateTaskForm from '../forms/updateTaskForm.jsx';
 
 const customStyles = {
   content : {
@@ -22,17 +23,18 @@ class TaskView extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
         stages: ['Backlog', 'In Progress', 'Ready for Review', 'Completed'],
-        taskForm: false,
+        modalIsOpen: false,
+        postTaskForm: false,
+        patchTaskForm: false,
         tasks: [],
+        currentTask: '',
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
 
-    this.getTasks = this.getTasks.bind(this);
     this.addTask = this.addTask.bind(this);
   }
   componentDidMount() {
@@ -46,28 +48,38 @@ class TaskView extends React.Component {
         tasks: resp.data,
       });
     })
-    .then(()=> {
-      console.log(this.state);
-    })
   }
-  openModal() {
-    this.setState({modalIsOpen: true});
+  openModal(taskObj) {
+    if (taskObj === undefined) {
+      this.setState({
+        modalIsOpen: true,
+        postTaskForm: true,
+      });
+    } else {
+      this.setState({
+        modalIsOpen: true,
+        patchTaskForm: true,
+        currentTask: taskObj,
+      });
+    }
   }
   afterOpenModal() {
-  //
+    //
   }
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false,
+      postTaskForm: false,
+      patchTaskForm: false,
+      currentTask: '',
+    });
+    
   }
 
   addTask() {
     this.setState({
-      taskForm: this.state.taskForm ? false : true
+      modalIsOpen: this.state.modalIsOpen ? false : true
     });
-  }
-
-  getTasks(stage) {
-      //use axios to get tasks
   }
 
   render() {
@@ -75,7 +87,7 @@ class TaskView extends React.Component {
       <div>
         <div>
           <button onClick={() => this.props.switchViews()}>Back to Opportunities List</button><br/>
-          <button onClick={this.openModal}>Add New Task</button>
+          <button onClick={() => this.openModal()}>Add New Task</button>
         </div>
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -86,10 +98,18 @@ class TaskView extends React.Component {
             >
     
               <button onClick={this.closeModal}>X</button>
-              <TaskForm currentOpportunity={this.props.currentOpportunity} />
+              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} /> : <div></div>}
+              {this.state.patchTaskForm ? <UpdateTaskForm currentOpportunity={this.props.currentOpportunity} currentTask={this.state.currentTask} /> : <div></div>}
             </Modal>
         { this.state.stages.map((stage) => 
-          <TaskColumn currentOpportunity={this.props.currentOpportunity} stage={stage} tasks={this.state.tasks.filter((task) => {return task.status === stage})}/>)
+          <TaskColumn 
+            currentOpportunity={this.props.currentOpportunity} 
+            stage={stage} 
+            tasks={this.state.tasks.filter((task) => {return task.status === stage})}
+            openModal={this.openModal}
+            afterOpenModal={this.afterOpenModal}
+            closeModal={this.closeModal}
+          />)
         }
       </div>
     )
