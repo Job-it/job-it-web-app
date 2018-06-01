@@ -7,6 +7,7 @@ const db = require('../db/index.js');
 const contactsRouter = require('./routes/contactsRouts');
 const opportunitiesRouter = require('./routes/opportunitiesRouts');
 const tasksRouter = require('./routes/tasksRouts.js');
+const usersRouter = require('./routes/usersRouts.js'); 
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.use(parser.urlencoded())
 app.use('/contacts', contactsRouter);
 app.use('/opportunities', opportunitiesRouter);
 app.use('/tasks', tasksRouter);
+app.use('/users', usersRouter);
 
 var port = process.env.PORT || 9000; 
 
@@ -27,3 +29,4 @@ var port = process.env.PORT || 9000;
 app.listen(port, () => {
 console.log(`Listening on port ${port}`);
 });
+

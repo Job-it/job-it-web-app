@@ -3,6 +3,7 @@ var url = require('url');
 
 module.exports = {
   get: (req, res) => {
+    
     res.send(200, 'Serving get @ contacts!');
     //link this to the model here
   },
