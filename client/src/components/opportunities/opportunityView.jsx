@@ -17,7 +17,6 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)',
     width: '80%',
     height: '80%',
-
   }
 };
 
@@ -98,18 +97,20 @@ class OpportunityView extends React.Component {
 
   componentDidMount() {
     this.getOpportunities();
-
-    //Force rerender of opportunity card back to it's original column
+    //Force delayed rerender of opportunity card back to it's original column
     //If it is not switched to another column.
       interact('.draggable-opportunity').draggable({
         onend: () => {
-          var currentOpportunities = this.state.opportunities;
-          this.setState({
-            opportunities: [],
-          });
-          this.setState({
-            opportunities: currentOpportunities,
-          });
+
+          setTimeout(() => {
+            var currentOpportunities = this.state.opportunities;
+            this.setState({
+              opportunities: [],
+            });
+            this.setState({
+              opportunities: currentOpportunities,
+            });
+          }, 500);
         }
       });
   }

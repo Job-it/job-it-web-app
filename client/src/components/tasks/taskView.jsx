@@ -44,17 +44,19 @@ class TaskView extends React.Component {
   componentDidMount() {
     this.getTasksAndSetState();
 
-    //Force rerender of opportunity card back to it's original column
+    //Force rerender of task card back to it's original column
     //If it is not switched to another column.
     interact('.draggable-task').draggable({
       onend: () => {
-        var currentTasks = this.state.tasks;
-        this.setState({
-          tasks: [],
-        });
-        this.setState({
-          tasks: currentTasks,
-        });
+        setTimeout(() => {
+          var currentTasks = this.state.tasks;
+          this.setState({
+            tasks: [],
+          });
+          this.setState({
+            tasks: currentTasks,
+          });
+        }, 500);
       }
     });
   }
