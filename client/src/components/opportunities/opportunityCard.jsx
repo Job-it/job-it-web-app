@@ -5,7 +5,7 @@ const OpportunityCard = (props) => {
   return (
   <div 
     id='yes-drop'
-    className='opportunity-card draggable drag-drop '
+    className='opportunity-card draggable-opportunity drag-drop '
     data-id = {props.opportunity._id}>
     <button onClick={() => props.selectOpportunity(props.opportunity._id)}> Select Opp </button>
     <button onClick = {() => {props.deleteOpp(props.opportunity._id)}}> Delete </button>

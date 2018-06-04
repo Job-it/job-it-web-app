@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import interact from 'interactjs';
 import OpportunityColumn from './opportunityColumn.jsx';
 import CreateOpportunityForm from '../forms/opportunityForm.jsx';
 import UpdateOpportunityForm from '../forms/updateOpportunityForm.jsx';
@@ -15,7 +16,7 @@ const customStyles = {
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
     width: '80%',
-    height: '50%',
+    height: '80%',
 
   }
 };
@@ -43,90 +44,99 @@ class OpportunityView extends React.Component {
     this.updateOpportunity = this.updateOpportunity.bind(this);
   }
 
-    openCreateOpportunityModal() {
-      this.setState({createModalIsOpen: true});
-    }
+  openCreateOpportunityModal() {
+    this.setState({createModalIsOpen: true});
+  }
 
-    openUpdateOpportunityModal(id) {
+  openUpdateOpportunityModal(id) {
+    this.setState({
+      updateModalIsOpen: true,
+      opportunityToUpdate: this.state.opportunities.filter((opp) => opp._id === id)[0]
+    });
+  }
+
+  afterOpenModal() {
+  //
+  }
+
+  closeModal() {
+    this.setState({
+      createModalIsOpen: false,
+      updateModalIsOpen: false
+    });
+    this.getOpportunities();
+  }
+
+  getOpportunities() {
+    axios.get('/opportunities', {params: {userId: this.state.userId, isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
       this.setState({
-        updateModalIsOpen: true,
-        opportunityToUpdate: this.state.opportunities.filter((opp) => opp._id === id)[0]
-      });
-    }
+        opportunities: response.data
+      })
+    });
+  }
 
-    afterOpenModal() {
-    //
-    }
-
-    closeModal() {
-      this.setState({
-        createModalIsOpen: false,
-        updateModalIsOpen: false
-      });
+  deleteOpportunity(oppId) {
+    axios.delete('/opportunities', {params: {_id: oppId}}).then(()=>{
       this.getOpportunities();
-    }
+    });
+  }
 
-    getOpportunities() {
-      axios.get('/opportunities', {params: {userId: this.state.userId, isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
-        console.log(response.data);
-        this.setState({
-          opportunities: response.data
-        })
-      });
-    }
-
-    deleteOpportunity(oppId) {
-      axios.delete('/opportunities', {params: {_id: oppId}}).then(()=>{
-        this.getOpportunities();
-      });
-    }
-
-    updateOpportunity(id, status) {
-      var updateObj = this.state.opportunities.filter((opportunity) => {
-        return opportunity._id === id
-      })[0];
-      updateObj.status = status[0].toUpperCase() + status.slice(1);
-      axios.patch('/opportunities', {userFK: '1234', updateObj: updateObj}).then(()=>{
-        this.getOpportunities();
-        this.setState({
-          opportunities: [...this.state.opportunities]
-        })
-      });
-    }
-
-    archiveOpportunity(oppId) {
-      // console.log('inside archiveOpp func.', oppId);
-      axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: oppId, isArchived: true}});
-      // .then(){userFK: '1234', updateObj: this.state}
-    }
-
-    componentDidMount() {
+  updateOpportunity(id, status) {
+    var updateObj = this.state.opportunities.filter((opportunity) => opportunity._id === id)[0];
+    //capitalize the first letter in the status column
+    updateObj.status = status[0].toUpperCase() + status.slice(1);
+    //patch db and get update
+    axios.patch('/opportunities', {userFK: '1234', updateObj: updateObj}).then(()=>{
       this.getOpportunities();
-    }
+    });
+  }
 
-    render() {
-        return (
-          <div id='view-wrapper'>
-            <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
-            <button onClick={this.openCreateOpportunityModal}>Add New Opportunity</button>
+  archiveOpportunity(oppId) {
+    axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: oppId, isArchived: true}});
+    // .then(){userFK: '1234', updateObj: this.state}
+  }
 
-            <Modal
-              isOpen={this.state.createModalIsOpen || this.state.updateModalIsOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
-              style={customStyles}
-              contentLabel="New Job.it Opportunity"
-            >
-              <button onClick={this.closeModal}>X</button> 
-              {this.state.createModalIsOpen ? <CreateOpportunityForm  close = {() => {this.closeModal()}}/> : <div></div>}
-              {this.state.updateModalIsOpen ? <UpdateOpportunityForm  opportunityToUpdate = {this.state.opportunityToUpdate} 
-                                                                      close = {() => {this.closeModal()}}/> : <div></div>}
-            </Modal>
-            <button onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
+  componentDidMount() {
+    this.getOpportunities();
 
-            <div id='columns-wrapper'>
-              {this.state.status.map((status) => {
-                  return <OpportunityColumn 
+    //Force rerender of opportunity card back to it's original column
+    //If it is not switched to another column.
+      interact('.draggable-opportunity').draggable({
+        onend: () => {
+          var currentOpportunities = this.state.opportunities;
+          this.setState({
+            opportunities: [],
+          });
+          this.setState({
+            opportunities: currentOpportunities,
+          });
+        }
+      });
+  }
+
+  render() {
+      return (
+        <div id='view-wrapper'>
+          <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
+          <button onClick={this.openCreateOpportunityModal}>Add New Opportunity</button>
+
+          <Modal
+            isOpen={this.state.createModalIsOpen || this.state.updateModalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="New Job.it Opportunity"
+          >
+            <button onClick={this.closeModal}>X</button> 
+            {this.state.createModalIsOpen ? <CreateOpportunityForm  close = {() => {this.closeModal()}}/> : <div></div>}
+            {this.state.updateModalIsOpen ? <UpdateOpportunityForm  opportunityToUpdate = {this.state.opportunityToUpdate} 
+                                                                    close = {() => {this.closeModal()}}/> : <div></div>}
+          </Modal>
+          <button onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
+
+          <div id='columns-wrapper' >
+            {this.state.status.map((status) => {
+                return <OpportunityColumn 
                           deleteOpp = {(id) => {this.deleteOpportunity(id)}} 
                           selectOpportunity={this.props.selectOpportunity} 
                           status={status}
@@ -136,12 +146,12 @@ class OpportunityView extends React.Component {
                           itemsToRender={this.state.opportunities.filter((opportunity) => {
                             return opportunity.status === status;
                             })}
-              />
-              })}
-            </div>
+            />
+            })}
           </div>
-        )
-    }
+        </div>
+      )
+  }
 
 }
 

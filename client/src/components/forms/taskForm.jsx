@@ -73,7 +73,7 @@ class TaskForm extends React.Component {
             }}>
             <option value="Backlog">Backlog</option>
             <option value="In Progress">In Progress</option>
-            <option value="Ready for Review">Ready for Review</option>
+            <option value="Ready For Review">Ready For Review</option>
             <option value="Completed">Completed</option>
           </select>
           <input type ='submit'></input>
