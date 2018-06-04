@@ -26,7 +26,7 @@ class OpportunityCard extends React.Component {
         id='yes-drop'
         className='opportunity-card draggable-opportunity drag-drop '
         data-id = {this.props.opportunity._id}>
-        <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}>V</button></div>
+        <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}><img src='../../../img/menu.png' /></button></div>
         <div className='opportunity-card-menu-wrapper'>
           {
             this.state.showMenu
