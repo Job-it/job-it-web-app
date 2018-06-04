@@ -56,7 +56,7 @@ class TaskView extends React.Component {
           this.setState({
             tasks: currentTasks,
           });
-        }, 500);
+        }, 0);
       }
     });
   }
