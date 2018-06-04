@@ -110,7 +110,7 @@ class OpportunityView extends React.Component {
             this.setState({
               opportunities: currentOpportunities,
             });
-          }, 500);
+          }, 0);
         }
       });
   }
