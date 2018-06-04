@@ -26,7 +26,7 @@ class OpportunityCard extends React.Component {
         id='yes-drop'
         className='opportunity-card draggable-opportunity drag-drop '
         data-id = {this.props.opportunity._id}>
-        <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}>V</button></div>
+        <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}><span>☰</span></button></div>
         <div className='opportunity-card-menu-wrapper'>
           {
             this.state.showMenu
@@ -43,10 +43,12 @@ class OpportunityCard extends React.Component {
               )
             }
         </div>
+        <div class='opportunity-content-main'>
         <div className="opp-info"><h3>{this.props.opportunity.oppName}</h3></div>
         <div className="opp-info"><h3>{this.props.opportunity.orgName}</h3></div>
         <div className="opp-info">Created {moment(this.props.opportunity.dateOpened).fromNow()}</div>
         <div className="opp-info">{this.props.opportunity.type}</div>
+        </div>
       </div>
     )
   } 
