@@ -31,6 +31,8 @@ class App extends React.Component {
         taskView: false,
         opportunityView: true,
         currentOpportunity: null,
+        currentOpportunityName: null,
+        currentOrgName: null,
     };
     this.selectOpportunity = this.selectOpportunity.bind(this);
     this.switchViews = this.switchViews.bind(this);
@@ -38,9 +40,11 @@ class App extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  selectOpportunity(opportunityId) {
+  selectOpportunity(opportunityId, opportunityName, orgName) {
     this.setState({
       currentOpportunity: opportunityId,
+      currentOpportunityName: opportunityName,
+      currentOrgName: orgName,
       taskView: this.state.taskView ? false : true,
       opportunityView: this.state.opportunityView ? false : true
     });
@@ -68,6 +72,7 @@ class App extends React.Component {
   render() {
     return (
     <div >
+      <h1>Job.it</h1>
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
@@ -75,7 +80,7 @@ class App extends React.Component {
         contentLabel="Login Modal"
       ><LoginForm closeModal={this.closeModal}/></Modal>
       <div className = "app">
-          {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} switchViews={this.switchViews}/> : <div></div>}
+          {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/> : <div></div>}
           {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
       </div>
     </div>
