@@ -5,7 +5,7 @@ var opportunity = mongoose.model('opportunity', dbConnection.opportunitiesSchema
 
 exports.saveOpp = (dataObj) => {
   return opportunity.create({
-    userFK : '1234',
+    userFK : dataObj.id,
     dateOpened : dataObj.dateOpened,
     dateClosed : dataObj.dateClosed,
     oppName : dataObj.oppName,

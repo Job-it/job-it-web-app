@@ -13,7 +13,6 @@ class OpportunityView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: '1234',
       status: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
       createModalIsOpen: false, 
       updateModalIsOpen: false,
@@ -55,7 +54,7 @@ class OpportunityView extends React.Component {
   }
 
   getOpportunities() {
-    axios.get('/opportunities', {params: {userId: this.state.userId, isArchived: this.state.isArchived}}).then((response) => {
+    axios.get('/opportunities', {params: {isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
       this.setState({
         opportunities: response.data
       });

@@ -6,8 +6,7 @@ UsersSchema.plugin(findOrCreate);
 var User = mongoose.model('User', UsersSchema);
 
 let saveUser = (profile, cb) => {
-  console.log(profile);
-  User.findOrCreate(profile, function(err, user) {
+  User.findOrCreate({githubId: profile.id}, {userName: profile.displayName}, function(err, user) {
     return cb(err, user);
   })
 };
