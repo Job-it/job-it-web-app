@@ -9,6 +9,7 @@ module.exports = {
   },
 
   post: (req, res) => {
+    console.log('what is the req.body: ', req.body);
     opportunitiesModels.saveOpp(req.body, (err, obj) => {
       res.send(200, 'Serving post @ opportunities');
     })
