@@ -3,7 +3,7 @@ import moment from 'moment';
 
 class OpportunityCard extends React.Component {
   constructor(props) {
-    console.log(props);
+    //console.log(props);
     super(props);
     this.state = {
       showMenu: false,
@@ -25,7 +25,7 @@ class OpportunityCard extends React.Component {
     return (
       <div 
         id='yes-drop'
-        className='opportunity-card draggable-opportunity drag-drop '
+        className={'opportunity-card draggable-opportunity drag-drop ' + (this.props.opportunity.isArchived ? 'archived' : '')}
         data-id = {this.props.opportunity._id}>
         <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}><span>☰</span></button></div>
         <div className='opportunity-card-menu-wrapper'>

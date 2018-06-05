@@ -47,6 +47,7 @@ body{
     min-height: 200px;
     box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
 }
+
 .exploratory{
   background-color: skyblue;
 }
@@ -76,16 +77,20 @@ body{
 }
 
 .opportunity-card, .task-card {
-    border-radius: 10px;
-    background-color: rgba( 255, 255, 255, .5);
-    padding: 3px;
-    margin: 3px;
-    text-align: center;
-    height: fit-content;
-    box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
-    word-wrap: break-word;
-    box-sizing: border-box;
-  }
+  border-radius: 10px;
+  background-color: rgba( 255, 255, 255, .5);
+  padding: 3px;
+  margin: 3px;
+  text-align: center;
+  height: fit-content;
+  box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.archived {
+  color: grey;
+}
 
 .opp-info {
   width: 100%;
