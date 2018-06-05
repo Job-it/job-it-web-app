@@ -31,7 +31,6 @@ class TaskForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     axios.post('/tasks', this.state)
       .then((res) => {
       this.props.closeModal();

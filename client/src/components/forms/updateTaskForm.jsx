@@ -7,7 +7,6 @@ import moment from 'moment';
 class UpdateTaskForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       taskId: this.props.currentTask._id,
       taskContent: '',
@@ -23,15 +22,14 @@ class UpdateTaskForm extends React.Component {
     //populate the task form with the info from the current task
     this.setState({
       taskContent: this.props.currentTask.content,
-      isArchived: this.props.currentTask.completion,
+      isArchived: this.props.currentTask.isArchived,
       dueDate: moment(this.props.currentTask.dueDate),
-      status: this.props.currentTask.status,
-    })
+      status: this.props.currentTask.status
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     axios.patch('/tasks', {
       taskId: this.state.taskId,
       taskContent: this.state.taskContent,

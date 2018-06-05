@@ -23,7 +23,8 @@ class TaskView extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-
+    this.toggleArchived = this.toggleArchived.bind(this);
+    this.archiveTask = this.archiveTask.bind(this);
     this.addTask = this.addTask.bind(this);
     this.getTasksAndSetState = this.getTasksAndSetState.bind(this);
     this.updateTask = this.updateTask.bind(this);
@@ -78,6 +79,7 @@ class TaskView extends React.Component {
     axios.get('/tasks', {
       params: {
         opportunity: this.props.currentOpportunity,
+        isArchived: this.state.isArchived
       }
     })
     .then((resp) => {
@@ -85,6 +87,9 @@ class TaskView extends React.Component {
         tasks: resp.data,
       });
     })
+    .catch((err) => {
+      console.error('There was an error getting tasks and setting state: ', err);
+    });
   }
 
   addTask() {
@@ -103,17 +108,44 @@ class TaskView extends React.Component {
       taskContent: updateObj.content,
       due: updateObj.dueDate,
       currentStatus: updateObj.status,
+      isArchived: updateObj.isArchived
     })
     .then(() => {
       this.getTasksAndSetState();
     })
+    .catch((err) => {
+      console.error('There was an error in updating the task: ', err);
+    });
+  }
+
+  archiveTask(id, taskIsArchived) {
+    var updateObj = this.state.tasks.filter((task) => task._id === id)[0];
+    axios.patch('/tasks', {
+      taskId: id,
+      taskContent: updateObj.content,
+      due: updateObj.dueDate,
+      currentStatus: updateObj.status,
+      isArchived: taskIsArchived ? false : true
+    })
+    .then(() => {
+      this.getTasksAndSetState();
+    })
+    .catch((err) => {
+      console.error('There was an error archiving the task: ', err);
+    });
+  }
+
+  toggleArchived() {
+    this.setState({
+      isArchived : this.state.isArchived ? false : true
+    }, () => this.getTasksAndSetState());
   }
 
   render() {
     return (
       <div id='view-wrapper'>
         <div>
-          <TaskNavBar switchViews={this.props.switchViews} openModal={this.openModal} closeModal={this.closeModal} />
+          <TaskNavBar switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal} />
         </div>
         <div className='task-opportunity-title-wrapper'>
         <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
@@ -142,6 +174,7 @@ class TaskView extends React.Component {
             openModal={this.openModal}
             afterOpenModal={this.afterOpenModal}
             closeModal={this.closeModal}
+            archiveTask={this.archiveTask}
           />)
         }
         </div>
