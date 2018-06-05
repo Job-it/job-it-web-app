@@ -41,7 +41,7 @@ body{
     border-radius: 10px;
     padding: 3px;
     margin: 3px;
-    min-width: 210px;
+    width: 18.75%;
     height: 100%;
     text-align:center;
     min-height: 200px;
@@ -83,6 +83,8 @@ body{
     text-align: center;
     height: fit-content;
     box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
+    word-wrap: break-word;
+    box-sizing: border-box;
   }
 
 .opp-info {
@@ -180,4 +182,15 @@ body{
   border-radius: 15px;
 }
 
+@media only screen and (max-width: 1000px) {
+  .status-column {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .status-column {
+    width: 85%;
+  }
+}
 

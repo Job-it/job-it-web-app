@@ -5,6 +5,7 @@ import interact from 'interactjs';
 import OpportunityColumn from './opportunityColumn.jsx';
 import CreateOpportunityForm from '../forms/opportunityForm.jsx';
 import UpdateOpportunityForm from '../forms/updateOpportunityForm.jsx';
+import OpportunityNavBar from '../navbars/opportunityNavBar.jsx'
 
 
 const customStyles = {
@@ -41,6 +42,7 @@ class OpportunityView extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.archiveOpportunity = this.archiveOpportunity.bind(this);
     this.updateOpportunity = this.updateOpportunity.bind(this);
+    this.toggleArchived = this.toggleArchived.bind(this);
   }
 
   openCreateOpportunityModal() {
@@ -95,6 +97,12 @@ class OpportunityView extends React.Component {
     // .then(){userFK: '1234', updateObj: this.state}
   }
 
+  toggleArchived() {
+    this.setState({
+      isArchived: !this.state.isArchived,
+    });
+  }
+
   componentDidMount() {
     this.getOpportunities();
     //Force delayed rerender of opportunity card back to it's original column
@@ -118,8 +126,7 @@ class OpportunityView extends React.Component {
   render() {
       return (
         <div id='view-wrapper'>
-          <button className='view-button' onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
-          <button className='create-new view-button' onClick={this.openCreateOpportunityModal}>+ Opportunity</button>
+          <OpportunityNavBar openCreateOpportunityModal={this.openCreateOpportunityModal} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
           <Modal
             isOpen={this.state.createModalIsOpen || this.state.updateModalIsOpen}
             onAfterOpen={this.afterOpenModal}
