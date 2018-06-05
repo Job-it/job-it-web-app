@@ -194,3 +194,9 @@ body{
   }
 }
 
+.navbar-header a {
+  font-size: 2em;
+  font-style: italic;
+  line-height: 30px;
+}
+
