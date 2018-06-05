@@ -25,7 +25,7 @@ class OpportunityCard extends React.Component {
     return (
       <div 
         id='yes-drop'
-        className={'opportunity-card draggable-opportunity drag-drop ' + (this.props.opportunity.isArchived ? 'archived' : '')}
+        className={'opportunity-card ' + (this.props.opportunity.isArchived ? 'archived' : 'draggable-opportunity drag-drop')}
         data-id = {this.props.opportunity._id}>
         <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}><span>☰</span></button></div>
         <div className='opportunity-card-menu-wrapper'>
