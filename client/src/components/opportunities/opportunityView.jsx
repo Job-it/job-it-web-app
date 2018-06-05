@@ -92,8 +92,8 @@ class OpportunityView extends React.Component {
     });
   }
 
-  archiveOpportunity(id) {
-    axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: id, isArchived: true}})
+  archiveOpportunity(id, oppIsArchived) {
+    axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: id, isArchived: !oppIsArchived}})
     .then(() => {
       this.getOpportunities();
     })

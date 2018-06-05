@@ -23,7 +23,7 @@ class TaskNavBar extends React.Component {
           <NavItem eventKey={1} onClick={this.props.switchViews}>
           <Button bsStyle="warning">⬅ All Opportunities</Button>
             </NavItem>
-            <NavItem eventKey={2} onClick={this.props.openModal}>
+            <NavItem eventKey={2} onClick={() => this.props.openModal()}>
             <Button bsStyle="success"> + Task</Button>
             </NavItem>
           </Nav>
