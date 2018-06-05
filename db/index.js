@@ -17,6 +17,7 @@ const Schema = mongoose.Schema;
 
 let usersSchema = new Schema({
     githubId: String,
+    userName: String,
     firstName: String, 
     lastName: String
 }); 
