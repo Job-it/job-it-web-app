@@ -4,29 +4,34 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-class createOpportunityForm extends React.Component {
+class updateOpportunityForm extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
+      _id: '',
       dateOpened: '',
-      dateClosed: false,
+      dateClosed: moment(),
       oppName: '',
       orgName: '',
       rank: 4, 
       status: '', // enable dropdown
-      type: '', // enable dropdown
-      isArchived: false,
-    };
+      type: '' // enable dropdown
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      dateOpened: Date.now(),
-      dateClosed: moment(),
-      //Hard code first item in status list
-      status: 'Exploratory',
+      _id: this.props.opportunityToUpdate._id,
+      dateOpened: this.props.opportunityToUpdate.dateOpened,
+      dateClosed: moment(this.props.opportunityToUpdate.dateClosed),
+      oppName: this.props.opportunityToUpdate.oppName,
+      orgName: this.props.opportunityToUpdate.orgName,
+      rank: this.props.opportunityToUpdate.rank, 
+      status: this.props.opportunityToUpdate.status,
+      type: this.props.opportunityToUpdate.type
     })
   }
 
@@ -38,7 +43,7 @@ class createOpportunityForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/opportunities', this.state)
+    axios.patch('/opportunities', {userFK: '1234', updateObj: this.state})
       .then((res) => {
       console.log(res);
     });
@@ -50,12 +55,12 @@ class createOpportunityForm extends React.Component {
     return (
       <div id='opportunity-form-wrapper'>
         <form onSubmit={this.handleSubmit}>
-        <h2 id='opportunity-form-title'>Create a New Opportunity:</h2>
+        <h2 id='opportunity-form-title'>Update Opportunity:</h2>
           <input
             className='login-input'
             type="text"
             value={this.state.oppName}
-            placeholder="Opportunity Name"
+            placeholder={this.state.oppName}
             onChange={(e) => {
               this.setState({oppName: e.target.value})
             }}
@@ -64,7 +69,7 @@ class createOpportunityForm extends React.Component {
             className='login-input'
             type="text"
             value={this.state.orgName}
-            placeholder="Organization Name"
+            placeholder={this.state.orgName}
             onChange={(e) => {
               this.setState({orgName: e.target.value})
             }}
@@ -76,7 +81,10 @@ class createOpportunityForm extends React.Component {
             showTimeSelect
             dateFormat="LLL"
           />
-          <select name="status" onChange={(e) => {
+          <select 
+            name="status" 
+            value= {this.props.opportunityToUpdate.status}
+            onChange={(e) => {
               this.setState({status: e.target.value})
             }}>
             <option value="Exploratory">Exploratory</option>
@@ -93,4 +101,4 @@ class createOpportunityForm extends React.Component {
 
 };
 
-export default createOpportunityForm;
+export default updateOpportunityForm;

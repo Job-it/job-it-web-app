@@ -9,22 +9,38 @@ module.exports = {
   },
 
   post: (req, res) => {
+    console.log('what is the req.body: ', req.body);
     opportunitiesModels.saveOpp(req.body, (err, obj) => {
       res.send(200, 'Serving post @ opportunities');
     })
   },
 
   patch: (req, res) => {
-    params = {userFK: req.body.userFK, oppName: req.body.oppName};
+    console.log('INSIDE CONTROLLER PATCH:', req.body);
+    params = {userFK: req.body.userFK, _id: req.body.updateObj._id};
     updateObj = req.body.updateObj;
+    console.log('This is params:', params);
+    console.log('This is updateObj', updateObj);
     opportunitiesModels.updateOpp(params, updateObj).then((data) => {
       res.send(200, 'Serving patch @ opportunities');
     })
-    //link this to the model here
   },
 
   delete: (req, res) => {
-    res.send(200, 'Serving delete @ opportunities');
-    //link this to the model here
-  },
+    params = {"_id": req.query._id};
+    opportunitiesModels.deleteOpp(params).then((data) => {
+      res.send(200, 'Serving delete @ opportunities');
+    });
+  }
 }
+
+ // { userFK: '5b1088929fc9d8133a85607b',
+ //  updateObj: { isArchived: true } 
+ // }
+
+ //  params = {
+ //    userFK: req.body.userFK, 
+ //    _id: req.body.updateObj._id
+ //  };
+
+ //  updateObj = req.body.updateObj;
