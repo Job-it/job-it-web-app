@@ -35,7 +35,7 @@ class OpportunityView extends React.Component {
       opportunityToUpdate: {},
       isArchived: false,
       key: 2
-    }
+    };
     this.openCreateOpportunityModal = this.openCreateOpportunityModal.bind(this);
     this.openUpdateOpportunityModal = this.openUpdateOpportunityModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -69,10 +69,10 @@ class OpportunityView extends React.Component {
   }
 
   getOpportunities() {
-    axios.get('/opportunities', {params: {userId: this.state.userId, isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
+    axios.get('/opportunities', {params: {userId: this.state.userId, isArchived: this.state.isArchived}}).then((response) => {
       this.setState({
         opportunities: response.data
-      })
+      });
     });
   }
 
@@ -92,15 +92,20 @@ class OpportunityView extends React.Component {
     });
   }
 
-  archiveOpportunity(oppId) {
-    axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: oppId, isArchived: true}});
-    // .then(){userFK: '1234', updateObj: this.state}
+  archiveOpportunity(id) {
+    axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: id, isArchived: true}})
+    .then(() => {
+      this.getOpportunities();
+    })
+    .catch((err) => {
+      console.error('There was an error archiving the opportunity: ', err);
+    });
   }
 
   toggleArchived() {
     this.setState({
-      isArchived: !this.state.isArchived,
-    });
+      isArchived: this.state.isArchived ? false : true
+    }, () => this.getOpportunities());
   }
 
   componentDidMount() {

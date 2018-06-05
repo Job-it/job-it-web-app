@@ -5,8 +5,6 @@ import axios from 'axios';
 class createOpportunityForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-
     this.state = {
       dateOpened: '',
       dateClosed: false,
@@ -16,7 +14,7 @@ class createOpportunityForm extends React.Component {
       status: '', // enable dropdown
       type: '', // enable dropdown
       isArchived: false 
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -35,7 +33,7 @@ class createOpportunityForm extends React.Component {
       .then((res) => {
       console.log(res);
     });
-    this.props.close()
+    this.props.close();
   }
 
   render() {

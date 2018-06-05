@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbConnection = require('../../db/index.js')
+var dbConnection = require('../../db/index.js');
 
 var opportunity = mongoose.model('opportunity', dbConnection.opportunitiesSchema);
 
@@ -12,21 +12,22 @@ exports.saveOpp = (dataObj) => {
     orgName : dataObj.orgName,
     rank : dataObj.rank,
     status : dataObj.status,
-    type : dataObj.type
-  })
-}
+    type : dataObj.type,
+    isArchived : dataObj.isArchived
+  });
+};
 
-exports.getOpps = (dataObj = {userFK: '1234'}) => {
-  return opportunity.find({userFK : dataObj.userId})
-}
+exports.getOpps = (dataObj) => {
+  return opportunity.find({userFK : dataObj.userId, isArchived : dataObj.isArchived});
+};
 
 exports.updateOpp = (params, updateObj) => {
-  return opportunity.findByIdAndUpdate(params, updateObj)
-}
+  return opportunity.findByIdAndUpdate(params, updateObj);
+};
 
 exports.deleteOpp = (params) => {
-  return opportunity.findOneAndDelete(params)
-}
+  return opportunity.findOneAndDelete(params);
+};
 
 // EXAMPLE USE OF SAVEOPP
 // exports.saveOpp({
