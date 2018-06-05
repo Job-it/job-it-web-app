@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 let taskSchema = require('../../db/index.js').tasksSchema;
 let Task = mongoose.model('Task', taskSchema);
 
-let saveTask = (opportunity, taskContent, due, currentStatus) => {
+let saveTask = (opportunity, taskContent, due, currentStatus, isArchived) => {
   //returns a promise
   return Task.create(
     {
@@ -11,16 +11,17 @@ let saveTask = (opportunity, taskContent, due, currentStatus) => {
       completion: false, 
       dueDate: due,
       status: currentStatus,
+      isArchived: isArchived
     }
-  )
+  );
 };
 
-let getTasks = (opportunity) => {
+let getTasks = (opportunity, isArchived) => {
   //returns a promise
-  return Task.find({opportunityFK: opportunity})
+  return Task.find({opportunityFK: opportunity, isArchived: isArchived});
 };
 
-let updateTask = (taskId, taskContent, isComplete, due, currentStatus) => {
+let updateTask = (taskId, taskContent, isComplete, due, currentStatus, isArchived) => {
   //returns a promise
   return Task.update(
     { _id: taskId },
@@ -29,12 +30,13 @@ let updateTask = (taskId, taskContent, isComplete, due, currentStatus) => {
       completion: isComplete, 
       dueDate: due,
       status: currentStatus,
+      isArchived: isArchived
     }
-  })
+  });
 };
 
 let deleteTask = (taskId) => {
-  return Task.findByIdAndDelete(taskId)
+  return Task.findByIdAndDelete(taskId);
 };
 
 // saveTask('FOREIGN_KEY', 'task 1', Date.now() - 10, 'In progress');

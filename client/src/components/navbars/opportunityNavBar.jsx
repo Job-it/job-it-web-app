@@ -20,11 +20,11 @@ class OpportunityNavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-          <NavItem eventKey={1} onClick={this.props.toggleArchived}>
-            <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
-            </NavItem>
-            <NavItem eventKey={2} onClick={this.props.openCreateOpportunityModal}>
+            <NavItem eventKey={1} onClick={this.props.openCreateOpportunityModal}>
             <Button bsStyle="success"> + Opportunity</Button>
+            </NavItem>
+            <NavItem eventKey={2} onClick={this.props.toggleArchived}>
+            <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
             </NavItem>
           </Nav>
           <Nav pullRight>
