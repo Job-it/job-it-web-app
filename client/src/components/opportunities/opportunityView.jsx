@@ -118,9 +118,8 @@ class OpportunityView extends React.Component {
   render() {
       return (
         <div id='view-wrapper'>
-          <button onClick={() => this.props.switchViews()}>Back to Task List</button><br/>
-          <button onClick={this.openCreateOpportunityModal}>Add New Opportunity</button>
-
+          <button className='view-button' onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
+          <button className='create-new view-button' onClick={this.openCreateOpportunityModal}>+ Opportunity</button>
           <Modal
             isOpen={this.state.createModalIsOpen || this.state.updateModalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -133,8 +132,6 @@ class OpportunityView extends React.Component {
             {this.state.updateModalIsOpen ? <UpdateOpportunityForm  opportunityToUpdate = {this.state.opportunityToUpdate} 
                                                                     close = {() => {this.closeModal()}}/> : <div></div>}
           </Modal>
-          <button onClick={() => {this.setState({isArchived: !this.state.isArchived})}}>{ this.state.isArchived ? 'Hide Archived' : 'Show Archived'}</button>
-
           <div id='columns-wrapper' >
             {this.state.status.map((status) => {
                 return <OpportunityColumn 
