@@ -4,14 +4,10 @@ var url = require('url');
 
 module.exports = {
   get: (req, res) => {
+    var opportunity = req.query.opportunity;
+    var isArchived = req.query.isArchived;
 
-    var url_parts = url.parse(req.url, true);
-    var query = url_parts.query;
-
-    var opportunity = query.opportunity;
-    console.log(opportunity); //looking for opportunityFK to reference task
-
-    tasksModels.getTasks(opportunity)
+    tasksModels.getTasks(opportunity, isArchived)
       .then((data) => {
         res.status(200).send(data); 
       })
@@ -21,13 +17,13 @@ module.exports = {
   },
 
   post: (req, res) => {
-    console.log(req.body);
     var opportunity = req.body.opportunityFK;
     var taskContent = req.body.content;
     var due = req.body.dueDate;
     var currentStatus = req.body.status; 
+    var isArchived = req.body.isArchived;
 
-    tasksModels.saveTask(opportunity, taskContent, due, currentStatus)
+    tasksModels.saveTask(opportunity, taskContent, due, currentStatus, isArchived)
     .then((data) => {
       res.send(200, 'Posting Task');
     })
@@ -43,10 +39,11 @@ module.exports = {
     var isComplete = req.body.isComplete;
     var due = req.body.due;
     var currentStatus = req.body.currentStatus;
+    var isArchived = req.body.isArchived;
 
     //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
 
-    tasksModels.updateTask(taskId, taskContent, isComplete, due, currentStatus)
+    tasksModels.updateTask(taskId, taskContent, isComplete, due, currentStatus, isArchived)
     .then((data) => {
       res.send(200, 'Task patched');
     })

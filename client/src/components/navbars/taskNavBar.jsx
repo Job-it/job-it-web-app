@@ -26,10 +26,13 @@ class TaskNavBar extends React.Component {
             <NavItem eventKey={2} onClick={() => this.props.openModal()}>
             <Button bsStyle="success"> + Task</Button>
             </NavItem>
+            <NavItem eventKey={3} onClick={() => this.props.toggleArchived()}>
+            <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
+            </NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={3} href="#"></NavItem>
-            <NavItem eventKey={4} href="#">
+            <NavItem eventKey={4} href="#"></NavItem>
+            <NavItem eventKey={5} href="#">
               <Button bsStyle="danger">Logout</Button>
             </NavItem>
           </Nav>

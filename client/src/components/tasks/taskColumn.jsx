@@ -31,6 +31,7 @@ class TaskColumn extends React.Component {
                       openModal={this.props.openModal}
                       afterOpenModal={this.props.afterOpenModal}
                       closeModal={this.props.closeModal}
+                      archiveTask={this.props.archiveTask}
                     /><br/></div>
                   }) 
                 }</div>
