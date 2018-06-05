@@ -43,7 +43,7 @@ class OpportunityCard extends React.Component {
               )
             }
         </div>
-        <div class='opportunity-content-main'>
+        <div className='opportunity-content-main'>
         <div className="opp-info"><h3>{this.props.opportunity.oppName}</h3></div>
         <div className="opp-info"><h3>{this.props.opportunity.orgName}</h3></div>
         <div className="opp-info">Created {moment(this.props.opportunity.dateOpened).fromNow()}</div>
