@@ -127,7 +127,7 @@ class TaskView extends React.Component {
     return (
       <div id='view-wrapper'>
         <div>
-          <TaskNavBar switchViews={this.props.switchViews} openModal={this.openModal} />
+          <TaskNavBar switchViews={this.props.switchViews} openModal={this.openModal} closeModal={this.closeModal} />
         </div>
         <div className='task-opportunity-title-wrapper'>
         <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
