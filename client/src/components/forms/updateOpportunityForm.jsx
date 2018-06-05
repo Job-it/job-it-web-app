@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 class updateOpportunityForm extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ class updateOpportunityForm extends React.Component {
     this.state = {
       _id: '',
       dateOpened: '',
-      dateClosed: false,
+      dateClosed: moment(),
       oppName: '',
       orgName: '',
       rank: 4, 
@@ -17,19 +19,26 @@ class updateOpportunityForm extends React.Component {
       type: '' // enable dropdown
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       _id: this.props.opportunityToUpdate._id,
       dateOpened: this.props.opportunityToUpdate.dateOpened,
-      dateClosed: this.props.opportunityToUpdate.dateClosed,
+      dateClosed: moment(this.props.opportunityToUpdate.dateClosed),
       oppName: this.props.opportunityToUpdate.oppName,
       orgName: this.props.opportunityToUpdate.orgName,
       rank: this.props.opportunityToUpdate.rank, 
       status: this.props.opportunityToUpdate.status,
       type: this.props.opportunityToUpdate.type
     })
+  }
+
+  handleDateChange(date) {
+    this.setState({
+      dateClosed: date
+    });
   }
 
   handleSubmit(e) {
@@ -64,6 +73,14 @@ class updateOpportunityForm extends React.Component {
             onChange={(e) => {
               this.setState({orgName: e.target.value})
             }}
+          />
+          <h4>Due Date:</h4>
+          <DatePicker
+            selected={this.state.dateClosed}
+            onChange={this.handleDateChange}
+            showTimeSelect
+            dateFormat="LLL"
+            withPortal
           />
           <select 
             name="status" 

@@ -31,7 +31,6 @@ class TaskForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     axios.post('/tasks', this.state)
       .then((res) => {
       this.props.closeModal();
@@ -66,6 +65,7 @@ class TaskForm extends React.Component {
             onChange={this.handleDateChange}
             showTimeSelect
             dateFormat="LLL"
+            withPortal
           />
           <select name="status" onChange={(e) => {
               this.setState({status: e.target.value})
