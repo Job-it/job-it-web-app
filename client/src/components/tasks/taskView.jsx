@@ -129,8 +129,10 @@ class TaskView extends React.Component {
           <button className='view-button' onClick={() => this.props.switchViews()}>⬅ All Opportunities</button>
           <button className='create-new view-button' onClick={() => this.openModal()}>+ Task</button>
         </div>
+        <div className='task-opportunity-title-wrapper'>
         <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
         <h2 className='task-org-name'>{this.props.currentOrgName}</h2>
+        </div>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
