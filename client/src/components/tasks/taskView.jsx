@@ -4,6 +4,7 @@ import axios from 'axios';
 import interact from 'interactjs';
 import TaskColumn from './taskColumn.jsx';
 import TaskForm from '../forms/taskForm.jsx';
+import TaskNavBar from '../navbars/taskNavBar.jsx';
 import UpdateTaskForm from '../forms/updateTaskForm.jsx';
 
 const customStyles = {
@@ -126,8 +127,7 @@ class TaskView extends React.Component {
     return (
       <div id='view-wrapper'>
         <div>
-          <button className='view-button' onClick={() => this.props.switchViews()}>⬅ All Opportunities</button>
-          <button className='create-new view-button' onClick={() => this.openModal()}>+ Task</button>
+          <TaskNavBar switchViews={this.props.switchViews} openModal={this.openModal} />
         </div>
         <div className='task-opportunity-title-wrapper'>
         <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
