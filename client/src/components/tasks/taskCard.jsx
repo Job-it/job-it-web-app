@@ -5,7 +5,7 @@ const TaskCard = (props) => {
   return (
     <div 
     id='yes-drop' 
-    className='task-card draggable-task drag-drop'
+    className={'task-card ' + (props.taskDetails.isArchived ? 'archived' : 'draggable-opportunity drag-drop')}
     data-id = {props.taskDetails._id}>
       <button onClick={(() => props.openModal(props.taskDetails))}> Edit Task </button>
       <button onClick={() => props.archiveTask(props.taskDetails._id, props.taskDetails.isArchived)}> { props.taskDetails.isArchived ? 'Unarchive' : 'Archive' } </button>
