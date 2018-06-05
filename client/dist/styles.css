@@ -187,6 +187,30 @@ body{
   border-radius: 15px;
 }
 
+.navbar-header a {
+  font-size: 2em;
+  font-style: italic;
+  line-height: 30px;
+}
+
+.modal-form {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+}
+
 @media only screen and (max-width: 1000px) {
   .status-column {
     width: 40%;
@@ -197,11 +221,10 @@ body{
   .status-column {
     width: 85%;
   }
+  .modal-form {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+  }
 }
-
-.navbar-header a {
-  font-size: 2em;
-  font-style: italic;
-  line-height: 30px;
-}
-

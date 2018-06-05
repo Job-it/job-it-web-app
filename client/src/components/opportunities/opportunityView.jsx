@@ -7,20 +7,6 @@ import CreateOpportunityForm from '../forms/opportunityForm.jsx';
 import UpdateOpportunityForm from '../forms/updateOpportunityForm.jsx';
 import OpportunityNavBar from '../navbars/opportunityNavBar.jsx'
 
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    width: '80%',
-    height: '80%',
-  }
-};
-
 Modal.setAppElement('#app');
 
 class OpportunityView extends React.Component {
@@ -133,10 +119,11 @@ class OpportunityView extends React.Component {
         <div id='view-wrapper'>
           <OpportunityNavBar openCreateOpportunityModal={this.openCreateOpportunityModal} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
           <Modal
+            className='modal-form'
+            overlayClassName='modal-overlay'
             isOpen={this.state.createModalIsOpen || this.state.updateModalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
-            style={customStyles}
             contentLabel="New Job.it Opportunity"
           >
             <button onClick={this.closeModal}>X</button> 

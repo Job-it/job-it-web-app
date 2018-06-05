@@ -80,6 +80,7 @@ class updateOpportunityForm extends React.Component {
             onChange={this.handleDateChange}
             showTimeSelect
             dateFormat="LLL"
+            withPortal
           />
           <select 
             name="status" 
