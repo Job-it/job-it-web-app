@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-class OpportunityNavBar extends React.Component {
+class TaskNavBar extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
@@ -20,11 +20,11 @@ class OpportunityNavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-          <NavItem eventKey={1} onClick={this.props.toggleArchived}>
-            {this.props.isArchived ? "Hide Archived" : "Show Archived"}
+          <NavItem eventKey={1} onClick={this.props.switchViews}>
+            ⬅ All Opportunities
             </NavItem>
-            <NavItem eventKey={2} onClick={this.props.openCreateOpportunityModal}>
-            ➕ Opportunity
+            <NavItem eventKey={2} onClick={this.props.openModal}>
+            ➕ Task
             </NavItem>
           </Nav>
           <Nav pullRight>
@@ -39,4 +39,4 @@ class OpportunityNavBar extends React.Component {
   }
 }
 
-export default OpportunityNavBar;
+export default TaskNavBar;
