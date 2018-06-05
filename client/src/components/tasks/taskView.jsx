@@ -7,20 +7,6 @@ import TaskForm from '../forms/taskForm.jsx';
 import TaskNavBar from '../navbars/taskNavBar.jsx';
 import UpdateTaskForm from '../forms/updateTaskForm.jsx';
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    width: '80%',
-    height: '80%',
-
-  }
-};
-
 class TaskView extends React.Component {
 
   constructor(props) {
@@ -134,10 +120,11 @@ class TaskView extends React.Component {
         <h2 className='task-org-name'>{this.props.currentOrgName}</h2>
         </div>
             <Modal
+              className='modal-form'
+              overlayClassName='modal-overlay'
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
               onRequestClose={this.closeModal}
-              style={customStyles}
               contentLabel="New Job.it Opportunity"
             >
     

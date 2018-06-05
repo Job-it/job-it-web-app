@@ -74,6 +74,7 @@ class createOpportunityForm extends React.Component {
             selected={this.state.dateClosed}
             onChange={this.handleDateChange}
             showTimeSelect
+            withPortal
             dateFormat="LLL"
           />
           <select name="status" onChange={(e) => {

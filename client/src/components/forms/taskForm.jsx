@@ -66,6 +66,7 @@ class TaskForm extends React.Component {
             onChange={this.handleDateChange}
             showTimeSelect
             dateFormat="LLL"
+            withPortal
           />
           <select name="status" onChange={(e) => {
               this.setState({status: e.target.value})
