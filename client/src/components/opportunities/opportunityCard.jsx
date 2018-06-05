@@ -32,7 +32,7 @@ class OpportunityCard extends React.Component {
             this.state.showMenu
               ? (
                 <div className='opportunity-card-menu'>
-                  <div><button onClick={() => this.props.selectOpportunity(this.props.opportunity._id)}>Explore</button></div>
+                  <div><button onClick={() => this.props.selectOpportunity(this.props.opportunity._id, this.props.opportunity.oppName, this.props.opportunity.orgName) }>Explore</button></div>
                   <div><button onClick = {() => {this.props.update(this.props.opportunity._id)}}> Update </button></div>
                   <div><button onClick = {() => {this.props.archiveOpportunity(this.props.opportunity._id)}}> Archive </button></div>
                   <div><button onClick = {() => {this.props.deleteOpp(this.props.opportunity._id)}}> Delete </button></div>

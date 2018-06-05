@@ -1,5 +1,6 @@
 body{
-  font-family: "Trebuchet MS", Helvetica, sans-serif
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background-image: url('./img/wood-background.jpg');
 }
 
 .app {
@@ -152,6 +153,31 @@ body{
 
 .opportunity-card-menu div button:hover {
   background-color: skyblue;
+}
+
+.view-button{
+  font-size: 1.5em;
+  border-radius: 10px;
+}
+
+.create-new{
+  float: right;
+}
+
+.task-opportunity-title, .task-org-name {
+  text-align: center;
+  clear: both;
+  padding: 5px 0;
+}
+
+.task-opportunity-title-wrapper {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10%;
+  background-color: rgba(255,255,255,0.5);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 15px;
 }
 
 
