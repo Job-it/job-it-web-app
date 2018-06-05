@@ -72,7 +72,6 @@ class App extends React.Component {
   render() {
     return (
     <div >
-      <h1>Job.it</h1>
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
