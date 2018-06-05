@@ -3,13 +3,14 @@ var url = require('url');
 
 module.exports = {
   get: (req, res) => {
+    req.query.userId = req.session.passport.user.githubId;
     opportunitiesModels.getOpps(req.query).then((results) => {
       res.status(200).send(results);
     });
   },
 
   post: (req, res) => {
-    console.log('what is the req.body: ', req.body);
+    req.body.id = req.session.passport.user.githubId;
     opportunitiesModels.saveOpp(req.body, (err, obj) => {
       res.send(200, 'Serving post @ opportunities');
     })

@@ -19,8 +19,9 @@
   "homepage": "https://github.com/Job-it/Job-It-Web-App#readme",
   "dependencies": {
     "axios": "0.18.0",
-    "body-parser": "1.18.3",
+    "body-parser": "^1.18.3",
     "express": "4.16.3",
+    "express-session": "^1.15.6",
     "interactjs": "^1.3.4",
     "moment": "^2.22.1",
     "mongoose": "5.1.2",
