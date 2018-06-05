@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
 
 class OpportunityNavBar extends React.Component {
   constructor(props) {
@@ -21,16 +21,16 @@ class OpportunityNavBar extends React.Component {
         <Navbar.Collapse>
           <Nav>
           <NavItem eventKey={1} onClick={this.props.toggleArchived}>
-            {this.props.isArchived ? "Hide Archived" : "Show Archived"}
+            <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
             </NavItem>
             <NavItem eventKey={2} onClick={this.props.openCreateOpportunityModal}>
-            ➕ Opportunity
+            <Button bsStyle="success"> + Opportunity</Button>
             </NavItem>
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={3} href="#"></NavItem>
             <NavItem eventKey={4} href="#">
-              Logout
+            <Button bsStyle="danger">Logout</Button>
             </NavItem>
           </Nav>
         </Navbar.Collapse>
