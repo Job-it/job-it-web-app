@@ -1,14 +1,24 @@
 var mongoose = require('mongoose');
-var usersSchema = require('../../db/index.js').usersSchema;
-var User = mongoose.model('User', usersSchema); 
+var UsersSchema = require('../../db/index.js').usersSchema;
+var findOrCreate = require('mongoose-findorcreate');
+UsersSchema.plugin(findOrCreate);
 
+var User = mongoose.model('User', UsersSchema);
 
-let saveUser = () => {};
-let getUsers = () => {};
+let saveUser = (profile, cb) => {
+  console.log(profile);
+  User.findOrCreate(profile, function(err, user) {
+    return cb(err, user);
+  })
+};
+
+let getUser = () => {};
 let updateUser = () => {};
 let deleteUser = () => {};
 
+// saveUser({githubId: 1}, (err, user) => console.log(err, user));
+
 module.exports.saveUser = saveUser;
-module.exports.getUsers = getUsers;
+module.exports.getUser = getUser;
 module.exports.updateUser = updateUser;
 module.exports.deleteUser = deleteUser;

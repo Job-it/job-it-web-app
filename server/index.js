@@ -20,11 +20,17 @@ app.use(parser.json());
 app.use(parser.urlencoded())
 
 //authentication
-app.get('/auth/github', passport.authenticate('github'));
-app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: '/login'}),
-function(req, res) {
-  res.redirect('/');
-})
+app.get('/auth/github', 
+  passport.authenticate('github', {scope: ['user:email']})
+);
+
+app.get('/auth/github/callback', 
+  passport.authenticate('github', {failureRedirect: '/login'}),
+  function(req, res) {
+    // successful authentication --> redirect home
+    res.redirect('/');
+  }
+);
 
 // Routes
 app.use('/contacts', contactsRouter);
@@ -36,5 +42,5 @@ var port = process.env.PORT || 9000;
 
 // listen for requests
 app.listen(port, () => {
-console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });

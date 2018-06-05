@@ -16,9 +16,9 @@ db.once('open', function() {
 const Schema = mongoose.Schema; 
 
 let usersSchema = new Schema({
+    githubId: String,
     firstName: String, 
-    lastName: String,
-    githubOAuth: String
+    lastName: String
 }); 
 
 let opportunitiesSchema = new Schema({
