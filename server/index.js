@@ -17,7 +17,7 @@ var app = express();
 
 // attach middleware
 app.use(util.requestLogger);
-app.use(express.static(__dirname + '/../client/dist'));
+app.use('/home', express.static(__dirname + '/../client/dist'));
 app.use(parser.json());
 app.use(parser.urlencoded());
 app.use(bodyParser.urlencoded({extended : false}));
@@ -33,7 +33,7 @@ app.use(passport.session());
 
 //authentication
 
-app.get('/auth/github/callback', passport.authenticate('github'), (req, res) => (res.redirect('/')));
+app.get('/auth/github/callback', passport.authenticate('github'), (req, res) => (res.redirect('/home')));
 app.get('/auth/github', passport.authenticate('github', {scope: ['user:email']}));
 
 // Routes
