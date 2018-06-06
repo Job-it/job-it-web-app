@@ -56,6 +56,9 @@ class OpportunityView extends React.Component {
 
   getOpportunities() {
     axios.get('/opportunities', {params: {isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
+      console.log('This is the session: ', response.session);
+      console.log('This is the user', response.user);
+      console.log('this is the response', response);
       this.setState({
         opportunities: response.data
       });
@@ -73,13 +76,13 @@ class OpportunityView extends React.Component {
     //capitalize the first letter in the status column
     updateObj.status = status[0].toUpperCase() + status.slice(1);
     //patch db and get update
-    axios.patch('/opportunities', {userFK: '1234', updateObj: updateObj}).then(()=>{
+    axios.patch('/opportunities', {updateObj: updateObj}).then(()=>{
       this.getOpportunities();
     });
   }
 
   archiveOpportunity(id, oppIsArchived) {
-    axios.patch('/opportunities', {userFK: '1234', updateObj: {_id: id, isArchived: !oppIsArchived}})
+    axios.patch('/opportunities', {updateObj: {_id: id, isArchived: !oppIsArchived}})
     .then(() => {
       this.getOpportunities();
     })

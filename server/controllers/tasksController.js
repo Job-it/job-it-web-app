@@ -54,19 +54,19 @@ module.exports = {
   },
 
   delete: (req, res) => {
-    var taskId = req.body.taskId; 
+    var taskId = req.query._id; 
 
     //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
 
-    tasksModel.deleteTask(taskId)
+    tasksModels.deleteTask(taskId)
     .then((data) => {
       res.status(204).send('Task Deleting...');
     })
     .catch((err) => {
       console.error(err);
-    })
+    });
     //link this to the model here
   },
-}
+};
 
 
