@@ -170,9 +170,6 @@ body{
   text-align: right;
 }
 
-.opportunity-card-menu div button:hover {
-  background-color: skyblue;
-}
 
 .task-content-main {
   clear: both;
@@ -195,10 +192,6 @@ body{
 
 .task-card-menu div {
   text-align: right;
-}
-
-.task-card-menu div button:hover {
-  background-color: skyblue;
 }
 
 .view-button{
