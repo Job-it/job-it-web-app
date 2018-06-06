@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Button } from 'react-bootstrap';
 
 class TaskCard extends React.Component {
   constructor(props) {
@@ -33,9 +34,9 @@ class TaskCard extends React.Component {
             this.state.showMenu
               ? (
                 <div className='task-card-menu'>
-                  { this.props.taskDetails.isArchived ? <div></div> : <div><button onClick={() => {this.props.openModal(this.props.taskDetails)}}> Update </button></div> }
-                  <div><button onClick={() => {this.props.archiveTask(this.props.taskDetails._id, this.props.taskDetails.isArchived)}}>{ this.props.taskDetails.isArchived ? 'Unarchive' : 'Archive' }</button></div>
-                  <div><button onClick={() => {this.props.deleteTask(this.props.taskDetails._id)}}> Delete </button></div>
+                  { this.props.taskDetails.isArchived ? <div></div> : <div><Button bsSize="small" bsStyle="success" onClick={() => {this.props.openModal(this.props.taskDetails)}}> Update </Button></div> }
+                  <div><Button bsSize="small" bsStyle="warning" onClick={() => {this.props.archiveTask(this.props.taskDetails._id, this.props.taskDetails.isArchived)}}>{ this.props.taskDetails.isArchived ? 'Unarchive' : 'Archive' }</Button></div>
+                  <div><Button bsSize="small" bsStyle="danger" onClick={() => {this.props.deleteTask(this.props.taskDetails._id)}}> Delete </Button></div>
                 </div>
               )
               : (

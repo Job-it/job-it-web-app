@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-
+import { Button } from 'react-bootstrap';
 
 class OpportunityCard extends React.Component {
   constructor(props) {
@@ -35,10 +35,10 @@ class OpportunityCard extends React.Component {
             this.state.showMenu
               ? (
                 <div className='opportunity-card-menu'>
-                  { this.props.opportunity.isArchived ? <div></div> : <div><button onClick={() => this.props.selectOpportunity(this.props.opportunity._id, this.props.opportunity.oppName, this.props.opportunity.orgName) }>Explore</button></div> }
-                  { this.props.opportunity.isArchived ? <div></div> : <div><button onClick = {() => {this.props.update(this.props.opportunity._id)}}> Update </button></div> }
-                  <div><button onClick = {() => {this.props.archiveOpportunity(this.props.opportunity._id, this.props.opportunity.isArchived)}}>{ this.props.opportunity.isArchived ? 'Unarchive' : 'Archive' }</button></div>
-                  <div><button onClick = {() => {this.props.deleteOpp(this.props.opportunity._id)}}> Delete </button></div>
+                  { this.props.opportunity.isArchived ? <div></div> : <div><Button bsSize="small" bsStyle="info" onClick={() => this.props.selectOpportunity(this.props.opportunity._id, this.props.opportunity.oppName, this.props.opportunity.orgName) }>Explore</Button></div> }
+                  { this.props.opportunity.isArchived ? <div></div> : <div><Button bsSize="small" bsStyle="success" onClick = {() => {this.props.update(this.props.opportunity._id)}}> Update </Button></div> }
+                  <div><Button bsSize="small" bsStyle="warning" onClick = {() => {this.props.archiveOpportunity(this.props.opportunity._id, this.props.opportunity.isArchived)}}>{ this.props.opportunity.isArchived ? 'Unarchive' : 'Archive' }</Button></div>
+                  <div><Button bsSize="small" bsStyle="danger" onClick = {() => {this.props.deleteOpp(this.props.opportunity._id)}}> Delete </Button></div>
                 </div>
               )
               : (
