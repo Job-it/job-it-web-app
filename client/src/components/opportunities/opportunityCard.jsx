@@ -1,26 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 class OpportunityCard extends React.Component {
   constructor(props) {
     //console.log(props);
     super(props);
-    this.state = {
-      showMenu: false,
-    };
-    this.showMenu = this.showMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-  }
-
-  showMenu() {
-    this.setState({ showMenu: true });
-    document.addEventListener('click', this.closeMenu);
-  }
-  closeMenu() {
-    this.setState({ showMenu: false });
-    document.removeEventListener('click', this.closeMenu);
   }
 
   render() {
@@ -28,24 +13,20 @@ class OpportunityCard extends React.Component {
       <div 
         id='yes-drop'
         className={'opportunity-card ' + (this.props.opportunity.isArchived ? 'archived' : 'draggable-opportunity drag-drop')}
-        data-id = {this.props.opportunity._id}>
-        <div><button className='opportunity-card-menu-button' onClick={() => this.showMenu()}><span>☰</span></button></div>
-        <div className='opportunity-card-menu-wrapper'>
-          {
-            this.state.showMenu
-              ? (
-                <div className='opportunity-card-menu'>
-                  { this.props.opportunity.isArchived ? <div></div> : <div><Button bsSize="small" bsStyle="info" onClick={() => this.props.selectOpportunity(this.props.opportunity._id, this.props.opportunity.oppName, this.props.opportunity.orgName) }>Explore</Button></div> }
-                  { this.props.opportunity.isArchived ? <div></div> : <div><Button bsSize="small" bsStyle="success" onClick = {() => {this.props.update(this.props.opportunity._id)}}> Update </Button></div> }
-                  <div><Button bsSize="small" bsStyle="warning" onClick = {() => {this.props.archiveOpportunity(this.props.opportunity._id, this.props.opportunity.isArchived)}}>{ this.props.opportunity.isArchived ? 'Unarchive' : 'Archive' }</Button></div>
-                  <div><Button bsSize="small" bsStyle="danger" onClick = {() => {this.props.deleteOpp(this.props.opportunity._id)}}> Delete </Button></div>
-                </div>
-              )
-              : (
-                null
-              )
-            }
-        </div>
+        data-id = {this.props.opportunity._id}
+      >
+        <DropdownButton
+          bsStyle="default"
+          title="☰"
+          noCaret
+          id="dropdown-no-caret"
+          className='opportunity-card-menu-button'
+        >
+          { this.props.opportunity.isArchived ? null : <MenuItem  onClick={() => this.props.selectOpportunity(this.props.opportunity._id, this.props.opportunity.oppName, this.props.opportunity.orgName) }>Explore</MenuItem> }
+          { this.props.opportunity.isArchived ? null : <MenuItem  onClick = {() => {this.props.update(this.props.opportunity._id)}}> Update </MenuItem> }
+          <MenuItem onClick = {() => {this.props.archiveOpportunity(this.props.opportunity._id, this.props.opportunity.isArchived)}}>{ this.props.opportunity.isArchived ? 'Unarchive' : 'Archive' }</MenuItem>
+          <MenuItem onClick = {() => {this.props.deleteOpp(this.props.opportunity._id)}}> Delete </MenuItem>
+        </DropdownButton>
         <div className='opportunity-content-main'>
         <div className="opp-info"><h3>{this.props.opportunity.oppName}</h3></div>
         <div className="opp-info"><h3>{this.props.opportunity.orgName}</h3></div>
