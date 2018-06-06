@@ -33,7 +33,8 @@
     "react-bootstrap": "^0.32.1",
     "react-datepicker": "^1.5.0",
     "react-dom": "16.4.0",
-    "react-modal": "^3.4.4"
+    "react-modal": "^3.4.4",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

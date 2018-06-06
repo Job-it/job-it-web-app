@@ -6,7 +6,6 @@ class OpportunityNavBar extends React.Component {
   
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   handleLogout() {
