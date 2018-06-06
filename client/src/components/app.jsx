@@ -6,12 +6,13 @@ import LoginForm from './forms/LoginForm.jsx';
 import interactDnd from '../lib/interactDnd.js';
 import { Route, withRouter } from "react-router-dom";
 import Axios from 'axios';
+import Login from './login/login.jsx'
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.props.history.push('/dashboard');
+    this.props.history.push('/login');
     this.state = {
         modalIsOpen: true,
         currentOpportunity: null,
@@ -65,6 +66,7 @@ class App extends React.Component {
         <div className = "app">
           <Route path='/dashboard/task' render={(props) => <TaskView {...props} currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/>}/>
           <Route exact path='/dashboard' render={(props) => <OpportunityView {...props} selectOpportunity={this.selectOpportunity} switchViews={this.switchViews} />}/>
+          <Route path='/login' component = {Login}/>
         </div>
     )
   }

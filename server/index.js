@@ -46,6 +46,13 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/auth/github/callback', passport.authenticate('github'), (req, res) => (res.redirect('/')));
 app.get('/auth/github', passport.authenticate('github', {scope: ['user:email']}));
 
+app.get('/logout', function(req, res) {
+  console.log(req.user);
+  req.session.destroy(function(err) {
+    res.redirect('/login');
+  })
+});
+
 // Routes
 app.use('/contacts', contactsRouter);
 app.use('/opportunities', opportunitiesRouter);
