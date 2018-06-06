@@ -17,10 +17,7 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('what is E value?: ', e);
-    console.log('what is the username?: ', this.state.username);
-    console.log('what is the password??: ', this.state.password);
-    this.props.closeModal();
+    this.props.handleLogin();
   }
 
   render() {
