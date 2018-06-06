@@ -9,7 +9,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = "login-wrapper">
         <div className = "login-header login">
           <img className = "login-logo" src = "img/dogo.png"></img>
           <h1 className = "login-welcome">
@@ -19,10 +19,12 @@ class Login extends React.Component {
         </div>
         <div className = "login-part2">
           <div className = "login-box">
+            <a href = "/auth/github">
             <div className = "login-cta">
               Click here to login with your Github account 
             </div>
             <img className = "login-logo-github" src = "img/25231.svg"></img>
+            </a>
           </div>
         </div>
       </div>
