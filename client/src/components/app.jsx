@@ -6,6 +6,7 @@ import LoginForm from './forms/LoginForm.jsx';
 import Modal from 'react-modal';
 import interactDnd from '../lib/interactDnd.js';
 import Axios from 'axios';
+import Login from './login/login.jsx'
 
 const customStyles = {
   content : {
@@ -81,19 +82,24 @@ class App extends React.Component {
 
   render() {
     return (
-    <div >
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-        contentLabel="Login Modal"
-      ><LoginForm handleLogin = {this.handleLogin}/></Modal>
-      <div className = "app">
-          {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/> : <div></div>}
-          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
+      <div className = "login-wrapper">
+        <Login/>
       </div>
-    </div>
     )
+    // return (
+    // <div >
+    //   <Modal
+    //     isOpen={this.state.modalIsOpen}
+    //     onRequestClose={this.closeModal}
+    //     style={customStyles}
+    //     contentLabel="Login Modal"
+    //   ><LoginForm handleLogin = {this.handleLogin}/></Modal>
+    //   <div className = "app">
+    //       {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/> : <div></div>}
+    //       {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
+    //   </div>
+    // </div>
+    // )
   }
 }
 
