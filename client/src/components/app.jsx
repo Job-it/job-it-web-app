@@ -71,11 +71,11 @@ class App extends React.Component {
   }
 
   handleLogin() {
-    function openInNewTab(url) {
-      var win = window.open(url, '_blank');
-      win.focus();
-    }
-    openInNewTab('/auth/github');
+    // function openInNewTab(url) {
+    //   var win = window.open(url, '_blank');
+    //   win.focus();
+    // }
+    // openInNewTab('/auth/github');
     this.closeModal();
   }
 
