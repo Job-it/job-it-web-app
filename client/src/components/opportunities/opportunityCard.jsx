@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 
 class OpportunityCard extends React.Component {

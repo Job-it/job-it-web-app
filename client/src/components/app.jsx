@@ -3,33 +3,17 @@ import ReactDOM from 'react-dom';
 import OpportunityView from './opportunities/opportunityView.jsx';
 import TaskView from './tasks/taskView.jsx';
 import LoginForm from './forms/LoginForm.jsx';
-import Modal from 'react-modal';
 import interactDnd from '../lib/interactDnd.js';
+import { Route, withRouter } from "react-router-dom";
 import Axios from 'axios';
 
-const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    textAlign: 'center',
-    width: '100%',
-    height: '100%',
-  }
-};
-
-Modal.setAppElement('#app');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.props.history.push('/dashboard');
     this.state = {
         modalIsOpen: true,
-        taskView: false,
-        opportunityView: true,
         currentOpportunity: null,
         currentOpportunityName: null,
         currentOrgName: null,
@@ -41,21 +25,18 @@ class App extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+
   selectOpportunity(opportunityId, opportunityName, orgName) {
+    this.props.history.push(`/dashboard/task/${orgName.split(' ').join('')}-${opportunityName.split(' ').join('')}`);
     this.setState({
       currentOpportunity: opportunityId,
       currentOpportunityName: opportunityName,
       currentOrgName: orgName,
-      taskView: this.state.taskView ? false : true,
-      opportunityView: this.state.opportunityView ? false : true
     });
   }
 
   switchViews() {
-    this.setState({
-        taskView: this.state.taskView ? false : true,
-        opportunityView: this.state.opportunityView ? false : true
-    });
+    this.props.history.push('/dashboard');
   }
   
   openModal() {
@@ -81,20 +62,12 @@ class App extends React.Component {
 
   render() {
     return (
-    <div >
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-        contentLabel="Login Modal"
-      ><LoginForm handleLogin = {this.handleLogin}/></Modal>
-      <div className = "app">
-          {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/> : <div></div>}
-          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
-      </div>
-    </div>
+        <div className = "app">
+          <Route path='/dashboard/task' render={(props) => <TaskView {...props} currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/>}/>
+          <Route exact path='/dashboard' render={(props) => <OpportunityView {...props} selectOpportunity={this.selectOpportunity} switchViews={this.switchViews} />}/>
+        </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);
