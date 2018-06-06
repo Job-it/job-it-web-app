@@ -4,7 +4,6 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-boots
 class OpportunityNavBar extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
 

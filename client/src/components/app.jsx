@@ -4,17 +4,16 @@ import OpportunityView from './opportunities/opportunityView.jsx';
 import TaskView from './tasks/taskView.jsx';
 import LoginForm from './forms/LoginForm.jsx';
 import interactDnd from '../lib/interactDnd.js';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Axios from 'axios';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.props.history.push('/dashboard');
     this.state = {
         modalIsOpen: true,
-        taskView: false,
-        opportunityView: true,
         currentOpportunity: null,
         currentOpportunityName: null,
         currentOrgName: null,
@@ -26,21 +25,18 @@ class App extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+
   selectOpportunity(opportunityId, opportunityName, orgName) {
+    this.props.history.push(`/dashboard/task/${orgName.split(' ').join('')}-${opportunityName.split(' ').join('')}`);
     this.setState({
       currentOpportunity: opportunityId,
       currentOpportunityName: opportunityName,
       currentOrgName: orgName,
-      taskView: this.state.taskView ? false : true,
-      opportunityView: this.state.opportunityView ? false : true
     });
   }
 
   switchViews() {
-    this.setState({
-        taskView: this.state.taskView ? false : true,
-        opportunityView: this.state.opportunityView ? false : true
-    });
+    this.props.history.push('/dashboard');
   }
   
   openModal() {
@@ -66,17 +62,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <div >
-          <div className = "app">
-            <Route path='/tasks' component={TaskView} currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/>
-            <Route path='/opportunities' component={OpportunityView} selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/>
-          </div>
-          <Redirect to='/opportunities' />
+        <div className = "app">
+          <Route path='/dashboard/task' render={(props) => <TaskView {...props} currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/>}/>
+          <Route exact path='/dashboard' render={(props) => <OpportunityView {...props} selectOpportunity={this.selectOpportunity} switchViews={this.switchViews} />}/>
         </div>
-      </Router>
     )
   }
 }
 
-export default App;
+export default withRouter(App);
