@@ -11,6 +11,7 @@ Modal.setAppElement('#app');
 
 class OpportunityView extends React.Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       status: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],

@@ -5,6 +5,8 @@ import TaskView from './tasks/taskView.jsx';
 import LoginForm from './forms/LoginForm.jsx';
 import Modal from 'react-modal';
 import interactDnd from '../lib/interactDnd.js';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 
 const customStyles = {
@@ -71,18 +73,20 @@ class App extends React.Component {
 
   render() {
     return (
-    <div >
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-        contentLabel="Login Modal"
-      ><LoginForm closeModal={this.closeModal}/></Modal>
-      <div className = "app">
-          {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/> : <div></div>}
-          {this.state.opportunityView ? <OpportunityView selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
+      <Router>
+      <div >
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Login Modal"
+        ><LoginForm closeModal={this.closeModal}/></Modal>
+        <div className = "app">
+            {this.state.taskView ? <TaskView currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/> : <div></div>}
+            {this.state.opportunityView ? <Route path='/opportunites' component={OpportunityView} selectOpportunity={this.selectOpportunity} switchViews={this.switchViews}/> : <div></div>}
+        </div>
       </div>
-    </div>
+    </Router>
     )
   }
 }
