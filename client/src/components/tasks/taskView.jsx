@@ -28,6 +28,7 @@ class TaskView extends React.Component {
     this.addTask = this.addTask.bind(this);
     this.getTasksAndSetState = this.getTasksAndSetState.bind(this);
     this.updateTask = this.updateTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
   componentDidMount() {
     this.getTasksAndSetState();
@@ -141,6 +142,20 @@ class TaskView extends React.Component {
     }, () => this.getTasksAndSetState());
   }
 
+  deleteTask(id) {
+    axios.delete('/tasks', {
+      params: {
+        _id : id
+      }
+    })
+    .then(() => {
+      this.getTasksAndSetState();
+    })
+    .catch((err) => {
+      console.error('There was an error deleting the task: ', err);
+    });
+  }
+
   render() {
     return (
       <div id='view-wrapper'>
@@ -175,6 +190,7 @@ class TaskView extends React.Component {
             afterOpenModal={this.afterOpenModal}
             closeModal={this.closeModal}
             archiveTask={this.archiveTask}
+            deleteTask={this.deleteTask}
           />)
         }
         </div>
