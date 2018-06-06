@@ -4,37 +4,42 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-class TaskForm extends React.Component {
+class UpdateTaskForm extends React.Component {
   constructor(props) {
     super(props);
-    //opportunityFK is passed down as props from the taskView
-    //this.props.currentOpportunity
-
     this.state = {
-      opportunityFK: this.props.currentOpportunity,
-      content: '',
-      completion: false,
+      taskId: this.props.currentTask._id,
+      taskContent: '',
+      isArchived: false,
       dueDate: moment(),
       status: '',
-      isArchived: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   componentDidMount() {
+    //populate the task form with the info from the current task
     this.setState({
-      //Hard code first item in status list
-      status: 'Backlog',
-    })
+      taskContent: this.props.currentTask.content,
+      isArchived: this.props.currentTask.isArchived,
+      dueDate: moment(this.props.currentTask.dueDate),
+      status: this.props.currentTask.status
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/tasks', this.state)
-      .then((res) => {
+    axios.patch('/tasks', {
+      taskId: this.state.taskId,
+      taskContent: this.state.taskContent,
+      isArchived: this.state.isArchived,
+      due: this.state.dueDate,
+      currentStatus: this.state.status,
+    })
+    .then(() => {
       this.props.closeModal();
-    });
+    })
   }
 
 
@@ -49,14 +54,14 @@ class TaskForm extends React.Component {
     return (
       <div id='task-form-wrapper'>
         <form onSubmit={this.handleSubmit}>
-        <h2 id='task-form-title'>Add A New Task:</h2>
+        <h2 id='task-form-title'>Update Your Task:</h2>
           <input
             className='new-task-input'
             type="text"
-            value={this.state.content}
+            value={this.state.taskContent}
             placeholder="Task Name"
             onChange={(e) => {
-              this.setState({content: e.target.value})
+              this.setState({taskContent: e.target.value})
             }}
           />
           <h4>Due Date:</h4>
@@ -67,9 +72,13 @@ class TaskForm extends React.Component {
             dateFormat="LLL"
             withPortal
           />
-          <select name="status" onChange={(e) => {
+          <select 
+            name="status" 
+            value= {this.props.currentTask.status}
+            onChange={(e) => {
               this.setState({status: e.target.value})
-            }}>
+              }}
+          >
             <option value="Backlog">Backlog</option>
             <option value="In Progress">In Progress</option>
             <option value="Ready For Review">Ready For Review</option>
@@ -83,4 +92,4 @@ class TaskForm extends React.Component {
 
 };
 
-export default TaskForm;
+export default UpdateTaskForm;

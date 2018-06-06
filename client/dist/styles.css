@@ -1,49 +1,269 @@
-.app {
-  height: 65vw;
+body{
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background-image: url('./img/wood-background.jpg');
 }
 
-.statusColumn {
-    border: solid 3px black;
-    color: red;
-    display: inline-flex;
+.app {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+#view-wrapper{
+  width: 100%;
+}
+#columns-wrapper {
+
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+  
+}
+
+.status-column {
+    border-radius: 10px;
     padding: 3px;
     margin: 3px;
-    min-width: 15vw;
+    width: 18.75%;
     height: 100%;
     text-align:center;
+    min-height: 200px;
+    box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
 }
 
-.opportunity-card {
-    border: solid 3px black;
-    color: red;
-    padding: 3px;
-    margin: 3px;
-    width: 100%;
-    max-width: 15vw;
-    text-align: center;
-    height: fit-content;
-  }
-
-.opp-info {
-  color: blue;
-  width: 100%;
+.exploratory{
+  background-color: skyblue;
+}
+.qualified{
+  background-color: lightgreen;
+}
+.outreach{
+  background-color: lightpink;
+}
+.communication{
+  background-color: lightyellow;
+}
+.negotiation{
+  background-color: lightcoral;
+}
+.backlog{
+  background-color: lightcoral;
+}
+.in-progress{
+  background-color: lightpink;
+}
+.ready-for-review{
+  background-color: lightyellow;
+}
+.completed{
+  background-color: lightgreen;
 }
 
-#opportunity-form-wrapper {
-  text-align: center;
-}
-.task-card {
-  border: solid 3px black;
-  color: red;
+.opportunity-card, .task-card {
+  border-radius: 10px;
+  background-color: rgba( 255, 255, 255, .5);
   padding: 3px;
   margin: 3px;
-  width: 100%;
-  max-width: 15vw;
   text-align: center;
   height: fit-content;
+  box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.archived {
+  color: grey;
+}
+
+.opp-info {
+  width: 100%;
+}
+
+#opportunity-form-wrapper, #task-form-wrapper {
+  text-align: center;
 }
 
 .task-info {
-  color: blue;
   width: 100%;
+}
+
+
+.drop-active {
+  border-color: #aaa;
+}
+
+.drop-target {
+  background-color: #29e;
+  border-color: #fff;
+  border-style: solid;
+}
+
+
+.drag-drop.can-drop {
+  color: #000;
+  background-color: #4e4;
+}
+
+.opportunity-card-menu-button {
+  float: right;
+  border-radius: 5px;
+}
+
+.opportunity-card-menu-button:hover {
+  background-color: skyblue;
+}
+
+.opportunity-card-menu-button span {
+  font-size: 1.5em;
+}
+
+.task-card-menu-button {
+  float: right;
+  border-radius: 5px;
+}
+
+.task-card-menu-button:hover {
+  background-color: skyblue;
+}
+
+.task-card-menu-button span {
+  font-size: 1.5em;
+}
+
+.opportunity-content-main {
+  clear: both;
+}
+
+.opportunity-card-menu-wrapper {
+  position: relative;
+}
+
+.opportunity-card-menu {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.8);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.opportunity-card-menu div {
+  text-align: right;
+}
+
+.opportunity-card-menu div button:hover {
+  background-color: skyblue;
+}
+
+.task-content-main {
+  clear: both;
+}
+
+.task-card-menu-wrapper {
+  position: relative;
+}
+
+.task-card-menu {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.8);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.task-card-menu div {
+  text-align: right;
+}
+
+.task-card-menu div button:hover {
+  background-color: skyblue;
+}
+
+.view-button{
+  font-size: 1.5em;
+  border-radius: 10px;
+}
+
+.create-new{
+  float: right;
+}
+
+.task-opportunity-title, .task-org-name {
+  text-align: center;
+  clear: both;
+  padding: 5px 0;
+}
+
+.task-opportunity-title-wrapper {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10%;
+  background-color: rgba(255,255,255,0.5);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 15px;
+}
+
+.navbar-header a {
+  font-size: 2em;
+  font-style: italic;
+  line-height: 30px;
+}
+
+.modal-form {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+@media only screen and (max-width: 1000px) {
+  .status-column {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .status-column {
+    width: 85%;
+  }
+  .modal-form {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+  }
 }
