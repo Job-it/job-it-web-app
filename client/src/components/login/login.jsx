@@ -18,14 +18,14 @@ class Login extends React.Component {
           </h1>
         </div>
         <div className = "login-part2">
+        <a href = "/auth/github">
           <div className = "login-box">
-            <a href = "/auth/github">
-            <div className = "login-cta">
-              Click here to login with your Github account 
-            </div>
-            <img className = "login-logo-github" src = "img/25231.svg"></img>
-            </a>
+              <div className = "login-cta">
+                Click here to login with your Github account 
+              </div>
+              <img className = "login-logo-github" src = "img/25231.svg"></img>
           </div>
+          </a>
         </div>
       </div>
     );
