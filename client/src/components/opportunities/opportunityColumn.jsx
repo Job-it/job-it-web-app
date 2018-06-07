@@ -1,6 +1,7 @@
 import React from 'react';
 import OpportunityCard from './opportunityCard.jsx';
 import interact from 'interactjs';
+import { Button } from 'react-bootstrap';
 
 class OpportunityColumn extends React.Component {
     constructor(props) {
@@ -21,7 +22,11 @@ class OpportunityColumn extends React.Component {
     render() {
       return (
         <div className = {`status-column opportunity-dropzone ${this.props.status.replace(/\s+/g, '-').toLowerCase() }`}>
-          <div>{this.props.status}
+          <div>
+          <Button className="plus-btn-circle" bsStyle="danger" onClick={() => this.props.openCreateOpportunityModal(this.props.status)}>+</Button>
+            <div className = 'column-title'>
+              {this.props.status}
+            </div>
           {this.props.itemsToRender.map((item) => {
             
             return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
-import Axios from 'axios';
 
 class OpportunityNavBar extends React.Component {
   
@@ -20,7 +19,6 @@ class OpportunityNavBar extends React.Component {
         <Navbar.Collapse>
           <Nav>
             <NavItem eventKey={1} onClick={this.props.openCreateOpportunityModal}>
-            <Button bsStyle="success"> + Opportunity</Button>
             </NavItem>
             <NavItem eventKey={2} onClick={this.props.toggleArchived}>
             <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
