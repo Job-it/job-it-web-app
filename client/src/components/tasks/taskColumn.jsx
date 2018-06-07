@@ -1,6 +1,7 @@
 import React from 'react';
 import TaskCard from './taskCard.jsx';
 import interact from 'interactjs';
+import { Button } from 'react-bootstrap';
 
 class TaskColumn extends React.Component {
   constructor(props) {
@@ -23,19 +24,22 @@ class TaskColumn extends React.Component {
   render() {
     return (
       <div className = {`status-column task-dropzone ${ this.props.stage.replace(/\s+/g, '-').toLowerCase() }`}>
-        <div>{this.props.stage}
-          <div>{ 
-                  this.props.tasks.map((task) => {
-                    return <div><TaskCard 
+        <div>
+            <Button className="plus-btn-circle" bsStyle="success" onClick={() => this.props.openModal(undefined, this.props.stage)}>+</Button>
+          <div className="column-title">
+            {this.props.stage}
+          </div>
+          { this.props.tasks.map((task) => {
+                    return <TaskCard 
                       taskDetails={task}
                       openModal={this.props.openModal}
                       afterOpenModal={this.props.afterOpenModal}
                       closeModal={this.props.closeModal}
                       archiveTask={this.props.archiveTask}
                       deleteTask={this.props.deleteTask}
-                    /><br/></div>
-                  }) 
-                }</div>
+                    />
+            }) 
+          }
         </div>
       </div>
     )

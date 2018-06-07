@@ -18,6 +18,7 @@ class TaskView extends React.Component {
         patchTaskForm: false,
         tasks: [],
         currentTask: '',
+        selectedStatus: '',
         isArchived: false
     };
     this.openModal = this.openModal.bind(this);
@@ -49,11 +50,12 @@ class TaskView extends React.Component {
       }
     });
   }
-  openModal(taskObj) {
+  openModal(taskObj, status) {
     if (taskObj === undefined) {
       this.setState({
         modalIsOpen: true,
         postTaskForm: true,
+        selectedStatus: status,
       });
     } else {
       this.setState({
@@ -160,7 +162,7 @@ class TaskView extends React.Component {
     return (
       <div id='view-wrapper'>
         <div>
-          <TaskNavBar handleLogout = {this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal} />
+          <TaskNavBar handleLogout = {this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} />
         </div>
         <div className='task-opportunity-title-wrapper'>
         <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
@@ -176,7 +178,7 @@ class TaskView extends React.Component {
             >
     
               <button onClick={this.closeModal}>X</button>
-              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
+              {this.state.postTaskForm ? <TaskForm columnName={this.state.selectedStatus} currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
               {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
             <div id='columns-wrapper'>
