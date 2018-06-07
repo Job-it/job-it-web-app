@@ -21,7 +21,7 @@ class OpportunityView extends React.Component {
       opportunityToUpdate: {},
       selectedStatus: '',
       isArchived: false,
-      key: 2
+      user: ''
     };
     this.openCreateOpportunityModal = this.openCreateOpportunityModal.bind(this);
     this.openUpdateOpportunityModal = this.openUpdateOpportunityModal.bind(this);
@@ -60,8 +60,10 @@ class OpportunityView extends React.Component {
       console.log('This is the session: ', response.session);
       console.log('This is the user', response.user);
       console.log('this is the response', response);
+      var userName = JSON.parse(response.headers.user).userName;
       this.setState({
-        opportunities: response.data
+        opportunities: response.data,
+        user: userName
       });
     });
   }
@@ -122,6 +124,9 @@ class OpportunityView extends React.Component {
       return (
         <div id='view-wrapper'>
           <OpportunityNavBar handleLogout = {this.props.handleLogout} openCreateOpportunityModal={this.openCreateOpportunityModal} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
+          <div className='page-header'>
+            <h1>{this.state.user}<br /><small>Opportunities Dashboard</small></h1>
+          </div>
           <Modal
             className='modal-form'
             overlayClassName='modal-overlay'

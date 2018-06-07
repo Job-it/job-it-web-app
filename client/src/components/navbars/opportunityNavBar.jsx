@@ -10,15 +10,14 @@ class OpportunityNavBar extends React.Component {
   render() {
     return (
       <Navbar >
+        <img src = "img/dogotxt.png" className = "navbar-logo"></img>
         <Navbar.Header>
           <Navbar.Brand>
-            <img src = "img/dogotxt.png" className = "navbar-logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem eventKey={3} href="#"></NavItem>
             <NavItem eventKey={4} href="#">
             <Button bsStyle="danger" onClick = {this.props.handleLogout}>Logout</Button>
             </NavItem>

@@ -1,6 +1,19 @@
 body{
   font-family: "Roboto", sans-serif, Helvetica, sans-serif;
-  background-color: #FAFAFA;
+  background-color: #CBB9A8;
+}
+
+.page-header {
+  color: #FAFAFA;
+  background-color: rgba(0,0,0, 0.3);
+  text-align: center;
+  margin-top: 0;
+  padding-top: 12px;
+  border: none;
+ }
+
+.page-header small {
+  color: #FAFAFA;
 }
 
 .app {
@@ -40,14 +53,15 @@ body{
 }
 
 .status-column {
-    border-radius: 5px;
+    color: #ffffff;
+    border: solid 2px #ffffff;
+    border-radius: 8px;
     padding: 3px;
-    margin: 3px;
-    width: 18.75%;
+    margin: 5px;
+    width: 17%;
     height: 100%;
     text-align: center;
     min-height: 200px;
-    height: 90vh;
 }
 
 .column-title{
@@ -55,53 +69,66 @@ body{
   font-size: 1.5em;
 }
 
+.btn-all-opps {
+  margin-left: 50px;
+}
+
+.plus-btn-circle:hover {
+  border: #ffffff solid 1px;
+  background: #145C9E;
+}
+
 .plus-btn-circle {
-  width: 30px;
-  height: 30px;
+  border: #ffffff solid 1px;
+  background: #ffaa5a;
+  width: 24px;
+  height: 24px;
   text-align: center;
   padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
+  font-size: 16px;
+  line-height: 0.4;
   border-radius: 15px;
   float: right;
+  margin: 4px 4px 0 0;
 }
 
 .exploratory{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 .qualified{
-  background-color:  #ebebeb;
+  background-color:  #023749;
 }
 .outreach{
-  background-color:  #ebebeb;
+  background-color:  #023749;
 }
 .communication{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 .negotiation{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 .backlog{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 .in-progress{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 .ready-for-review{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 .completed{
-  background-color: #ebebeb;
+  background-color:  #023749;
 }
 
 .opportunity-card, .task-card {
+  color: black;
   border-radius: 5px;
   background-color: #fefefe;
   padding: 3px;
-  margin: 3px;
+  margin: 8px;
   text-align: center;
   height: fit-content;
-  box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
+  box-shadow:  6px 1px 6px rgba(0, 0, 0, .4);
   word-wrap: break-word;
   box-sizing: border-box;
 }
@@ -128,7 +155,7 @@ body{
 }
 
 .drop-target {
-  background-color: #29e;
+  background-color: #145C9E;
   border-color: #fff;
   border-style: solid;
 }
@@ -136,7 +163,6 @@ body{
 
 .drag-drop.can-drop {
   color: #000;
-  background-color: #4e4;
 }
 
 .dropdown {
@@ -227,20 +253,23 @@ body{
 }
 
 .navbar-toggle {
-  background-color: #FAFAFA;
+  background-color: rgb(219, 177, 177);
   margin: 12px 12px;
   height: 40px;
 }
 
 .navbar, .navbar-header, .navbar-header collapse {
-  background: #C8A2C8;
+  background: #023749;
 }
 
-.navbar-header img {
+.navbar img {
   height: 60px;
   width: 60px;
   padding: 0 0 0 0;
   margin: 3px 0 3px 0;
+  position: absolute;
+  top: -2px;
+  left: 20px;
 }
 
 .modal-form {
