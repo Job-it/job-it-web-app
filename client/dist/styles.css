@@ -143,6 +143,7 @@ body{
 
 #opportunity-form-wrapper, #task-form-wrapper {
   text-align: center;
+
 }
 
 .task-info {
@@ -272,22 +273,36 @@ body{
   left: 20px;
 }
 
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
 .modal-form {
   position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
   background-color: white;
+  color: #023749;
+  padding: 10%;
+  border-radius: 10px;
+  border: #023749 solid 5px;
+}
+.ReactModal__Content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-overlay {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .75);
 }
 
 .login-wrapper {

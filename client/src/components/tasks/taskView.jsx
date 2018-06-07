@@ -176,7 +176,7 @@ class TaskView extends React.Component {
               contentLabel="New Job.it Opportunity"
             >
     
-              <button onClick={this.closeModal}>X</button>
+              <button className='close-modal' onClick={this.closeModal}>X</button>
               {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
               {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
