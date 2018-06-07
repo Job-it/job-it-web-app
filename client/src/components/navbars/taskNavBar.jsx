@@ -12,23 +12,22 @@ class TaskNavBar extends React.Component {
   render() {
     return (
       <Navbar >
+        <img src = "../../img/dogotxt.png" className = "navbar-logo"></img>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#brand">Job.it</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
           <NavItem eventKey={1} onClick={this.props.switchViews}>
-          <Button bsStyle="warning">⬅ All Opportunities</Button>
+          <Button className = "btn-all-opps" bsStyle="warning">⬅ All Opportunities</Button>
             </NavItem>
             <NavItem eventKey={2} onClick={() => this.props.toggleArchived()}>
             <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
             </NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={3} href="#"></NavItem>
             <NavItem eventKey={4} href="#">
               <Button bsStyle="danger" onClick = {this.props.handleLogout}>Logout</Button>
             </NavItem>

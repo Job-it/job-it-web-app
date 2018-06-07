@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';

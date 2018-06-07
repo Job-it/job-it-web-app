@@ -162,11 +162,10 @@ class TaskView extends React.Component {
     return (
       <div id='view-wrapper'>
         <div>
-          <TaskNavBar handleLogout = {this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} />
+          <TaskNavBar handleLogout = {this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal} />
         </div>
-        <div className='task-opportunity-title-wrapper'>
-        <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
-        <h2 className='task-org-name'>{this.props.currentOrgName}</h2>
+        <div className='page-header'>
+          <h1>{this.props.currentOpportunityName}<br /><small>{this.props.currentOrgName}</small></h1>
         </div>
             <Modal
               className='modal-form'
@@ -178,7 +177,7 @@ class TaskView extends React.Component {
             >
     
               <button onClick={this.closeModal}>X</button>
-              {this.state.postTaskForm ? <TaskForm columnName={this.state.selectedStatus} currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
+              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
               {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
             <div id='columns-wrapper'>
@@ -199,7 +198,7 @@ class TaskView extends React.Component {
       </div>
     )
   }
-
-}
-
-export default TaskView;
+ 
+ }
+ 
+ export default TaskView;
