@@ -5,7 +5,7 @@ import TaskView from './tasks/taskView.jsx';
 import LoginForm from './forms/LoginForm.jsx';
 import interactDnd from '../lib/interactDnd.js';
 import { Route, withRouter } from "react-router-dom";
-import Axios from 'axios';
+import axios from 'axios';
 import Login from './login/login.jsx'
 
 
@@ -26,6 +26,16 @@ class App extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  componentDidMount() {
+    axios.get('/users').then((res) => {
+      var user = JSON.parse(res.headers.user);
+      if (user !== undefined) {
+        this.props.history.push('/dashboard');
+      } else {
+        this.props.history.push('/login');
+      }
+      });
+  }
 
   selectOpportunity(opportunityId, opportunityName, orgName) {
     this.props.history.push(`/dashboard/task/${orgName.split(' ').join('')}-${opportunityName.split(' ').join('')}`);
