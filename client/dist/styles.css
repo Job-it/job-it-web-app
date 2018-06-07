@@ -45,9 +45,10 @@ body{
     margin: 3px;
     width: 18.75%;
     height: 100%;
-    text-align:center;
+    text-align: center;
     min-height: 200px;
     box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
+    position: relative;
 }
 
 .exploratory{
@@ -196,6 +197,19 @@ body{
 .view-button{
   font-size: 1.5em;
   border-radius: 10px;
+}
+
+.plus-btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 .create-new{

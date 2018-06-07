@@ -27,7 +27,7 @@ class createOpportunityForm extends React.Component {
       dateClosed: moment(),
       //Hard code first item in status list
       status: 'Exploratory',
-    })
+    });
   }
 
   handleDateChange(date) {
@@ -77,9 +77,13 @@ class createOpportunityForm extends React.Component {
             withPortal
             dateFormat="LLL"
           />
-          <select name="status" onChange={(e) => {
-              this.setState({status: e.target.value})
-            }}>
+          <select 
+            name="status" 
+            value={this.props.columnName || 'Exploratory'}
+            onChange={(e) => {
+                this.setState({status: e.target.value})
+              }}
+            >
             <option value="Exploratory">Exploratory</option>
             <option value="Qualified">Qualified</option>
             <option value="Outreach">Outreach</option>

@@ -19,11 +19,12 @@ class OpportunityView extends React.Component {
       updateModalIsOpen: false,
       opportunities: [],
       opportunityToUpdate: {},
+      selectedStatus: '',
       isArchived: false,
       key: 2
     };
     this.openCreateOpportunityModal = this.openCreateOpportunityModal.bind(this);
-    this.openUpdateOpportunityModal = this.openUpdateOpportunityModal.bind(this)
+    this.openUpdateOpportunityModal = this.openUpdateOpportunityModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.archiveOpportunity = this.archiveOpportunity.bind(this);
@@ -31,8 +32,8 @@ class OpportunityView extends React.Component {
     this.toggleArchived = this.toggleArchived.bind(this);
   }
 
-  openCreateOpportunityModal() {
-    this.setState({createModalIsOpen: true});
+  openCreateOpportunityModal(oppStatus) {
+    this.setState({createModalIsOpen: true, selectedStatus: oppStatus});
   }
 
   openUpdateOpportunityModal(id) {
@@ -120,7 +121,7 @@ class OpportunityView extends React.Component {
   render() {
       return (
         <div id='view-wrapper'>
-          <OpportunityNavBar openCreateOpportunityModal={this.openCreateOpportunityModal} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
+          <OpportunityNavBar toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
           <Modal
             className='modal-form'
             overlayClassName='modal-overlay'
@@ -130,13 +131,14 @@ class OpportunityView extends React.Component {
             contentLabel="New Job.it Opportunity"
           >
             <button onClick={this.closeModal}>X</button> 
-            {this.state.createModalIsOpen ? <CreateOpportunityForm  close = {() => {this.closeModal()}}/> : <div></div>}
+            {this.state.createModalIsOpen ? <CreateOpportunityForm columnName={this.state.selectedStatus}  close = {() => {this.closeModal()}}/> : <div></div>}
             {this.state.updateModalIsOpen ? <UpdateOpportunityForm  opportunityToUpdate = {this.state.opportunityToUpdate} 
                                                                     close = {() => {this.closeModal()}}/> : <div></div>}
           </Modal>
           <div id='columns-wrapper' >
             {this.state.status.map((status) => {
                 return <OpportunityColumn 
+                          openCreateOpportunityModal={this.openCreateOpportunityModal}
                           deleteOpp = {(id) => {this.deleteOpportunity(id)}} 
                           selectOpportunity={this.props.selectOpportunity} 
                           status={status}
