@@ -1,37 +1,92 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import OpportunityView from './opportunities/opportunityView.jsx';
+import TaskView from './tasks/taskView.jsx';
+import interactDnd from '../lib/interactDnd.js';
+import { Route, withRouter } from "react-router-dom";
+import axios from 'axios';
+import Login from './login/login.jsx'
+import Axios from 'axios';
 
-import OpportunityView from './opportunityView.jsx'
-import TaskView from './taskView.jsx'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props.history.push('/login');
+    this.state = {
+        modalIsOpen: true,
+        currentOpportunity: null,
+        currentOpportunityName: null,
+        currentOrgName: null,
+    };
+    this.selectOpportunity = this.selectOpportunity.bind(this);
+    this.switchViews = this.switchViews.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            taskView: false,
-            opportunityView: true
-        }
-    }
+  }
 
-    switchViews() {
-        this.setState({
-            taskView: this.state.taskView ? false : true,
-            opportunityView: this.state.opportunityView ? false : true
-        })
-    }
-    
-    render() {
-        return (
-        <div>
-          <button onClick = {() => {this.switchViews()}}>Switch Views</button>
-          <div className = "app">
-              {this.state.taskView ? <TaskView/> : <div></div>}
-              {this.state.opportunityView ? <OpportunityView/> : <div></div>}
-          </div>
+  componentDidMount() {
+    axios.get('/users').then((res) => {
+      var user = JSON.parse(res.headers.user);
+      if (user !== undefined) {
+        this.props.history.push('/dashboard');
+      } else {
+        this.props.history.push('/login');
+      }
+      });
+  }
+
+  selectOpportunity(opportunityId, opportunityName, orgName) {
+    this.props.history.push(`/dashboard/task/${orgName.split(' ').join('')}-${opportunityName.split(' ').join('')}`);
+    this.setState({
+      currentOpportunity: opportunityId,
+      currentOpportunityName: opportunityName,
+      currentOrgName: orgName,
+    });
+  }
+
+  switchViews() {
+    this.props.history.push('/dashboard');
+  }
+  
+  openModal() {
+    this.setState({
+      modalIsOpen: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false
+    });
+  }
+
+  handleLogout() {
+    Axios.get('/logout').then(() => {
+      this.props.history.push('/login');
+    });
+  }
+
+  render() {
+    return (
+        <div className = "app">
+          <Route path='/dashboard/task' render = { (props) => <TaskView {...props} 
+                                        currentOpportunity = { this.state.currentOpportunity } 
+                                        currentOpportunityName = { this.state.currentOpportunityName } 
+                                        currentOrgName = { this.state.currentOrgName } 
+                                        handleLogout = { this.handleLogout }
+                                        switchViews = { this.switchViews }/> 
+                                        }/>
+          <Route exact path='/dashboard' render={ (props) => <OpportunityView {...props} 
+                                        selectOpportunity={this.selectOpportunity} 
+                                        switchViews={this.switchViews} 
+                                        handleLogout = { this.handleLogout }/> 
+                                        }/>
+          <Route path='/login' component = {Login}/>
         </div>
-        )
-    }
+    )
+  }
 }
 
-export default App;
+export default withRouter(App);
