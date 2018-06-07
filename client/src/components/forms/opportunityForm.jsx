@@ -13,7 +13,7 @@ class createOpportunityForm extends React.Component {
       oppName: '',
       orgName: '',
       rank: 4, 
-      status: '', // enable dropdown
+      status: this.props.columnName, // enable dropdown
       type: '', // enable dropdown
       isArchived: false,
     };
@@ -25,8 +25,6 @@ class createOpportunityForm extends React.Component {
     this.setState({
       dateOpened: Date.now(),
       dateClosed: moment(),
-      //Hard code first item in status list
-      status: 'Exploratory',
     });
   }
 
