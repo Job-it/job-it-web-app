@@ -160,7 +160,7 @@ class TaskView extends React.Component {
     return (
       <div id='view-wrapper'>
         <div>
-          <TaskNavBar switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal} />
+          <TaskNavBar handleLogout = {this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal} />
         </div>
         <div className='task-opportunity-title-wrapper'>
         <h1 className='task-opportunity-title'>{this.props.currentOpportunityName}</h1>
