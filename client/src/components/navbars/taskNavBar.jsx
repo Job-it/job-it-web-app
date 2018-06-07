@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 
 class TaskNavBar extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class TaskNavBar extends React.Component {
           <Nav pullRight>
             <NavItem eventKey={4} href="#"></NavItem>
             <NavItem eventKey={5} href="#">
-              <Button bsStyle="danger">Logout</Button>
+              <Button bsStyle="danger" onClick = {this.props.handleLogout}>Logout</Button>
             </NavItem>
           </Nav>
         </Navbar.Collapse>

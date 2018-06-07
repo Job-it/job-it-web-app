@@ -11,19 +11,6 @@ let saveGitHubUser = (profile, cb) => {
   })
 };
 
-let saveGoogleHubUser = (profile, cb) => {
-  console.log(profile);
-  //Figure out which data is being provided on the user!
-};
-
-
-let getUser = () => {};
-let updateUser = () => {};
-let deleteUser = () => {};
-
 // saveUser({githubId: 1}, (err, user) => console.log(err, user));
 
 module.exports.saveGitHubUser = saveGitHubUser;
-module.exports.getUser = getUser;
-module.exports.updateUser = updateUser;
-module.exports.deleteUser = deleteUser;

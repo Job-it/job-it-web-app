@@ -121,7 +121,7 @@ class OpportunityView extends React.Component {
   render() {
       return (
         <div id='view-wrapper'>
-          <OpportunityNavBar toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
+          <OpportunityNavBar handleLogout = {this.props.handleLogout} openCreateOpportunityModal={this.openCreateOpportunityModal} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived}/>
           <Modal
             className='modal-form'
             overlayClassName='modal-overlay'
