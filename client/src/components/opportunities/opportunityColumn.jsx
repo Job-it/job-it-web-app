@@ -23,11 +23,10 @@ class OpportunityColumn extends React.Component {
       return (
         <div className = {`status-column opportunity-dropzone ${this.props.status.replace(/\s+/g, '-').toLowerCase() }`}>
           <div>
-            <div>
+          <Button className="plus-btn-circle" bsStyle="danger" onClick={() => this.props.openCreateOpportunityModal(this.props.status)}>+</Button>
+            <div className = 'column-title'>
               {this.props.status}
-              <Button className="plus-btn-circle" bsStyle="danger" onClick={() => this.props.openCreateOpportunityModal(this.props.status)}>+</Button>
             </div>
-            <br/>
           {this.props.itemsToRender.map((item) => {
             
             return (
