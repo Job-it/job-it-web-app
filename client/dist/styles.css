@@ -1,6 +1,6 @@
 body{
   font-family: "Roboto", sans-serif, Helvetica, sans-serif;
-  background-color: #C8A2C8;
+  background-color: #FAFAFA;
 }
 
 .app {
@@ -40,14 +40,14 @@ body{
 }
 
 .status-column {
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 3px;
     margin: 3px;
     width: 18.75%;
     height: 100%;
     text-align: center;
     min-height: 200px;
-    box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
+    height: 90vh;
 }
 
 .column-title{
@@ -67,36 +67,36 @@ body{
 }
 
 .exploratory{
-  background-color: skyblue;
+  background-color: #ebebeb;
 }
 .qualified{
-  background-color: lightgreen;
+  background-color:  #ebebeb;
 }
 .outreach{
-  background-color: lightpink;
+  background-color:  #ebebeb;
 }
 .communication{
-  background-color: lightyellow;
+  background-color: #ebebeb;
 }
 .negotiation{
-  background-color: lightcoral;
+  background-color: #ebebeb;
 }
 .backlog{
-  background-color: lightcoral;
+  background-color: #ebebeb;
 }
 .in-progress{
-  background-color: lightpink;
+  background-color: #ebebeb;
 }
 .ready-for-review{
-  background-color: lightyellow;
+  background-color: #ebebeb;
 }
 .completed{
-  background-color: lightgreen;
+  background-color: #ebebeb;
 }
 
 .opportunity-card, .task-card {
-  border-radius: 10px;
-  background-color: rgba( 255, 255, 255, .5);
+  border-radius: 5px;
+  background-color: #fefefe;
   padding: 3px;
   margin: 3px;
   text-align: center;
@@ -226,10 +226,21 @@ body{
   border-radius: 15px;
 }
 
-.navbar-header a {
-  font-size: 2em;
-  font-style: italic;
-  line-height: 30px;
+.navbar-toggle {
+  background-color: #FAFAFA;
+  margin: 12px 12px;
+  height: 40px;
+}
+
+.navbar, .navbar-header, .navbar-header collapse {
+  background: #C8A2C8;
+}
+
+.navbar-header img {
+  height: 60px;
+  width: 60px;
+  padding: 0 0 0 0;
+  margin: 3px 0 3px 0;
 }
 
 .modal-form {
@@ -370,6 +381,10 @@ body{
     width: 80px;
     padding-left: 20px;
   }
+
+  .navbar-header img {
+    margin: 3px 0 3px 12px;
+  }
   
 }
 
@@ -417,6 +432,10 @@ body{
     height: 60px;
     width: 60px;
     padding-left: 20px;
+  }
+
+  .navbar-header img {
+    margin: 3px 0 3px 12px;
   }
 
 }

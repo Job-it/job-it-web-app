@@ -14,7 +14,7 @@ class TaskNavBar extends React.Component {
       <Navbar >
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#brand">Job.it</a>
+            <img src = "../../img/dogotxt.png" className = "navbar-logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

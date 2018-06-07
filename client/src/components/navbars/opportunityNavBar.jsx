@@ -12,22 +12,22 @@ class OpportunityNavBar extends React.Component {
       <Navbar >
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#brand">Job.it</a>
+            <img src = "img/dogotxt.png" className = "navbar-logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} onClick={this.props.openCreateOpportunityModal}>
-            </NavItem>
-            <NavItem eventKey={2} onClick={this.props.toggleArchived}>
-            <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
-            </NavItem>
-          </Nav>
           <Nav pullRight>
             <NavItem eventKey={3} href="#"></NavItem>
             <NavItem eventKey={4} href="#">
             <Button bsStyle="danger" onClick = {this.props.handleLogout}>Logout</Button>
+            </NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem eventKey={1} onClick={this.props.openCreateOpportunityModal}>
+            </NavItem>
+            <NavItem eventKey={2} onClick={this.props.toggleArchived}>
+            <Button bsStyle="info">{this.props.isArchived ? "Hide Archived" : "Show Archived"}</Button>
             </NavItem>
           </Nav>
         </Navbar.Collapse>
