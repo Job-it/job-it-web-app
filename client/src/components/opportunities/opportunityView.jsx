@@ -12,7 +12,7 @@ Modal.setAppElement('#app');
 class OpportunityView extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = {
       status: ['Exploratory', 'Qualified', 'Outreach', 'Communication', 'Negotiation'],
       createModalIsOpen: false, 
@@ -57,9 +57,9 @@ class OpportunityView extends React.Component {
 
   getOpportunities() {
     axios.get('/opportunities', {params: {isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
-      console.log('This is the session: ', response.session);
-      console.log('This is the user', response.user);
-      console.log('this is the response', response);
+      // console.log('This is the session: ', response.session);
+      // console.log('This is the user', response.user);
+      // console.log('this is the response', response);
       var userName = JSON.parse(response.headers.user).userName;
       this.setState({
         opportunities: response.data,

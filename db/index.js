@@ -10,7 +10,7 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-    console.log('Connected to db.');
+    // console.log('Connected to db.');
 });
 
 const Schema = mongoose.Schema; 

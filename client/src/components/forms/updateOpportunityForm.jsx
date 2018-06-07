@@ -6,7 +6,7 @@ import moment from 'moment';
 class updateOpportunityForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = {
       _id: '',
       dateOpened: '',

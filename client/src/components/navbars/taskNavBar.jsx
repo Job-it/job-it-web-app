@@ -4,7 +4,7 @@ import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 class TaskNavBar extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
   }
 
 
