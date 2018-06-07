@@ -1,5 +1,5 @@
 body{
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif, Helvetica, sans-serif;
   background-color: #C8A2C8;
 }
 
@@ -261,7 +261,7 @@ body{
 }
 
 .login-welcome {
-  font-size: 90px;
+  font-size: 83px;
   color: #FAFAFA;
 }
 
@@ -373,11 +373,11 @@ body{
   }
 
   .login-welcome-underscore {
-    font-size: 40px;
+    font-size: 50px;
   }
 
   .login-welcome {
-    font-size: 40px;
+    font-size: 50px;
   }
 
   .login-logo {
