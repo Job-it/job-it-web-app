@@ -48,7 +48,22 @@ body{
     text-align: center;
     min-height: 200px;
     box-shadow:  6px 1px 6px rgba(0, 0, 0, .5);
-    position: relative;
+}
+
+.column-title{
+  clear:both;
+  font-size: 1.5em;
+}
+
+.plus-btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+  float: right;
 }
 
 .exploratory{
@@ -151,10 +166,6 @@ body{
   clear: both;
 }
 
-.opportunity-card-menu-wrapper {
-  position: relative;
-}
-
 .opportunity-card-menu {
   position: absolute;
   right: 0;
@@ -163,7 +174,6 @@ body{
   background-color: rgba(255,255,255,0.8);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
-  z-index: 1;
 }
 
 .opportunity-card-menu div {
@@ -175,9 +185,6 @@ body{
   clear: both;
 }
 
-.task-card-menu-wrapper {
-  position: relative;
-}
 
 .task-card-menu {
   position: absolute;
@@ -187,7 +194,6 @@ body{
   background-color: rgba(255,255,255,0.8);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
-  z-index: 1;
 }
 
 .task-card-menu div {
@@ -197,19 +203,6 @@ body{
 .view-button{
   font-size: 1.5em;
   border-radius: 10px;
-}
-
-.plus-btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 15px;
-  position: absolute;
-  right: 5px;
-  top: 5px;
 }
 
 .create-new{

@@ -12,7 +12,7 @@ import Login from './login/login.jsx'
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.props.history.push('/dashboard');
+    this.props.history.push('/login');
     this.state = {
         modalIsOpen: true,
         currentOpportunity: null,
