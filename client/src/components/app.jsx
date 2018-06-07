@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import OpportunityView from './opportunities/opportunityView.jsx';
 import TaskView from './tasks/taskView.jsx';
-import LoginForm from './forms/LoginForm.jsx';
 import interactDnd from '../lib/interactDnd.js';
 import { Route, withRouter } from "react-router-dom";
 import axios from 'axios';
 import Login from './login/login.jsx'
+import Axios from 'axios';
 
 
 class App extends React.Component {
@@ -23,7 +22,7 @@ class App extends React.Component {
     this.switchViews = this.switchViews.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -62,20 +61,27 @@ class App extends React.Component {
     });
   }
 
-  handleLogin() {
-    // function openInNewTab(url) {
-    //   var win = window.open(url, '_blank');
-    //   win.focus();
-    // }
-    // openInNewTab('/auth/github');
-    this.closeModal();
+  handleLogout() {
+    Axios.get('/logout').then(() => {
+      this.props.history.push('/login');
+    });
   }
 
   render() {
     return (
         <div className = "app">
-          <Route path='/dashboard/task' render={(props) => <TaskView {...props} currentOpportunity={this.state.currentOpportunity} currentOpportunityName={this.state.currentOpportunityName} currentOrgName={this.state.currentOrgName} switchViews={this.switchViews}/>}/>
-          <Route exact path='/dashboard' render={(props) => <OpportunityView {...props} selectOpportunity={this.selectOpportunity} switchViews={this.switchViews} />}/>
+          <Route path='/dashboard/task' render = { (props) => <TaskView {...props} 
+                                        currentOpportunity = { this.state.currentOpportunity } 
+                                        currentOpportunityName = { this.state.currentOpportunityName } 
+                                        currentOrgName = { this.state.currentOrgName } 
+                                        handleLogout = { this.handleLogout }
+                                        switchViews = { this.switchViews }/> 
+                                        }/>
+          <Route exact path='/dashboard' render={ (props) => <OpportunityView {...props} 
+                                        selectOpportunity={this.selectOpportunity} 
+                                        switchViews={this.switchViews} 
+                                        handleLogout = { this.handleLogout }/> 
+                                        }/>
           <Route path='/login' component = {Login}/>
         </div>
     )

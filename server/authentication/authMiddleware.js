@@ -1,6 +1,3 @@
-var url = require('url');
-var passport = require('passport');
-
 var authMiddleware = function (req, res, next) {
   //append the user object to the header so the client knows that it is authenticated
   res.append('user', JSON.stringify(req.user));

@@ -1,15 +1,11 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import Axios from 'axios';
 
 class OpportunityNavBar extends React.Component {
   
   constructor(props) {
     super(props);
-  }
-
-  handleLogout() {
-    Axios.get('/logout');
   }
 
   render() {
@@ -33,7 +29,7 @@ class OpportunityNavBar extends React.Component {
           <Nav pullRight>
             <NavItem eventKey={3} href="#"></NavItem>
             <NavItem eventKey={4} href="#">
-            <Button bsStyle="danger" onClick = {this.handleLogout}>Logout</Button>
+            <Button bsStyle="danger" onClick = {this.props.handleLogout}>Logout</Button>
             </NavItem>
           </Nav>
         </Navbar.Collapse>
