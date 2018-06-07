@@ -177,7 +177,7 @@ class TaskView extends React.Component {
             >
     
               <button className='close-modal' onClick={this.closeModal}>X</button>
-              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
+              {this.state.postTaskForm ? <TaskForm columnName={this.state.selectedStatus} currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
               {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
             <div id='columns-wrapper'>
