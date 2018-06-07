@@ -46,7 +46,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/auth/github/callback', passport.authenticate('github'), (req, res) => (res.redirect('/')));
 app.get('/auth/github', passport.authenticate('github', {scope: ['user:email']}));
 
-app.get('/logout', function(req, res) {
+app.get('/logout', (req, res) => {
   req.session.destroy(function(err) {
     res.redirect('/');
   });
@@ -57,6 +57,12 @@ app.use('/contacts', contactsRouter);
 app.use('/opportunities', opportunitiesRouter);
 app.use('/tasks', tasksRouter);
 app.use('/users', usersRouter);
+
+//handle refresh
+app.get('/dashboard*', (req,res) => {
+  res.redirect('/');
+});
+
 
 var port = process.env.PORT || 9000; 
 
