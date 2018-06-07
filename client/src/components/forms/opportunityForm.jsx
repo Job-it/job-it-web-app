@@ -38,7 +38,7 @@ class createOpportunityForm extends React.Component {
     e.preventDefault();
     axios.post('/opportunities', this.state)
       .then((res) => {
-      console.log(res);
+      // console.log(res);
     });
     this.props.close();
   }
