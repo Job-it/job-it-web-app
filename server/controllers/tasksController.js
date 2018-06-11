@@ -1,4 +1,3 @@
-
 var tasksModels = require('../models/tasksModel.js');
 var url = require('url');
 
@@ -6,7 +5,6 @@ module.exports = {
   get: (req, res) => {
     var opportunity = req.query.opportunity;
     var isArchived = req.query.isArchived;
-
     tasksModels.getTasks(opportunity, isArchived)
       .then((data) => {
         res.status(200).send(data); 
@@ -29,7 +27,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log(err); 
-    })
+    });
     
   },
 
@@ -41,22 +39,17 @@ module.exports = {
     var currentStatus = req.body.currentStatus;
     var isArchived = req.body.isArchived;
 
-    //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
-
     tasksModels.updateTask(taskId, taskContent, isComplete, due, currentStatus, isArchived)
     .then((data) => {
       res.send(200, 'Task patched');
     })
     .catch((err) => {
       console.log(err);
-    })
-    //link this to the model here
+    });
   },
 
   delete: (req, res) => {
-    var taskId = req.query._id; 
-
-    //THESE  VARIABLES ^^^^ CAN CHANGE DEPENDING ON HOW DATA IS BEING PASSED FROM CLIENT------
+    var taskId = req.query._id;
 
     tasksModels.deleteTask(taskId)
     .then((data) => {
@@ -65,7 +58,6 @@ module.exports = {
     .catch((err) => {
       console.error(err);
     });
-    //link this to the model here
   },
 };
 

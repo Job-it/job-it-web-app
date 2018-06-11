@@ -12,7 +12,7 @@ class UpdateTaskForm extends React.Component {
       isArchived: false,
       dueDate: moment(),
       status: '',
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
@@ -39,6 +39,9 @@ class UpdateTaskForm extends React.Component {
     .then(() => {
       this.props.closeModal();
     })
+    .catch((err) => {
+      console.error('There was an error updating the task: ', err);
+    });
   }
 
 
@@ -49,7 +52,6 @@ class UpdateTaskForm extends React.Component {
   }
 
   render() {
-    //create form that
     return (
       <div id='task-form-wrapper'>
         <form onSubmit={this.handleSubmit}>

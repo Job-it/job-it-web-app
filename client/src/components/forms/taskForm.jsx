@@ -6,9 +6,8 @@ import moment from 'moment';
 class TaskForm extends React.Component {
   constructor(props) {
     super(props);
-    //opportunityFK is passed down as props from the taskView
-    //this.props.currentOpportunity
-
+    //opportunityFK & columnName (status) is passed down as props from the taskView
+    //this.props.currentOpportunity, this.props.columnName
     this.state = {
       opportunityFK: this.props.currentOpportunity,
       content: '',
@@ -29,7 +28,6 @@ class TaskForm extends React.Component {
     });
   }
 
-
   handleDateChange(date) {
     this.setState({
       dueDate: date
@@ -37,7 +35,6 @@ class TaskForm extends React.Component {
   }
 
   render() {
-    //create form that
     return (
       <div id='task-form-wrapper'>
         <form onSubmit={this.handleSubmit}>

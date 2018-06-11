@@ -30,6 +30,7 @@ class TaskColumn extends React.Component {
     return (
       <div className = {`status-column task-dropzone ${ this.props.stage.replace(/\s+/g, '-').toLowerCase() }`}>
         <div>
+            {/* react-bootstrap button to open new task form modal */}
             <Button className="plus-btn-circle" bsStyle="success" onClick={() => this.props.openModal(undefined, this.props.stage)}>+</Button>
           <div className="column-title">
             {this.props.stage}
