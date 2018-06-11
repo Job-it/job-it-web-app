@@ -20,7 +20,7 @@ passport.deserializeUser((user, done) => {
 passport.use(new GitHubStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://127.0.0.1:9000/auth/github/callback"
+  callbackURL: "http://localhost:9000/auth/github/callback"
 }, 
   function(accessToken, refreshToken, profile, done) {
     userFunctions.saveGitHubUser(profile, (err, user) => {
