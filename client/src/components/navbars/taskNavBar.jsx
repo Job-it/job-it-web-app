@@ -27,7 +27,8 @@ class TaskNavBar extends React.Component {
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={4} href="#">
-              <Button bsStyle="danger" onClick={this.props.handleLogout}>Logout</Button>
+              <Button bsStyle="danger" onClick = {this.props.handleLogout}>Logout</Button>
+              {/* This button will trigger a logout and destroy the user session. */}
             </NavItem>
           </Nav>
         </Navbar.Collapse>
