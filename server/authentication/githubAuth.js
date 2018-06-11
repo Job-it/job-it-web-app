@@ -2,6 +2,12 @@ var url = require('url');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github2').Strategy;
 var userFunctions = require('../models/usersModel');
+require('dotenv').config();
+
+// Use passport npm module to authenticate with Github Oauth
+// Passport takes a strategy which a predefined set of information / functionality encapsultated in an object
+// See documentation for the inputs the strategy requires
+// Once the strategy has been executed, the callback function saves the user to the DB
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -12,8 +18,8 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new GitHubStrategy({
-  clientID: 'e1997d26a3c54cfdd006',
-  clientSecret: '44219d8f6d8816611cbfa81024846de448e6bbbc',
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
   callbackURL: "http://127.0.0.1:9000/auth/github/callback"
 }, 
   function(accessToken, refreshToken, profile, done) {
