@@ -11,6 +11,7 @@ import Axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // This is how you reroute in react-router
     this.props.history.push('/login');
     this.state = {
         modalIsOpen: true,
@@ -30,8 +31,10 @@ class App extends React.Component {
     axios.get('/users').then((res) => {
       var user = JSON.parse(res.headers.user);
       if (user !== undefined) {
+        // This is how you reroute in react-router
         this.props.history.push('/dashboard');
       } else {
+        // This is how you reroute in react-router
         this.props.history.push('/login');
       }
       });
@@ -47,6 +50,7 @@ class App extends React.Component {
   }
 
   switchViews() {
+    // This is how you reroute in react-router
     this.props.history.push('/dashboard');
   }
   
@@ -64,6 +68,7 @@ class App extends React.Component {
 
   handleLogout() {
     Axios.get('/logout').then(() => {
+      // This is how you reroute in react-router
       this.props.history.push('/login');
     });
   }
@@ -71,6 +76,7 @@ class App extends React.Component {
   render() {
     return (
         <div className = "app">
+          {/* Routes for react router */}
           <Route path='/dashboard/task' render = { (props) => <TaskView {...props} 
                                         currentOpportunity = { this.state.currentOpportunity } 
                                         currentOpportunityName = { this.state.currentOpportunityName } 
@@ -89,4 +95,5 @@ class App extends React.Component {
   }
 }
 
+//Main app is wrapped in 'withRouter to enable react-router'
 export default withRouter(App);

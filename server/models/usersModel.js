@@ -11,6 +11,4 @@ let saveGitHubUser = (profile, cb) => {
   })
 };
 
-// saveUser({githubId: 1}, (err, user) => console.log(err, user));
-
 module.exports.saveGitHubUser = saveGitHubUser;
