@@ -21,7 +21,6 @@ class TaskView extends React.Component {
         isArchived: false
     };
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.toggleArchived = this.toggleArchived.bind(this);
     this.archiveTask = this.archiveTask.bind(this);
