@@ -1,17 +1,9 @@
-var usersModels = require('../models/usersModel.js');
-var url = require('url');
-
 module.exports = {
 	get: (req, res) => {
 		res.send();
 	},
 	post: (req, res) => {
-		
+		//NOT IN USE
+		//FOR POTENTIAL REFERRAL SYSTEM
 	},
-	patch: (req, res) => {
-		
-	},
-	delete: (req, res) => {
-		
-	}
 }

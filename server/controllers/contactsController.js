@@ -1,3 +1,5 @@
+//NOT IN USE
+//FOR LATER ADDITION OF A CONTACTS FEATURE
 var contactsModels = require('../models/contactsModel.js');
 var url = require('url');
 
