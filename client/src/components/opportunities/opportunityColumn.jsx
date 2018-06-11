@@ -9,6 +9,11 @@ class OpportunityColumn extends React.Component {
     }
     componentDidMount() {
       
+      //USING INTERACT JS FOR DRAG AND DROP
+      //SEE '../../lib/interactDnd.js' for reference
+
+      //When a card is successfully dropped in a 'dropzone'
+      //Update the db to reflect the new card's position
       interact('.opportunity-dropzone').dropzone({
         ondrop: (event) => {
           var draggableElement = event.relatedTarget;
