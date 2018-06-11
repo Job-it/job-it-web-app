@@ -5,7 +5,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  // The login form function contains a simple ahref that links the user to the auth route
+  // The auth route redirects the user to github authentication server
   render() {
     return (
       <div className = "login-wrapper">

@@ -136,6 +136,7 @@ class OpportunityView extends React.Component {
             contentLabel="New Job.it Opportunity"
           >
             <button className='close-modal' onClick={this.closeModal}>X</button> 
+            {/* The ternary operators below enable the create and update opportunity forms to render on click from the user. */}
             {this.state.createModalIsOpen ? <CreateOpportunityForm columnName={this.state.selectedStatus}  close = {() => {this.closeModal()}}/> : <div></div>}
             {this.state.updateModalIsOpen ? <UpdateOpportunityForm  opportunityToUpdate = {this.state.opportunityToUpdate} 
                                                                     close = {() => {this.closeModal()}}/> : <div></div>}
