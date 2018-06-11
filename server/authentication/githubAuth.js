@@ -17,6 +17,10 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+
+// Using the github strategy with passport
+// Note that the env variable leverages the 'dotenv' npm module to access the variables defined in the .env file
+// This is to ensure the github API keys are not publically available
 passport.use(new GitHubStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -28,4 +32,5 @@ passport.use(new GitHubStrategy({
     });
 }));
 
+// Exporting passport for use in server/index.js - config is being applied in this file.
 module.exports = passport;
