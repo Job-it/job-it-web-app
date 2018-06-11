@@ -34,10 +34,16 @@ class TaskView extends React.Component {
   componentDidMount() {
     this.getTasksAndSetState();
 
-    //Force rerender of task card back to it's original column
-    //If it is not switched to another column.
+    //USING INTERACT JS FOR DRAG AND DROP
+    //SEE '../../lib/interactDnd.js' for reference
+
+
+    //When an task card is not dropped into a separate column,
+    //Return the card back to it's original column by clearing
+    //And then re-populating the tasks array in the state.
     interact('.draggable-task').draggable({
       onend: () => {
+        //0ms timeout hack
         setTimeout(() => {
           var currentTasks = this.state.tasks;
           this.setState({

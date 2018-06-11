@@ -57,9 +57,6 @@ class OpportunityView extends React.Component {
 
   getOpportunities() {
     axios.get('/opportunities', {params: {isArchived: (this.state.isArchived ? true : false)}}).then((response) => {
-      // console.log('This is the session: ', response.session);
-      // console.log('This is the user', response.user);
-      // console.log('this is the response', response);
       var userName = JSON.parse(response.headers.user).userName;
       this.setState({
         opportunities: response.data,
@@ -102,11 +99,18 @@ class OpportunityView extends React.Component {
 
   componentDidMount() {
     this.getOpportunities();
-    //Force delayed rerender of opportunity card back to it's original column
-    //If it is not switched to another column.
+
+      //USING INTERACT JS FOR DRAG AND DROP
+      //SEE '../../lib/interactDnd.js' for reference
+
+
+      //When an opportunity card is not dropped into a separate column,
+      //Return the card back to it's original column by clearing
+      //And then re-populating the opportunities array in the state.
       interact('.draggable-opportunity').draggable({
         onend: () => {
-
+          
+          //Oms setTimeout hack
           setTimeout(() => {
             var currentOpportunities = this.state.opportunities;
             this.setState({

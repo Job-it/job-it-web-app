@@ -1,3 +1,7 @@
+//EVENT BASED DRAG AND DROP FUNCTIONALITY
+//SEE http://interactjs.io/ FOR DOCUMENTATION
+//CHECK OUT 'DRAGGING' & 'DRAG AND DROP'
+
 import interact from 'interactjs';
 
 interact('.draggable-opportunity').draggable({
