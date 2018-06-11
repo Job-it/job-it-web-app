@@ -1,11 +1,13 @@
 import React from 'react';
 import OpportunityView from './opportunities/opportunityView.jsx';
 import TaskView from './tasks/taskView.jsx';
-import interactDnd from '../lib/interactDnd.js';
 import { Route, withRouter } from "react-router-dom";
 import axios from 'axios';
 import Login from './login/login.jsx'
 import Axios from 'axios';
+
+//this file needs to be imported once so interact.js functionality is run
+import interactDnd from '../lib/interactDnd.js';
 
 
 class App extends React.Component {
