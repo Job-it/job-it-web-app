@@ -8,7 +8,6 @@ import TaskNavBar from '../navbars/taskNavBar.jsx';
 import UpdateTaskForm from '../forms/updateTaskForm.jsx';
 
 class TaskView extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -31,9 +30,9 @@ class TaskView extends React.Component {
     this.updateTask = this.updateTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
   }
+
   componentDidMount() {
     this.getTasksAndSetState();
-
     //Force rerender of task card back to it's original column
     //If it is not switched to another column.
     interact('.draggable-task').draggable({
@@ -50,6 +49,8 @@ class TaskView extends React.Component {
       }
     });
   }
+
+  //open Modal for either Add Task or Update Task
   openModal(taskObj, status) {
     if (taskObj === undefined) {
       this.setState({
@@ -65,9 +66,8 @@ class TaskView extends React.Component {
       });
     }
   }
-  afterOpenModal() {
-    //
-  }
+  
+  //close Modal and re-render tasks
   closeModal() {
     this.setState({
       modalIsOpen: false,
@@ -78,6 +78,7 @@ class TaskView extends React.Component {
     this.getTasksAndSetState();
   }
 
+  //main GET request to render tasks according to selected opportunity & archive view
   getTasksAndSetState() {
     axios.get('/tasks', {
       params: {
@@ -101,6 +102,7 @@ class TaskView extends React.Component {
     });
   }
 
+  //update task information with pre-filled 
   updateTask(id, status) {
     var updateObj = this.state.tasks.filter((task) => task._id === id)[0];
     //capitalize the first letter in the status column
@@ -121,6 +123,7 @@ class TaskView extends React.Component {
     });
   }
 
+  //updates task information to toggle task's archived status
   archiveTask(id, taskIsArchived) {
     var updateObj = this.state.tasks.filter((task) => task._id === id)[0];
     axios.patch('/tasks', {
@@ -138,12 +141,14 @@ class TaskView extends React.Component {
     });
   }
 
+  //toggle archived task view setting
   toggleArchived() {
     this.setState({
       isArchived : this.state.isArchived ? false : true
     }, () => this.getTasksAndSetState());
   }
 
+  //remove tasks from the database by task ID
   deleteTask(id) {
     axios.delete('/tasks', {
       params: {
@@ -162,10 +167,10 @@ class TaskView extends React.Component {
     return (
       <div id='view-wrapper'>
         <div>
-          <TaskNavBar handleLogout = {this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal} />
+          <TaskNavBar handleLogout={this.props.handleLogout} switchViews={this.props.switchViews} toggleArchived={this.toggleArchived} isArchived={this.state.isArchived} openModal={this.openModal} closeModal={this.closeModal}/>
         </div>
         <div className='page-header'>
-          <h1>{this.props.currentOpportunityName}<br /><small>{this.props.currentOrgName}</small></h1>
+          <h1>{this.props.currentOpportunityName}<br/><small>{this.props.currentOrgName}</small></h1>
         </div>
             <Modal
               className='modal-form'
@@ -177,7 +182,9 @@ class TaskView extends React.Component {
             >
     
               <button className='close-modal' onClick={this.closeModal}>X</button>
-              {this.state.postTaskForm ? <TaskForm currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
+              
+              {/* openModal method handles which form modal gets served up */}
+              {this.state.postTaskForm ? <TaskForm columnName={this.state.selectedStatus} currentOpportunity={this.props.currentOpportunity} closeModal={this.closeModal} /> : <div></div>}
               {this.state.patchTaskForm ? <UpdateTaskForm currentTask={this.state.currentTask} closeModal={this.closeModal} /> : <div></div>}
             </Modal>
             <div id='columns-wrapper'>
@@ -198,7 +205,6 @@ class TaskView extends React.Component {
       </div>
     )
   }
- 
- }
- 
- export default TaskView;
+}
+
+export default TaskView;
